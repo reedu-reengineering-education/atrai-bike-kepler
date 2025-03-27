@@ -1,20 +1,15 @@
 import { connect } from "react-redux";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
-import styled from "styled-components";
 
-import "./App.css";
 import { injectComponents, SidePanelFactory } from "@kepler.gl/components";
 import { KeplerGlState } from "@kepler.gl/reducers";
 import { Action, Dispatch } from "redux";
 import CustomSidePanelFactory from "./components/side-panel";
 
-const StyledWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 // Inject custom components
-const KeplerGl = injectComponents([[SidePanelFactory, CustomSidePanelFactory]]);
+const KeplerGl = injectComponents([
+  [SidePanelFactory, CustomSidePanelFactory] as never,
+]);
 
 const App = () => {
   // const dispatch = useDispatch();
@@ -49,11 +44,13 @@ const App = () => {
   // }, [dispatch]);
 
   return (
-    <StyledWrapper>
+    <div className="w-full h-full rounded-lg overflow-hidden">
       <AutoSizer>
-        {({ height, width }) => <KeplerGl width={width} height={height} />}
+        {({ height, width }) => (
+          <KeplerGl width={width} height={height} theme="light" />
+        )}
       </AutoSizer>
-    </StyledWrapper>
+    </div>
   );
 };
 
