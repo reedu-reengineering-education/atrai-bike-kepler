@@ -1,7 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { Icons, SidePanelFactory } from "@kepler.gl/components";
+import { addRoadRoughnessData } from "@/lib/kepler/road-roughness-data";
+import { Button, Icons, SidePanelFactory } from "@kepler.gl/components";
+import { PlusIcon } from "lucide-react";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
@@ -15,7 +17,14 @@ function CustomSidePanelFactory(...args) {
             id: "rocket",
             label: "Rocket",
             iconComponent: Icons.Rocket,
-            component: () => <div className="rocket-panel">Rocket</div>,
+            component: () => (
+              <div>
+                <Button onClick={addRoadRoughnessData}>
+                  <PlusIcon size={16} />
+                  Add road roughness
+                </Button>
+              </div>
+            ),
           },
           ...CustomSidePanel.defaultPanels,
         ]}

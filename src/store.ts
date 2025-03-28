@@ -21,6 +21,12 @@ const initialState: DeepPartial<KeplerGlState> = {
   mapStyle: {
     styleType: "positron",
   },
+  mapState: {
+    latitude: 51.9764007406153,
+    longitude: 7.620825845746908,
+    pitch: 0,
+    zoom: 11.231547146346966,
+  },
 };
 
 const customizedKeplerGlReducer = keplerGlReducer.initialState(initialState);
