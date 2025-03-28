@@ -1,4 +1,4 @@
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
 
 import { injectComponents, SidePanelFactory } from "@kepler.gl/components";
