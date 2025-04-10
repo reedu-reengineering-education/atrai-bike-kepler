@@ -1,13 +1,12 @@
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
+import {Router, RouterProvider} from "@tanstack/react-router";
 import store from "./store";
-import App from "./App";
-import Layout from "./layout";
+import { routeTree } from "./routeTree.ts"
+const router = new Router({ routeTree });
 
 createRoot(document.getElementById("root")!).render(
   <Provider store={store}>
-    <Layout>
-      <App />
-    </Layout>
+     <RouterProvider router={router} />
   </Provider>,
 );

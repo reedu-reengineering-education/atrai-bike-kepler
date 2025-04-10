@@ -50,26 +50,26 @@ const data = {
   navMain: [
     {
       title: "Playground",
-      url: "#",
+      url: "/",
       icon: MapIcon,
       isActive: true,
     },
     {
       title: "Models",
-      url: "#",
+      url: "??",
       icon: Bot,
       items: [
         {
           title: "Genesis",
-          url: "#",
+          url: "/genesis",
         },
         {
           title: "Explorer",
-          url: "#",
+          url: "/explorer",
         },
         {
           title: "Quantum",
-          url: "#",
+          url: "/quantum",
         },
       ],
     },
