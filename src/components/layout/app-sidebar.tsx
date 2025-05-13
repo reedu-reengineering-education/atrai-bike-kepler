@@ -3,6 +3,7 @@ import {
   AudioWaveform,
   BookOpen,
   Bot,
+  ChartLine,
   Command,
   Frame,
   GalleryVerticalEnd,
@@ -53,6 +54,11 @@ const data = {
       url: "/",
       icon: MapIcon,
       isActive: true,
+    },
+    {
+      title: "Statistics",
+      url: "/statistics",
+      icon: ChartLine,
     },
     {
       title: "Models",
