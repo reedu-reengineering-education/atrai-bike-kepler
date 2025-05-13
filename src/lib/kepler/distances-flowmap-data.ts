@@ -1,11 +1,11 @@
 import store from "@/store";
 import { addDataToMap } from "@kepler.gl/actions";
 import { processGeojson } from "@kepler.gl/processors";
-import configJson from "./config.json";
+import configJson from "./config-distances.json";
 
-export async function addRoadRoughnessData() {
+export async function addDistancesFlowmapData() {
   const dataReq = await fetch(
-    "https://api.atrai.bike/collections/road_roughness/items?f=json&limit=1000000",
+    "https://api.atrai.bike/collections/distances_flowmap/items?f=json&limit=1000000",
   );
   const data = await dataReq.json();
   const geojson = processGeojson(data);
@@ -18,8 +18,8 @@ export async function addRoadRoughnessData() {
     addDataToMap({
       datasets: {
         info: {
-          label: "Road Roughness",
-          id: "road_roughness",
+          label: "Overtaking Distances",
+          id: "distances_flowmap",
         },
         data: geojson,
       },

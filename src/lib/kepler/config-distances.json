@@ -5,22 +5,35 @@
       "filters": [],
       "layers": [
         {
-          "id": "x3tu3kp",
+          "id": "sppwi6a",
           "type": "geojson",
           "config": {
-            "dataId": "road_roughness",
+            "dataId": "distances_flowmap",
             "columnMode": "geojson",
-            "label": "Road Roughness",
-            "color": [18, 147, 154],
+            "label": "Overtaking Distance",
+            "color": [231, 159, 213],
             "highlightColor": [252, 242, 26, 255],
             "columns": { "geojson": "_geojson" },
             "isVisible": true,
             "visConfig": {
               "opacity": 0.8,
               "strokeOpacity": 0.8,
-              "thickness": 1,
+              "thickness": 1.5,
               "strokeColor": null,
               "colorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#4C0035",
+                  "#880030",
+                  "#B72F15",
+                  "#D6610A",
+                  "#EF9100",
+                  "#FFC300"
+                ]
+              },
+              "strokeColorRange": {
                 "colors": [
                   "#0198BD",
                   "#42C1BC",
@@ -33,26 +46,13 @@
                 "type": "diverging",
                 "category": "Uber"
               },
-              "strokeColorRange": {
-                "colors": [
-                  "#00939C",
-                  "#6BB5B9",
-                  "#AAD7D9",
-                  "#F4B198",
-                  "#DF744E",
-                  "#C22E00"
-                ],
-                "name": "Uber Viz Diverging",
-                "type": "diverging",
-                "category": "Uber"
-              },
               "radius": 10,
               "sizeRange": [0, 10],
               "radiusRange": [0, 50],
               "heightRange": [0, 500],
               "elevationScale": 5,
               "stroked": true,
-              "filled": true,
+              "filled": false,
               "enable3d": false,
               "wireframe": false,
               "fixedHeight": false
@@ -74,13 +74,10 @@
             ]
           },
           "visualChannels": {
-            "colorField": {
-              "name": "Average Roughness_Normalized",
-              "type": "real"
-            },
-            "colorScale": "quantize",
+            "colorField": null,
+            "colorScale": "quantile",
             "strokeColorField": {
-              "name": "Average Roughness_Normalized",
+              "name": "Average Normalized Overtaking Distance",
               "type": "real"
             },
             "strokeColorScale": "quantize",
@@ -97,10 +94,11 @@
       "interactionConfig": {
         "tooltip": {
           "fieldsToShow": {
-            "road_roughness": [
+            "distances_flowmap": [
               { "name": "name", "format": null },
-              { "name": "Average Roughness_Normalized", "format": null },
-              { "name": "Number of Points", "format": null }
+              { "name": "Number of Points", "format": null },
+              { "name": "Average Overtaking Distance", "format": null },
+              { "name": "Average Overtaking Manoeuvre", "format": null }
             ]
           },
           "compareMode": false,
@@ -120,10 +118,10 @@
     "mapState": {
       "bearing": 0,
       "dragRotate": false,
-      "latitude": 51.95081996985927,
-      "longitude": 7.630567012161283,
+      "latitude": 51.96141391581216,
+      "longitude": 7.620958479401018,
       "pitch": 0,
-      "zoom": 12.539960579920901,
+      "zoom": 13.466704729789848,
       "isSplit": false,
       "isViewportSynced": true,
       "isZoomLocked": false,
