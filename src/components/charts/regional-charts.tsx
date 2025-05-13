@@ -1,15 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  LineChart,
-  Line,
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   Tooltip,
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { Button } from "../ui/button";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "../ui/table";
 
 export type WeeklyStat = {
   week: string;
@@ -29,7 +39,30 @@ interface RegionStatsWithChartProps {
 }
 
 export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
-  console.log("RegionStatsWithChart data", data);
+  // Properties available for toggling
+  const chartProperties = [
+    {
+      key: "trip_count",
+      label: "Trip Count",
+      color: "#8884d8",
+    },
+    {
+      key: "average_speed_kmh",
+      label: "Avg Speed (km/h)",
+      color: "#82ca9d",
+    },
+    {
+      key: "total_kcal",
+      label: "Total kcal",
+      color: "#ff7300",
+    },
+  ];
+
+  // State for selected property
+  const [selectedProperty, setSelectedProperty] = useState(
+    chartProperties[0].key,
+  );
+
   return (
     <div className="space-y-10">
       {data.map((region) => (
@@ -41,39 +74,59 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
           <CardContent>
             {/* Table summary */}
             <div className="overflow-x-auto mb-6">
-              <table className="min-w-full text-sm text-left">
-                <thead>
-                  <tr className="border-b">
-                    <th className="p-2 font-semibold">Week</th>
-                    <th className="p-2 font-semibold">Trip Count</th>
-                    <th className="p-2 font-semibold">Avg Duration (s)</th>
-                    <th className="p-2 font-semibold">Avg Speed (km/h)</th>
-                    <th className="p-2 font-semibold">Total kcal</th>
-                  </tr>
-                </thead>
-                <tbody>
+              <Table className="min-w-full text-sm text-left">
+                <TableHeader>
+                  <TableRow className="border-b">
+                    <TableHead className="p-2 font-semibold">Week</TableHead>
+                    <TableHead className="p-2 font-semibold">
+                      Trip Count
+                    </TableHead>
+                    <TableHead className="p-2 font-semibold">
+                      Avg Duration (s)
+                    </TableHead>
+                    <TableHead className="p-2 font-semibold">
+                      Avg Speed (km/h)
+                    </TableHead>
+                    <TableHead className="p-2 font-semibold">
+                      Total kcal
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {region.weekly_stats.map((weekStat) => (
-                    <tr key={weekStat.week} className="border-b">
-                      <td className="p-2">
+                    <TableRow key={weekStat.week}>
+                      <TableCell className="font-medium">
                         {new Date(weekStat.week).toLocaleDateString()}
-                      </td>
-                      <td className="p-2">{weekStat.trip_count}</td>
-                      <td className="p-2">
+                      </TableCell>
+                      <TableCell>{weekStat.trip_count}</TableCell>
+                      <TableCell>
                         {weekStat.average_duration_s.toFixed(2)}
-                      </td>
-                      <td className="p-2">
+                      </TableCell>
+                      <TableCell>
                         {weekStat.average_speed_kmh.toFixed(2)}
-                      </td>
-                      <td className="p-2">{weekStat.total_kcal.toFixed(2)}</td>
-                    </tr>
+                      </TableCell>
+                      <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
+            </div>
+
+            {/* Toggle for chart property */}
+            <div className="mb-4 flex gap-2">
+              {chartProperties.map((prop) => (
+                <Button
+                  key={prop.key}
+                  onClick={() => setSelectedProperty(prop.key)}
+                >
+                  {prop.label}
+                </Button>
+              ))}
             </div>
 
             {/* Fancy chart */}
             <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={region.weekly_stats}>
+              <BarChart data={region.weekly_stats}>
                 <XAxis
                   dataKey="week"
                   tickFormatter={(date) => new Date(date).toLocaleDateString()}
@@ -85,25 +138,18 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
                   }
                 />
                 <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="trip_count"
-                  stroke="#8884d8"
-                  name="Trip Count"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="average_speed_kmh"
-                  stroke="#82ca9d"
-                  name="Avg Speed (km/h)"
-                />
-                <Line
-                  type="monotone"
-                  dataKey="total_kcal"
-                  stroke="#ff7300"
-                  name="Total kcal"
-                />
-              </LineChart>
+                {chartProperties
+                  .filter((prop) => prop.key === selectedProperty)
+                  .map((prop) => (
+                    <Bar
+                      key={prop.key}
+                      dataKey={prop.key}
+                      fill={prop.color}
+                      name={prop.label}
+                      radius={4}
+                    />
+                  ))}
+              </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
