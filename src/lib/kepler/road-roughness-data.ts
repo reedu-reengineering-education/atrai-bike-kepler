@@ -28,6 +28,7 @@ export async function addRoadRoughnessData() {
         keepExistingConfig: false,
         autoCreateLayers: false,
       },
+      // @ts-expect-error not-compatible
       config: configJson,
     }),
   );
