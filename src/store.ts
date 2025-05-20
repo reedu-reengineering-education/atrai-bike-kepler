@@ -7,6 +7,8 @@ import keplerGlReducer, {
   KeplerGlState,
 } from "@kepler.gl/reducers";
 import appReducer from "./app-reducer";
+import compignReducer from "./campaign-slice";
+
 
 // helper type to make all properties of T optional
 type DeepPartial<T> = {
@@ -34,13 +36,23 @@ const customizedKeplerGlReducer = keplerGlReducer.initialState(initialState);
 const reducers = combineReducers({
   keplerGl: customizedKeplerGlReducer,
   app: appReducer,
+  campaign: compignReducer
+  
 });
 
-const middlewares = enhanceReduxMiddleware([]);
+// const middlewares = enhanceReduxMiddleware([]);
 
 const store = configureStore({
   reducer: reducers,
-  middleware: middlewares,
+    middleware: (getDefaultMiddleware) => [
+    // Include default middleware with custom configuration
+    ...getDefaultMiddleware({
+      serializableCheck: false, // Required for Kepler.gl
+      immutableCheck: false,   // Optional performance improvement
+    }),
+    // Add Kepler.gl enhanced middleware
+    ...enhanceReduxMiddleware([])
+  ],
 });
 
 export default store;
