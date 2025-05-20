@@ -15,6 +15,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { getAllStatistics } from "@/lib/pygeiapi-client/statistics";
+import { setActiveCampaign } from "@/campaign-slice";
+import { useDispatch } from "react-redux";
+
 
 // Helper to render a simple SVG polygon icon from GeoJSON geometry
 function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
@@ -71,31 +74,37 @@ function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
 
 export function CampaignSwitcher() {
   const { isMobile } = useSidebar();
+  const dispatch = useDispatch(); 
   const [statistics, setStatistics] = React.useState<GeoJSON.Feature[]>([]);
-  const [activeStat, setActiveStat] = React.useState<GeoJSON.Feature | null>(
-    null,
-  );
+  const [activeStat, setActiveStat] = React.useState<GeoJSON.Feature | null>(null);
+  
+
+  const getName = (feature: GeoJSON.Feature) =>
+    feature.properties?.name || feature.id || "Unnamed";
+
+  const getValue = (feature: GeoJSON.Feature) => {
+    const { statistics } = feature.properties || {};
+    if (statistics?.latest_stats?.total_distance_m)
+      return `${(statistics.latest_stats.total_distance_m / 1000).toFixed(2)} km`;
+  };
+
+  function handleSelect(stat: GeoJSON.Feature) {
+    setActiveStat(stat);
+    dispatch(setActiveCampaign(getName(stat))); 
+  }
 
   React.useEffect(() => {
     getAllStatistics().then((data) => {
       setStatistics(data.features);
-      setActiveStat(data.features[0] || null);
+      const first = data.features[0] || null;
+      setActiveStat(first);
+      if (first) {
+        dispatch(setActiveCampaign(getName(first))); 
+      }
     });
-  }, []);
+  }, [dispatch]);
 
   if (!activeStat) return null;
-
-  // Extract name and value (e.g., distance) from properties
-  const getName = (feature: GeoJSON.Feature) =>
-    feature.properties?.name || feature.id || "Unnamed";
-  const getValue = (feature: GeoJSON.Feature) => {
-    const { statistics } = feature.properties || {};
-    console.log("statistics", statistics);
-    if (statistics?.latest_stats?.total_distance_m)
-      return `${(statistics.latest_stats.total_distance_m / 1000).toFixed(2)} km`;
-    // const numKey = Object.keys(props).find((k) => typeof props[k] === "number");
-    // return numKey ? `${props[numKey]}` : "";
-  };
 
   return (
     <SidebarMenu>
@@ -130,7 +139,7 @@ export function CampaignSwitcher() {
             {statistics.map((stat, index) => (
               <DropdownMenuItem
                 key={stat.id || index}
-                onClick={() => setActiveStat(stat)}
+                onClick={() => handleSelect(stat)} 
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
@@ -145,7 +154,7 @@ export function CampaignSwitcher() {
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2 opacity-50 cursor-not-allowed">
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                {/* Placeholder for add campaign */}+
+                +
               </div>
               <div className="text-muted-foreground font-medium">
                 Add campaign
