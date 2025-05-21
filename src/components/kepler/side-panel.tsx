@@ -1,17 +1,35 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { addRoadRoughnessData } from "@/lib/kepler/road-roughness-data";
 import { Icons, SidePanelFactory } from "@kepler.gl/components";
 import { Card } from "@/components/ui/card";
 import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
-import { addDistancesFlowmapData } from "@/lib/kepler/distances-flowmap-data";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchKeplerData } from "@/lib/redux/distanceFlowDataSlice";
+import { useEffect } from 'react';
+import { useLazyGetRoadRoughnessQuery } from '@/lib/redux/roadRoughnessDataSlice';
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
 
   const CustomSidePanelWrapper = (props) => {
+        const dispatch = useDispatch();
+    const { loading, error } = useSelector((state) => state.distanceFlowData);
+
+  
+    const handleAddDistancesFlowmap = async () => {
+      try {
+        await dispatch(fetchKeplerData());
+      } catch (err) {
+        console.error('Failed to load distances data:', err);
+      }
+    };
+    const [triggerRoughnessQuery, result] = useLazyGetRoadRoughnessQuery(); 
+  const { isLoading, error: roadError } = result;
+   const handleRoadRoughnessClick = () => {
+    triggerRoughnessQuery(); //
+  };
     return (
       <CustomSidePanel
         {...props}
@@ -24,7 +42,7 @@ function CustomSidePanelFactory(...args) {
               <div className="grid grid-cols-2 gap-4">
                 <Card
                   className="p-0 overflow-clip hover:shadow-lg cursor-pointer"
-                  onClick={addRoadRoughnessData}
+                  onClick={handleRoadRoughnessClick}
                 >
                   <div className="relative w-full h-full">
                     <img src={RoadRoughnessImageUrl} alt="Road Roughness" />
@@ -37,7 +55,7 @@ function CustomSidePanelFactory(...args) {
                 </Card>
                 <Card
                   className="p-0 overflow-clip hover:shadow-lg cursor-pointer"
-                  onClick={addDistancesFlowmapData}
+                  onClick={handleAddDistancesFlowmap}
                 >
                   <div className="relative w-full h-full">
                     <img src={DistancesImageUrl} alt="Overtaking Distances" />
@@ -49,12 +67,6 @@ function CustomSidePanelFactory(...args) {
                   </div>
                 </Card>
               </div>
-              // <Image>
-              //   <Button onClick={addRoadRoughnessData}>
-              //     <PlusIcon size={16} />
-              //     Add road roughness
-              //   </Button>
-              // </div>
             ),
           },
           ...CustomSidePanel.defaultPanels,
