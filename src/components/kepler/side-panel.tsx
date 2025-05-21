@@ -6,30 +6,49 @@ import { Card } from "@/components/ui/card";
 import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchKeplerData } from "@/lib/redux/distanceFlowDataSlice";
+// import { fetchKeplerData } from "@/lib/redux/distanceFlowDataSlice";
 import { useEffect } from 'react';
-import { useLazyGetRoadRoughnessQuery } from '@/lib/redux/roadRoughnessDataSlice';
+// import { useLazyGetRoadRoughnessQuery } from '@/lib/redux/roadRoughnessDataSlice';
+import { useLazyGetDistanceFlowQuery, useLazyGetRoadRoughnessQuery } from "@/lib/redux/keplerApi";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
 
   const CustomSidePanelWrapper = (props) => {
-        const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.distanceFlowData);
+  //       const dispatch = useDispatch();
+  //   const { loading, error } = useSelector((state) => state.distanceFlowData);
 
   
+  //   const handleAddDistancesFlowmap = async () => {
+  //     try {
+  //       await dispatch(fetchKeplerData());
+  //     } catch (err) {
+  //       console.error('Failed to load distances data:', err);
+  //     }
+  //   };
+  //   const [triggerRoughnessQuery, result] = useLazyGetRoadRoughnessQuery(); 
+  // const { isLoading, error: roadError } = result;
+  //  const handleRoadRoughnessClick = () => {
+  //   triggerRoughnessQuery(); //
+  // };
+    const [triggerDistanceFlowQuery, distanceResult] = useLazyGetDistanceFlowQuery();
+    const [triggerRoughnessQuery, roughnessResult] = useLazyGetRoadRoughnessQuery();
+
     const handleAddDistancesFlowmap = async () => {
       try {
-        await dispatch(fetchKeplerData());
+        await triggerDistanceFlowQuery();
       } catch (err) {
-        console.error('Failed to load distances data:', err);
+        console.error("Failed to load distance flow data:", err);
       }
     };
-    const [triggerRoughnessQuery, result] = useLazyGetRoadRoughnessQuery(); 
-  const { isLoading, error: roadError } = result;
-   const handleRoadRoughnessClick = () => {
-    triggerRoughnessQuery(); //
-  };
+
+    const handleRoadRoughnessClick = async () => {
+      try {
+        await triggerRoughnessQuery();
+      } catch (err) {
+        console.error("Failed to load road roughness data:", err);
+      }
+    };
     return (
       <CustomSidePanel
         {...props}

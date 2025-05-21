@@ -8,9 +8,9 @@ import keplerGlReducer, {
 } from "@kepler.gl/reducers";
 import appReducer from "./app-reducer";
 import compignReducer from "./campaign-slice";
-import distanceFlowData from "./distanceFlowDataSlice";
-import { keplerApi } from "./roadRoughnessDataSlice";
-
+// import distanceFlowData from "./distanceFlowDataSlice";
+// import { keplerApi } from "./roadRoughnessDataSlice";
+import { keplerApi } from "./keplerApi";
 
 // helper type to make all properties of T optional
 type DeepPartial<T> = {
@@ -39,7 +39,7 @@ const reducers = combineReducers({
   keplerGl: customizedKeplerGlReducer,
   app: appReducer,
   campaign: compignReducer,
-  distanceFlowData,
+  // distanceFlowData,
    [keplerApi.reducerPath]: keplerApi.reducer,
 });
 
@@ -50,10 +50,10 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => [
     // Include default middleware with custom configuration
     ...getDefaultMiddleware({
-      serializableCheck: false, // Required for Kepler.gl
-      immutableCheck: false,   // Optional performance improvement
+      serializableCheck: false, 
+      immutableCheck: false,   
     }),
-    // Add Kepler.gl enhanced middleware
+    
     ...enhanceReduxMiddleware([]),
      keplerApi.middleware,
   ],
