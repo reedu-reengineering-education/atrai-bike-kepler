@@ -15,7 +15,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { getAllStatistics } from "@/lib/pygeiapi-client/statistics";
-import { setActiveCampaign } from "@/campaign-slice";
+import { setActiveCampaign } from "@/lib/redux/campaign-slice";
 import { useDispatch } from "react-redux";
 
 
