@@ -1,10 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { processGeojson } from '@kepler.gl/processors';
-import { addDataToMap } from '@kepler.gl/actions';
 import configJson from '@/lib/kepler/config.json';
 import configDistances from '@/lib/kepler/config-distances.json';
-import store from '@/lib/redux/store';
-
+import { loadKeplerDataset } from './loadkeplerData';
 
 export const keplerApi = createApi({
   reducerPath: 'keplerApi',
@@ -15,62 +12,24 @@ export const keplerApi = createApi({
     getRoadRoughness: builder.query<any, void>({
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery('road_roughness/items?f=json&limit=1000000');
-
-        if (response.error) return { error: response.error };
-
-        const geojson = processGeojson(response.data);
-        if (!geojson) {
-          return { error: { status: 500, statusText: 'GeoJSON processing failed' } };
-        }
-
-        store.dispatch(
-          addDataToMap({
-            datasets: {
-              info: { label: 'Road Roughness', id: 'road_roughness' },
-              data: geojson,
-            },
-            options: {
-              readOnly: false,
-              keepExistingConfig: false,
-              autoCreateLayers: false,
-            },
-            // @ts-expect-error
-            config: configJson,
-          })
-        );
-
-        return { data: geojson };
+        return loadKeplerDataset({
+          response,
+          datasetId: 'road_roughness',
+          label: 'Road Roughness',
+          config: configJson,
+        });
       },
     }),
 
     getDistanceFlow: builder.query<any, void>({
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery('distances_flowmap/items?f=json&limit=1000000');
-
-        if (response.error) return { error: response.error };
-
-        const geojson = processGeojson(response.data);
-        if (!geojson) {
-          return { error: { status: 500, statusText: 'GeoJSON processing failed' } };
-        }
-
-        store.dispatch(
-          addDataToMap({
-            datasets: {
-              info: { label: 'Overtaking Distances', id: 'distances_flowmap' },
-              data: geojson,
-            },
-            options: {
-              readOnly: false,
-              keepExistingConfig: false,
-              autoCreateLayers: false,
-            },
-            // @ts-expect-error
-            config: configDistances,
-          })
-        );
-
-        return { data: geojson };
+        return loadKeplerDataset({
+          response,
+          datasetId: 'distances_flowmap',
+          label: 'Overtaking Distances',
+          config: configDistances,
+        });
       },
     }),
   }),
@@ -82,3 +41,6 @@ export const {
   useGetDistanceFlowQuery,
   useLazyGetDistanceFlowQuery,
 } = keplerApi;
+
+
+
