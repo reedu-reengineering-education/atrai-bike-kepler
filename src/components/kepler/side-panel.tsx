@@ -8,6 +8,7 @@ import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
 import { useLazyGetDistanceFlowQuery, useLazyGetRoadRoughnessQuery } from "@/lib/redux/keplerApi";
 import { useEffect, useState } from 'react';
+import { BikeIcon } from "lucide-react";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
@@ -47,9 +48,9 @@ function CustomSidePanelFactory(...args) {
           {...props}
           panels={[
             {
-              id: "rocket",
-              label: "Rocket",
-              iconComponent: Icons.Rocket,
+              id: "bike",
+              label: "senseBox:bike",
+              iconComponent: BikeIcon,
               component: () => (
                 <div className="grid grid-cols-2 gap-4 relative">
 
