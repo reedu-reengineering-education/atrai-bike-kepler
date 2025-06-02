@@ -37,17 +37,16 @@ const reducers = combineReducers({
   keplerGl: customizedKeplerGlReducer,
   app: appReducer,
   campaign: compignReducer,
-  // distanceFlowData,
+
    [keplerApi.reducerPath]: keplerApi.reducer,
 });
 
-// const middlewares = enhanceReduxMiddleware([]);
+
 
 const store = configureStore({
   reducer: reducers,
-
+  //@ts-ignore
     middleware: (getDefaultMiddleware) => [
-    // Include default middleware with custom configuration
     ...getDefaultMiddleware({
       serializableCheck: false, 
       immutableCheck: false,   
