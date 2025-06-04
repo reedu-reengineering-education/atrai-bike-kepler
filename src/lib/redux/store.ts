@@ -7,6 +7,8 @@ import keplerGlReducer, {
   KeplerGlState,
 } from "@kepler.gl/reducers";
 import appReducer from "./app-reducer";
+import compignReducer from "./campaign-slice";
+import { keplerApi } from "./keplerApi";
 
 // helper type to make all properties of T optional
 type DeepPartial<T> = {
@@ -16,7 +18,7 @@ type DeepPartial<T> = {
 const initialState: DeepPartial<KeplerGlState> = {
   uiState: {
     currentModal: null,
-    activeSidePanel: "rocket",
+    activeSidePanel: "bike",
   },
   mapStyle: {
     styleType: "positron",
@@ -34,13 +36,25 @@ const customizedKeplerGlReducer = keplerGlReducer.initialState(initialState);
 const reducers = combineReducers({
   keplerGl: customizedKeplerGlReducer,
   app: appReducer,
+  campaign: compignReducer,
+
+   [keplerApi.reducerPath]: keplerApi.reducer,
 });
 
-const middlewares = enhanceReduxMiddleware([]);
+
 
 const store = configureStore({
   reducer: reducers,
-  middleware: middlewares,
+  //@ts-ignore
+    middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
+      serializableCheck: false, 
+      immutableCheck: false,   
+    }),
+    
+    ...enhanceReduxMiddleware([]),
+     keplerApi.middleware,
+  ],
 });
 
 export default store;

@@ -1,4 +1,4 @@
-import store from "@/store";
+import store from "@/lib/redux/store";
 import { addDataToMap } from "@kepler.gl/actions";
 import { processGeojson } from "@kepler.gl/processors";
 import configJson from "./config-distances.json";

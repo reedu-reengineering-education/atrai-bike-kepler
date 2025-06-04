@@ -1,65 +1,110 @@
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { addRoadRoughnessData } from "@/lib/kepler/road-roughness-data";
 import { Icons, SidePanelFactory } from "@kepler.gl/components";
 import { Card } from "@/components/ui/card";
 import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
-import { addDistancesFlowmapData } from "@/lib/kepler/distances-flowmap-data";
+import { useLazyGetDistanceFlowQuery, useLazyGetRoadRoughnessQuery } from "@/lib/redux/keplerApi";
+import { useEffect, useState } from 'react';
+import { BikeIcon } from "lucide-react";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
 
   const CustomSidePanelWrapper = (props) => {
+    const [triggerDistanceFlowQuery] = useLazyGetDistanceFlowQuery();
+    const [triggerRoughnessQuery] = useLazyGetRoadRoughnessQuery();
+
+    const [isLoadingRoughness, setIsLoadingRoughness] = useState(false);
+    const [isLoadingDistance, setIsLoadingDistance] = useState(false);
+
+    const handleAddDistancesFlowmap = async () => {
+      try {
+        setIsLoadingDistance(true);
+        await triggerDistanceFlowQuery();
+      } catch (err) {
+        console.error("Failed to load distance flow data:", err);
+      } finally {
+        setIsLoadingDistance(false)
+      }
+    };
+
+    const handleRoadRoughnessClick = async () => {
+      try {
+        setIsLoadingRoughness(true);
+        await triggerRoughnessQuery();
+      } catch (err) {
+        console.error("Failed to load road roughness data:", err);
+      } finally {
+        setIsLoadingRoughness(false)
+      }
+    };
+
     return (
-      <CustomSidePanel
-        {...props}
-        panels={[
-          {
-            id: "rocket",
-            label: "Rocket",
-            iconComponent: Icons.Rocket,
-            component: () => (
-              <div className="grid grid-cols-2 gap-4">
-                <Card
-                  className="p-0 overflow-clip hover:shadow-lg cursor-pointer"
-                  onClick={addRoadRoughnessData}
-                >
-                  <div className="relative w-full h-full">
-                    <img src={RoadRoughnessImageUrl} alt="Road Roughness" />
-                    <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
-                      <span className="text-gray-700 text-xs font-medium">
-                        Road Roughness
-                      </span>
+      <>
+        <CustomSidePanel
+          {...props}
+          panels={[
+            {
+              id: "bike",
+              label: "senseBox:bike",
+              iconComponent: BikeIcon,
+              component: () => (
+                <div className="grid grid-cols-2 gap-4 relative">
+
+                  {/* Road Roughness Card */}
+                  <Card
+                    className={`relative p-0 overflow-clip hover:shadow-lg cursor-pointer transition-opacity ${
+                      isLoadingRoughness ? 'opacity-50' : ''
+                    }`}
+                    onClick={!isLoadingRoughness ? handleRoadRoughnessClick : undefined}
+                  >
+                    {isLoadingRoughness && (
+                      <div className="absolute inset-0 flex items-center justify-center z-50 bg-white bg-opacity-70">
+                        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+                      </div>
+                    )}
+                    <div className="relative w-full h-full">
+                      <img src={RoadRoughnessImageUrl} alt="Road Roughness" />
+                      <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
+                        <span className="text-gray-700 text-xs font-medium">
+                          Road Roughness
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-                <Card
-                  className="p-0 overflow-clip hover:shadow-lg cursor-pointer"
-                  onClick={addDistancesFlowmapData}
-                >
-                  <div className="relative w-full h-full">
-                    <img src={DistancesImageUrl} alt="Overtaking Distances" />
-                    <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
-                      <span className="text-gray-700 text-xs font-medium">
-                        Overtaking Distances
-                      </span>
+                  </Card>
+
+                  {/* Distances Card */}
+                  <Card
+                    className={`relative p-0 overflow-clip hover:shadow-lg cursor-pointer transition-opacity ${
+                      isLoadingDistance ? 'opacity-50' : ''
+                    }`}
+                    onClick={!isLoadingDistance ? handleAddDistancesFlowmap : undefined}
+                  >
+                    {isLoadingDistance && (
+                      <div className="absolute inset-0 flex items-center justify-center z-50 bg-white bg-opacity-70">
+                        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-blue-500"></div>
+                      </div>
+                    )}
+                    <div className="relative w-full h-full">
+                      <img src={DistancesImageUrl} alt="Overtaking Distances" />
+                      <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
+                        <span className="text-gray-700 text-xs font-medium">
+                          Overtaking Distances
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </div>
-              // <Image>
-              //   <Button onClick={addRoadRoughnessData}>
-              //     <PlusIcon size={16} />
-              //     Add road roughness
-              //   </Button>
-              // </div>
-            ),
-          },
-          ...CustomSidePanel.defaultPanels,
-        ]}
-      />
+                  </Card>
+
+                </div>
+              ),
+            },
+            ...CustomSidePanel.defaultPanels,
+          ]}
+        />
+      </>
     );
   };
 
