@@ -1,13 +1,15 @@
-
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { Icons, SidePanelFactory } from "@kepler.gl/components";
+import { SidePanelFactory } from "@kepler.gl/components";
 import { Card } from "@/components/ui/card";
 import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
-import { useLazyGetDistanceFlowQuery, useLazyGetRoadRoughnessQuery } from "@/lib/redux/keplerApi";
-import { useEffect, useState } from 'react';
+import {
+  useLazyGetDistanceFlowQuery,
+  useLazyGetRoadRoughnessQuery,
+} from "@/lib/redux/keplerApi";
+import { useState } from "react";
 import { BikeIcon } from "lucide-react";
 
 function CustomSidePanelFactory(...args) {
@@ -27,7 +29,7 @@ function CustomSidePanelFactory(...args) {
       } catch (err) {
         console.error("Failed to load distance flow data:", err);
       } finally {
-        setIsLoadingDistance(false)
+        setIsLoadingDistance(false);
       }
     };
 
@@ -38,7 +40,7 @@ function CustomSidePanelFactory(...args) {
       } catch (err) {
         console.error("Failed to load road roughness data:", err);
       } finally {
-        setIsLoadingRoughness(false)
+        setIsLoadingRoughness(false);
       }
     };
 
@@ -53,13 +55,14 @@ function CustomSidePanelFactory(...args) {
               iconComponent: BikeIcon,
               component: () => (
                 <div className="grid grid-cols-2 gap-4 relative">
-
                   {/* Road Roughness Card */}
                   <Card
                     className={`relative p-0 overflow-clip hover:shadow-lg cursor-pointer transition-opacity ${
-                      isLoadingRoughness ? 'opacity-50' : ''
+                      isLoadingRoughness ? "opacity-50" : ""
                     }`}
-                    onClick={!isLoadingRoughness ? handleRoadRoughnessClick : undefined}
+                    onClick={
+                      !isLoadingRoughness ? handleRoadRoughnessClick : undefined
+                    }
                   >
                     {isLoadingRoughness && (
                       <div className="absolute inset-0 flex items-center justify-center z-50 bg-white bg-opacity-70">
@@ -79,9 +82,11 @@ function CustomSidePanelFactory(...args) {
                   {/* Distances Card */}
                   <Card
                     className={`relative p-0 overflow-clip hover:shadow-lg cursor-pointer transition-opacity ${
-                      isLoadingDistance ? 'opacity-50' : ''
+                      isLoadingDistance ? "opacity-50" : ""
                     }`}
-                    onClick={!isLoadingDistance ? handleAddDistancesFlowmap : undefined}
+                    onClick={
+                      !isLoadingDistance ? handleAddDistancesFlowmap : undefined
+                    }
                   >
                     {isLoadingDistance && (
                       <div className="absolute inset-0 flex items-center justify-center z-50 bg-white bg-opacity-70">
@@ -97,7 +102,6 @@ function CustomSidePanelFactory(...args) {
                       </div>
                     </div>
                   </Card>
-
                 </div>
               ),
             },
