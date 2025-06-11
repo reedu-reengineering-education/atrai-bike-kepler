@@ -7,8 +7,6 @@ import {
   EffectControlFactory,
   EffectManagerFactory,
 } from "@kepler.gl/components";
-// import { AiAssistantControlFactory } from "@kepler.gl/ai-assistant";
-// import SqlPanelControlFactory from "../components/map-control/sql-panel-control";
 import { MapControlComponent } from "./map-control";
 
 function CustomMapControlFactory(
@@ -22,8 +20,6 @@ function CustomMapControlFactory(
   const actionComponents = [
     ...(MapControl.defaultActionComponents ?? []),
     EffectControl,
-    // SqlPanelControl,
-    // AiAssistantControl,
   ];
 
   return MapControlComponent(MapControl, EffectManager, actionComponents);
@@ -32,8 +28,6 @@ function CustomMapControlFactory(
 CustomMapControlFactory.deps = [
   EffectControlFactory,
   EffectManagerFactory,
-  //   SqlPanelControlFactory,
-  //   AiAssistantControlFactory,
   ...MapControlFactory.deps,
 ];
 

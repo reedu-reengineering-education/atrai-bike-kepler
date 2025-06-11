@@ -5,9 +5,7 @@ import { useState } from "react";
 import classnames from "classnames";
 import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
-// import { useLocalStorage } from "usehooks-ts";
 import { Icons, IconRoundSmall, MapControlButton } from "@kepler.gl/components";
-// import { getApplicationConfig } from "@kepler.gl/utils";
 
 const StyledFloatingPanel = styled.div`
   margin-right: 12px;
