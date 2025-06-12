@@ -52,7 +52,7 @@
               "heightRange": [0, 500],
               "elevationScale": 5,
               "stroked": true,
-              "filled": true,
+              "filled": false,
               "enable3d": false,
               "wireframe": false,
               "fixedHeight": false
