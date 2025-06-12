@@ -5,6 +5,7 @@ import { useState } from "react";
 import classnames from "classnames";
 import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
+import { useSelector } from "react-redux";
 import { Icons, IconRoundSmall, MapControlButton } from "@kepler.gl/components";
 
 const StyledFloatingPanel = styled.div`
@@ -13,27 +14,28 @@ const StyledFloatingPanel = styled.div`
 `;
 
 const StyledProjectPanel = styled.div`
-  background: ${(props) => props.theme.panelBackground};
+  background: #ffffff; // White background
   padding: 16px 16px 16px 20px;
   width: 280px;
-  box-shadow: ${(props) => props.theme.panelBoxShadow};
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #e2e8f0; // Light border for better definition
 
   .project-title {
-    color: ${(props) => props.theme.titleTextColor};
+    color: #1e293b; // Dark text for contrast
     font-size: 13px;
     font-weight: 500;
     display: flex;
     justify-content: space-between;
   }
-
   .project-description {
-    color: ${(props) => props.theme.textColor};
+    color: #475569; // Slate gray for better readability
     font-size: 11px;
     margin-top: 12px;
 
     a {
       font-weight: 500;
-      color: ${(props) => props.theme.titleTextColor};
+      color: #3b82f6; // Blue for links
     }
   }
 
@@ -103,15 +105,6 @@ const CloseButton = ({ onClick }: CloseButtonProps) => (
   </IconRoundSmall>
 );
 
-// convert https://raw.githubusercontent.com/keplergl/kepler.gl-data/master/nyctrips/config.json
-// to https://github.com/keplergl/kepler.gl-data/blob/master/movement_pittsburgh/config.json
-function getURL(url: string | undefined): string {
-  if (!url) return "#";
-  return url
-    .replace("https://raw.githubusercontent.com", "https://github.com")
-    .replace("master", "blob/master");
-}
-
 interface SampleData {
   label: string;
   detail?: string;
@@ -138,10 +131,23 @@ interface MarkdownLinkProps {
 }
 
 export function BannerMapPanel() {
-  const [isActive, setActive] = useState(true);
-  // Once the banner is closed, the user won't see the banner during next sessions.
+  const [isActive, setActive] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
   const [wasVisible] = useState(showBanner);
+  interface RootState {
+    activeDataset: {
+      info: {
+        title?: string;
+        description?: string;
+        [key: string]: unknown;
+        url?: string;
+        configUrl?: string;
+      };
+    };
+  }
+  const activeDataset = useSelector(
+    (state: RootState) => state.activeDataset.info,
+  );
 
   if (!showBanner && !wasVisible) {
     return null;
@@ -151,9 +157,9 @@ export function BannerMapPanel() {
     <StyledFloatingPanel>
       {isActive ? (
         <StyledProjectPanel>
+          {" "}
           <div className="project-title">
-            <div>{"Kepler.gl 3.1 + DuckDB is here!"}</div>
-
+            <div>{activeDataset?.title || "Select a dataset"}</div>
             <CloseButton
               onClick={() => {
                 setShowBanner(false);
@@ -162,6 +168,7 @@ export function BannerMapPanel() {
             />
           </div>
           <div className="project-description">
+            {" "}
             <Markdown
               options={{
                 overrides: {
@@ -175,10 +182,22 @@ export function BannerMapPanel() {
                 },
               }}
             >
-              {
-                "[Click here](https://kepler-preview.foursquare.com) to check out the preview of Kepler.gl 3.1 with DuckDB enabled!"
-              }
+              {activeDataset?.description || "No dataset selected"}
             </Markdown>
+          </div>
+          <div className="project-links">
+            <LinkButton
+              label="Data"
+              href={activeDataset?.url}
+              iconComponent={(props) => <Icons.Files {...props} />}
+              height="15px"
+            />
+            <LinkButton
+              label="Config"
+              href={activeDataset?.configUrl}
+              iconComponent={(props) => <Icons.CodeAlt {...props} />}
+              height="17px"
+            />
           </div>
         </StyledProjectPanel>
       ) : (
@@ -235,13 +254,13 @@ export function SampleMapPanel({ currentSample }: MapPanelProps) {
           <div className="project-links">
             <LinkButton
               label="Data"
-              href={getURL(currentSample?.dataUrl)}
+              href={currentSample?.dataUrl}
               iconComponent={FilesIcon}
               height="15px"
             />
             <LinkButton
               label="Config"
-              href={getURL(currentSample?.configUrl)}
+              href={currentSample?.configUrl}
               iconComponent={CodeAltIcon}
               height="17px"
             />
