@@ -349,11 +349,6 @@
   resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.8.1.tgz"
   integrity sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==
 
-"@emotion/memoize@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.9.0.tgz"
-  integrity sha512-30FAj7/EoJ5mwVPOWhAyCX+FPfMDrVecJAM+Iw9NRoSl4BBAQeqj4cApHHUXOVvIPgLVDsCFoz/hGD+5QQD1GQ==
-
 "@emotion/unitless@0.8.0":
   version "0.8.0"
   resolved "https://registry.npmjs.org/@emotion/unitless/-/unitless-0.8.0.tgz"
@@ -3157,6 +3152,13 @@
   integrity sha512-Dx9MuF2kKgT/N22LsMUB4b3acFZh9clVqz9zv1fomoiPoBrJolwYxpWA/9LPO/2N0xWbKi4V+pkjTaFkkx/4wA==
   dependencies:
     "@types/geojson" "*"
+
+"@types/markdown-to-jsx@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.npmjs.org/@types/markdown-to-jsx/-/markdown-to-jsx-7.0.0.tgz"
+  integrity sha512-F2iS5nGUVwxwfIVPNouoHyWA+Max1vE6iJy4zR5tQcCmYyi2BMsslJ1LITpF2t8xFRJoevUXEBwB4VdGm0xGuA==
+  dependencies:
+    markdown-to-jsx "*"
 
 "@types/minimist@^1.2.0":
   version "1.2.5"
@@ -6495,7 +6497,7 @@ maplibregl-mapbox-request-transformer@^0.0.2:
   resolved "https://registry.npmjs.org/maplibregl-mapbox-request-transformer/-/maplibregl-mapbox-request-transformer-0.0.2.tgz"
   integrity sha512-P4QLyebbrtfAxwYX5ThKRDn2FT77CFxjQ9a5HtmP9l4s3ddwyjD6cpNjwYf2Hl9OApnD7yP3IpdrCCn0S9fI0g==
 
-markdown-to-jsx@^7.7.6:
+markdown-to-jsx@*, markdown-to-jsx@^7.7.6:
   version "7.7.6"
   resolved "https://registry.npmjs.org/markdown-to-jsx/-/markdown-to-jsx-7.7.6.tgz"
   integrity sha512-/PWFFoKKMidk4Ut06F5hs5sluq1aJ0CGvUJWsnCK6hx/LPM8vlhvKAxtGHJ+U+V2Il2wmnfO6r81ICD3xZRVaw==
