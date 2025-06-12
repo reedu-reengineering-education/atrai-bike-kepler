@@ -11,32 +11,38 @@ import {
 } from "@/lib/redux/keplerApi";
 import { useState } from "react";
 import { BikeIcon } from "lucide-react";
+import {
+  DISTANCES_FLOWMAP_INFO,
+  ROAD_ROUGHNESS_INFO,
+} from "@/lib/kepler/dataset-info";
+import { useDispatch } from "react-redux";
+import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
-
   const CustomSidePanelWrapper = (props) => {
+    const dispatch = useDispatch();
     const [triggerDistanceFlowQuery] = useLazyGetDistanceFlowQuery();
     const [triggerRoughnessQuery] = useLazyGetRoadRoughnessQuery();
 
     const [isLoadingRoughness, setIsLoadingRoughness] = useState(false);
     const [isLoadingDistance, setIsLoadingDistance] = useState(false);
-
     const handleAddDistancesFlowmap = async () => {
       try {
         setIsLoadingDistance(true);
         await triggerDistanceFlowQuery();
+        dispatch(setActiveDataset(DISTANCES_FLOWMAP_INFO));
       } catch (err) {
         console.error("Failed to load distance flow data:", err);
       } finally {
         setIsLoadingDistance(false);
       }
     };
-
     const handleRoadRoughnessClick = async () => {
       try {
         setIsLoadingRoughness(true);
         await triggerRoughnessQuery();
+        dispatch(setActiveDataset(ROAD_ROUGHNESS_INFO));
       } catch (err) {
         console.error("Failed to load road roughness data:", err);
       } finally {
