@@ -30,9 +30,10 @@ export async function addRoadRoughnessData() {
       },
       // @ts-expect-error not-compatible
       config: configJson,
+      info: {
+        label: "Road Roughness",
+        description: "Road roughness data from senseBox",
+      },
     }),
   );
 }
-
-
-
