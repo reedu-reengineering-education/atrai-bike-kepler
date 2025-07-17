@@ -7,13 +7,11 @@ export async function loadKeplerDataset({
   datasetId,
   label,
   config,
-  keep,
 }: {
   response: any;
   datasetId: string;
   label: string;
   config: any;
-  keep: boolean;
 }) {
   if (response.error) return { error: response.error };
 
@@ -30,7 +28,7 @@ export async function loadKeplerDataset({
       },
       options: {
         readOnly: false,
-        keepExistingConfig: keep,
+        keepExistingConfig: false,
         autoCreateLayers: false,
       },
 

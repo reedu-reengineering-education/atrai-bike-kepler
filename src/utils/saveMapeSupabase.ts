@@ -12,23 +12,14 @@ export async function saveMapToSupabase(session: Session | null) {
     alert("Map name is required.");
     return;
   }
-  const { datasetId1, geojson, config } = exportKeplerDatasetAndConfig();
-  console.log(
-    "datasetId:",
-    datasetId1,
-    "Data:",
-    geojson,
-    "config files:",
-    config,
-  );
+  const { dataset, config } = exportKeplerDatasetAndConfig();
 
   const user = session?.user;
 
   const { data, error } = await supabase.from("maps").insert([
     {
-      dataset_id: datasetId1,
-      dataset: geojson,
-      config: config,
+      dataset,
+      config,
       user_id: user?.id,
       title: mapName,
     },
