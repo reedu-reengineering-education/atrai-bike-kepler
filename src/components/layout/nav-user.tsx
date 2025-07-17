@@ -121,7 +121,12 @@ export function NavUser() {
 
                 <DropdownMenuSeparator />
 
-                <DropdownMenuItem onClick={() => auth?.signOut()}>
+                <DropdownMenuItem
+                  onClick={async () => {
+                    await auth?.signOut();
+                    window.location.reload();
+                  }}
+                >
                   Sign Out
                 </DropdownMenuItem>
               </>
