@@ -6,6 +6,8 @@ import Genesis from "./components/models/genesis/Genesis";
 import Explorer from "./components/models/explorer/Explorer";
 import Quantum from "./components/models/quantum/Quantum";
 import StatisticsPage from "./components/pages/Statistics";
+import Signin from "./components/pages/Signin";
+import SignUpPage from "./components/pages/SignUp";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -41,10 +43,23 @@ const quantumRoute = createRoute({
   component: Quantum,
 });
 
+const signinRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/signin",
+  component: Signin,
+});
+const signupRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/signup",
+  component: SignUpPage,
+});
+
 export const routeTree = rootRoute.addChildren([
   indexRoute,
   statisticsRoute,
   genesisRoute,
   explorerRoute,
   quantumRoute,
+  signinRoute,
+  signupRoute,
 ]);
