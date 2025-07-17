@@ -1,23 +1,25 @@
-import { processGeojson } from '@kepler.gl/processors';
-import { addDataToMap } from '@kepler.gl/actions';
-import store from '@/lib/redux/store';
+import { processGeojson } from "@kepler.gl/processors";
+import { addDataToMap } from "@kepler.gl/actions";
+import store from "@/lib/redux/store";
 
 export async function loadKeplerDataset({
   response,
   datasetId,
   label,
   config,
+  keep,
 }: {
   response: any;
   datasetId: string;
   label: string;
   config: any;
+  keep: boolean;
 }) {
   if (response.error) return { error: response.error };
 
   const geojson = processGeojson(response.data);
   if (!geojson) {
-    return { error: { status: 500, statusText: 'GeoJSON processing failed' } };
+    return { error: { status: 500, statusText: "GeoJSON processing failed" } };
   }
 
   store.dispatch(
@@ -28,12 +30,12 @@ export async function loadKeplerDataset({
       },
       options: {
         readOnly: false,
-        keepExistingConfig: false,
+        keepExistingConfig: keep,
         autoCreateLayers: false,
       },
-     
+
       config,
-    })
+    }),
   );
 
   return { data: geojson };

@@ -38,22 +38,20 @@ const reducers = combineReducers({
   app: appReducer,
   campaign: compignReducer,
 
-   [keplerApi.reducerPath]: keplerApi.reducer,
+  [keplerApi.reducerPath]: keplerApi.reducer,
 });
-
-
 
 const store = configureStore({
   reducer: reducers,
   //@ts-ignore
-    middleware: (getDefaultMiddleware) => [
+  middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({
-      serializableCheck: false, 
-      immutableCheck: false,   
+      serializableCheck: false,
+      immutableCheck: false,
     }),
-    
+
     ...enhanceReduxMiddleware([]),
-     keplerApi.middleware,
+    keplerApi.middleware,
   ],
 });
 
