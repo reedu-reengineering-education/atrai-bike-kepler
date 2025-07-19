@@ -1,33 +1,54 @@
 import React, { useState, FormEvent } from "react";
-import { UserAuth } from "@/context/AuthContext";
 import { useRouter } from "@tanstack/react-router";
+import { UserAuth } from "@/context/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-const Signup: React.FC = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+interface SignupProps {
+  heading?: string;
+  logo: {
+    url: string;
+    src: string;
+    alt: string;
+    title?: string;
+  };
+  buttonText?: string;
+  googleText?: string;
+  signupText?: string;
+  signupUrl?: string;
+}
+
+const Signup: React.FC<SignupProps> = ({
+  heading = "Signup",
+
+  buttonText = "Create Account",
+  signupText = "Already a user?",
+  signupUrl = "/signin",
+}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const auth = UserAuth();
   const signUpNewUser = auth?.signUpNewUser;
-
   const router = useRouter();
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     setError(null);
+    setLoading(true);
 
     try {
-      const result = await signUpNewUser(email, password);
+      const result = await signUpNewUser?.(email, password);
 
-      if (result.success) {
+      if (result?.success) {
         router.navigate({ to: "/" });
       } else {
-        setError(result.error?.message ?? "Sign up failed");
+        setError(result?.error?.message ?? "Sign up failed");
       }
     } catch (err) {
-      console.error("Sign up error:", err);
+      console.error("Signup error:", err);
       setError("An unexpected error occurred.");
     } finally {
       setLoading(false);
@@ -35,55 +56,64 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full">
-      <form
-        onSubmit={handleSignUp}
-        className="w-2/4 m-auto p-4 text-center shadow-2xl"
-      >
-        <h2 className="font-bold pb-2 text-4xl">Sign up</h2>
-        <p>
-          Already have an account?{"  "}
-          <a href="/signin" className="underline">
-            {" "}
-            Signin
-          </a>
-        </p>
+    <section className="bg-muted h-screen w-full">
+      <div className="flex h-full items-center justify-center">
+        <div className="flex flex-col items-center gap-6">
+          {/* Logo */}
+          {/* <a href={logo.url}>
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              title={logo.title}
+              className="h-10 dark:invert"
+            />
+          </a> */}
 
-        <div className="flex flex-col py-4">
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            className="p-3 mt-2"
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Email"
-          />
+          {/* Signup Form */}
+          <form
+            onSubmit={handleSignUp}
+            className="min-w-sm border-muted bg-background flex w-full max-w-sm flex-col items-center gap-y-4 rounded-md border px-6 py-8 shadow-md"
+          >
+            {heading && <h1 className="text-xl font-semibold">{heading}</h1>}
+
+            <Input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="text-sm"
+              required
+            />
+
+            <Input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="text-sm"
+              required
+            />
+
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Creating..." : buttonText}
+            </Button>
+          </form>
+
+          {/* Link to Sign In */}
+          <div className="text-muted-foreground flex justify-center gap-1 text-sm">
+            <p>{signupText}</p>
+            <a
+              href={signupUrl}
+              className="text-primary font-medium hover:underline"
+            >
+              Login
+            </a>
+          </div>
         </div>
-
-        <div className="flex flex-col py-4">
-          <input
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            className="p-3 mt-2"
-            type="password"
-            name="password"
-            id="password"
-            placeholder="Password"
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-2/4 m-4 bg-black text-white py-2 rounded-lg"
-        >
-          {loading ? "Signing Up..." : "Sign Up"}
-        </button>
-
-        {error && <p className="text-center pt-4">{error}</p>}
-      </form>
-    </div>
+      </div>
+    </section>
   );
 };
 
