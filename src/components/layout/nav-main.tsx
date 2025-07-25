@@ -26,10 +26,12 @@ export function NavMain({
     title: string;
     url: string;
     icon?: LucideIcon;
+
     isActive?: boolean;
     items?: {
       title: string;
       url: string;
+      endicon?: React.ReactNode;
     }[];
   }[];
 }) {
@@ -59,9 +61,16 @@ export function NavMain({
                       {item.items?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
-                            <Link to={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </Link>
+                            <div className="flex justify-between">
+                              <Link to={subItem.url}>
+                                <span>{subItem.title}</span>
+                              </Link>
+                              {subItem.endicon && (
+                                <div onClick={(e) => e.stopPropagation()}>
+                                  {subItem.endicon}
+                                </div>
+                              )}
+                            </div>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       ))}
