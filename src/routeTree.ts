@@ -8,6 +8,7 @@ import Quantum from "./components/models/quantum/Quantum";
 import StatisticsPage from "./components/pages/Statistics";
 import Signin from "./components/pages/Signin";
 import SignUpPage from "./components/pages/SignUp";
+import MapPage from "@/components/pages/MapPage";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -53,6 +54,11 @@ const signupRoute = createRoute({
   path: "/signup",
   component: SignUpPage,
 });
+export const mapDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/maps/$mapId",
+  component: MapPage,
+});
 
 export const routeTree = rootRoute.addChildren([
   indexRoute,
@@ -62,4 +68,5 @@ export const routeTree = rootRoute.addChildren([
   quantumRoute,
   signinRoute,
   signupRoute,
+  mapDetailRoute,
 ]);

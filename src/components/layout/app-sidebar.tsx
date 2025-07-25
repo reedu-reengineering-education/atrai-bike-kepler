@@ -13,9 +13,12 @@ import {
 } from "@/components/ui/sidebar";
 import { listMapsFromSupabase } from "@/utils/listMaps";
 import { UserAuth } from "@/context/AuthContext";
-import KeplerGlSchema from "@kepler.gl/schemas";
-import { addDataToMap } from "@kepler.gl/actions";
-import { useDispatch } from "react-redux";
+
+import { useNavigate } from "@tanstack/react-router";
+import { useRefresh } from "@/context/RefreshContext";
+import { Trash2 } from "lucide-react";
+import { deleteMapById } from "@/utils/deleteMap";
+import { Button } from "@/components/ui/button";
 
 const staticNavMain = [
   {
@@ -65,10 +68,13 @@ const staticNavMain = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const auth = UserAuth();
+  const { triggerRefresh } = useRefresh();
   const session = auth?.session;
+  const { refreshKey } = useRefresh();
 
   const [maps, setMaps] = React.useState<any[]>([]);
-  const dispatch = useDispatch();
+  console.log("map problem", maps);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const fetchMaps = async () => {
@@ -86,19 +92,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       }
     };
     fetchMaps();
-  }, [session]);
-
-  const handleMapClick = (map: any) => {
-    const mapToLoad = KeplerGlSchema.load(map.dataset, map.config);
-    if (!mapToLoad || !mapToLoad.datasets) {
-      console.warn("Invalid map data:", map);
-      return;
-    }
-    dispatch(addDataToMap(mapToLoad));
-  };
+  }, [session, refreshKey]);
 
   const navMain = React.useMemo(() => {
     if (maps.length === 0) return staticNavMain;
+
+    const handleDelete = async (mapId: string) => {
+      const confirm = window.confirm(
+        "Are you sure you want to delete this map?",
+      );
+      if (!confirm) return;
+
+      try {
+        await deleteMapById(mapId);
+
+        alert("Map deleted successfully");
+        triggerRefresh();
+        navigate({ to: "/" });
+        // or another route
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e: any) {
+        alert("Failed to delete map");
+      }
+    };
 
     return [
       ...staticNavMain,
@@ -106,17 +122,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Maps",
         icon: MapIcon,
         items: maps.map((map) => ({
-          title: (
-            <div key={map.title} className="flex gap-3">
-              <button
-                className="text-xs"
-                onClick={() => {
-                  handleMapClick(map);
-                }}
-              >
-                {map.title}
-              </button>
-            </div>
+          title: map.title,
+          url: `/maps/${map.id}`,
+          endicon: (
+            <Button
+              onClick={() => handleDelete(map.id)}
+              variant="destructive"
+              className="mr-0 pr-0"
+            >
+              <Trash2 className="h-4 w-4" />
+            </Button>
           ),
         })),
       },
@@ -129,7 +144,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <CampaignSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMain} />
+        <NavMain items={navMain as any} />
         {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>

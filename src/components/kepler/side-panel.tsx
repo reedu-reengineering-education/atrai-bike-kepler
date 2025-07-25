@@ -10,19 +10,22 @@ import {
   useLazyGetRoadRoughnessQuery,
 } from "@/lib/redux/keplerApi";
 import { useState } from "react";
-import { BikeIcon } from "lucide-react";
+import { BikeIcon, SaveIcon } from "lucide-react";
 import { saveMapToSupabase } from "@/utils/saveMapeSupabase";
 import { UserAuth } from "@/context/AuthContext";
+import { useRefresh } from "@/context/RefreshContext";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
 
   const CustomSidePanelWrapper = (props) => {
+    const { triggerRefresh } = useRefresh();
     const [triggerDistanceFlowQuery] = useLazyGetDistanceFlowQuery();
     const [triggerRoughnessQuery] = useLazyGetRoadRoughnessQuery();
 
     const [isLoadingRoughness, setIsLoadingRoughness] = useState(false);
     const [isLoadingDistance, setIsLoadingDistance] = useState(false);
+
     const auth = UserAuth();
     const session = auth?.session;
 
@@ -53,7 +56,13 @@ function CustomSidePanelFactory(...args) {
         return;
       }
 
-      await saveMapToSupabase(session);
+      try {
+        await saveMapToSupabase(session);
+        triggerRefresh();
+      } catch (err) {
+        console.error("Failed to save map:", err);
+        alert("Failed to save map. Please try again.");
+      }
     };
 
     return (
@@ -114,8 +123,23 @@ function CustomSidePanelFactory(...args) {
                       </div>
                     </div>
                   </Card>
+                </div>
+              ),
+            },
 
-                  <button onClick={handleSaveMap}> save </button>
+            {
+              id: "save",
+              label: "Save",
+              iconComponent: SaveIcon,
+              component: () => (
+                <div className="p-4">
+                  <button
+                    className="w-full py-3 px-4 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors flex items-center justify-center gap-2"
+                    onClick={handleSaveMap}
+                  >
+                    <SaveIcon className="w-5 h-5" />
+                    <span>Save Current Map</span>
+                  </button>
                 </div>
               ),
             },

@@ -10,13 +10,19 @@ import CustomSidePanelFactory from "./components/kepler/side-panel";
 const KeplerGl = injectComponents([
   [SidePanelFactory, CustomSidePanelFactory] as never,
 ]);
+const ApiAccessToken = import.meta.env.VITE_BASE_MAP_TOKEN;
 
 const App = () => {
   return (
     <div className="w-full h-full rounded-lg overflow-hidden">
       <AutoSizer>
         {({ height, width }) => (
-          <KeplerGl width={width} height={height} theme="light" />
+          <KeplerGl
+            width={width}
+            height={height}
+            theme="light"
+            mapboxApiAccessToken={ApiAccessToken}
+          />
         )}
       </AutoSizer>
     </div>
