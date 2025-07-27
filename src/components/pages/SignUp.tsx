@@ -29,6 +29,7 @@ const Signup: React.FC<SignupProps> = ({
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const auth = UserAuth();
   const signUpNewUser = auth?.signUpNewUser;
@@ -37,6 +38,10 @@ const Signup: React.FC<SignupProps> = ({
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
     setLoading(true);
 
     try {
@@ -90,6 +95,14 @@ const Signup: React.FC<SignupProps> = ({
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
+              className="text-sm"
+              required
+            />
+            <Input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm Password"
               className="text-sm"
               required
             />
