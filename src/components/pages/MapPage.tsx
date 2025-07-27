@@ -98,23 +98,24 @@ export default function MapPage() {
 
   const breadcrumb = (
     <>
-      {title}
       {isEditingTitle ? (
         <>
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          ></Input>
+            className="w-64 text-sm"
+            autoFocus
+          />
           <Button onClick={handleUpdate} variant="ghost">
             <Save />
           </Button>
           <Button variant="ghost" onClick={() => setIsEditingTitle(false)}>
-            {" "}
             Cancel
           </Button>
         </>
       ) : (
         <>
+          <span className="text-base ">{title}</span>
           <Button
             variant="ghost"
             onClick={() => setIsEditingTitle(true)}
