@@ -18,6 +18,13 @@ interface SignupProps {
   signupUrl?: string;
 }
 
+const logo = {
+  url: "/",
+  src: "/logo.png",
+  alt: "Atraibike Logo",
+  title: "ATRAIBIKE PLATFORM",
+};
+
 const Signup: React.FC<SignupProps> = ({
   heading = "Signup",
 
@@ -65,14 +72,17 @@ const Signup: React.FC<SignupProps> = ({
       <div className="flex h-full items-center justify-center">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
-          {/* <a href={logo.url}>
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              title={logo.title}
-              className="h-10 dark:invert"
-            />
-          </a> */}
+          <a href={logo.url}>
+            <div className="flex items-center gap-4">
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                title={logo.title}
+                className="h-10 dark:invert"
+              />
+              <h2 className="text-xl font-bold">{logo.title}</h2>
+            </div>
+          </a>
 
           {/* Signup Form */}
           <form
