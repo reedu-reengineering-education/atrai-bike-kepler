@@ -44,7 +44,7 @@ export default function ResetPassword({
       setMessage("Password updated successfully.");
       setTimeout(() => {
         router.navigate({ to: "/signin" });
-      }, 500);
+      }, 1000);
     }
     setLoading(false);
   };
