@@ -3,6 +3,7 @@ import { useRouter } from "@tanstack/react-router";
 import { UserAuth } from "@/context/AuthContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import LogoTile from "../layout/logo-tille";
 
 interface SigninProps {
   heading?: string;
@@ -17,13 +18,6 @@ interface SigninProps {
   promptUrl?: string;
   promptLinkText?: string;
 }
-
-const logo = {
-  url: "/",
-  src: "/logo.png",
-  alt: "Atraibike Logo",
-  title: "ATRAIBIKE PLATFORM",
-};
 
 const Signin: React.FC<SigninProps> = ({
   heading = "Sign In",
@@ -68,17 +62,7 @@ const Signin: React.FC<SigninProps> = ({
       <div className="flex h-full items-center justify-center">
         <div className="flex flex-col items-center gap-6">
           {/* Logo */}
-          <a href={logo.url}>
-            <div className="flex items-center gap-4">
-              <img
-                src={logo.src}
-                alt={logo.alt}
-                title={logo.title}
-                className="h-10 dark:invert"
-              />
-              <h2 className="text-xl font-bold">{logo.title}</h2>
-            </div>
-          </a>
+          <LogoTile />
 
           {/* Signin Form */}
           <form
@@ -104,6 +88,12 @@ const Signin: React.FC<SigninProps> = ({
               className="text-sm"
               required
             />
+            <a
+              href="/forget-password"
+              className="ml-auto text-sm underline-offset-4 hover:underline"
+            >
+              Forgot your password?
+            </a>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
