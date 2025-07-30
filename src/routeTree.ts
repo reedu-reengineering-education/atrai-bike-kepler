@@ -9,9 +9,11 @@ import StatisticsPage from "./components/pages/Statistics";
 import Signin from "./components/pages/Signin";
 import SignUpPage from "./components/pages/SignUp";
 import MapPage from "@/components/pages/MapPage";
+import NotFound from "./components/pages/NotFound";
 
 const rootRoute = createRootRoute({
   component: Layout,
+  notFoundComponent: NotFound,
 });
 
 const indexRoute = createRoute({
