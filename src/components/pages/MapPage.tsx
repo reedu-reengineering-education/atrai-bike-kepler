@@ -18,7 +18,7 @@ import { exportKeplerDatasetAndConfig } from "@/utils/exportKeplerMap";
 import { useRefresh } from "@/context/RefreshContext";
 
 export default function MapPage() {
-  const { session } = UserAuth();
+  const { session, authLoading } = UserAuth();
   const { triggerRefresh } = useRefresh();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -33,10 +33,11 @@ export default function MapPage() {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!session) {
       navigate({ to: "/signin" });
     }
-  }, [session, navigate]);
+  }, [authLoading, session, navigate]);
 
   useEffect(() => {
     if (!session || !session.user) return;
@@ -98,23 +99,24 @@ export default function MapPage() {
 
   const breadcrumb = (
     <>
-      {title}
       {isEditingTitle ? (
         <>
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-          ></Input>
+            className="w-64 text-sm"
+            autoFocus
+          />
           <Button onClick={handleUpdate} variant="ghost">
             <Save />
           </Button>
           <Button variant="ghost" onClick={() => setIsEditingTitle(false)}>
-            {" "}
             Cancel
           </Button>
         </>
       ) : (
         <>
+          <span className="text-base ">{title}</span>
           <Button
             variant="ghost"
             onClick={() => setIsEditingTitle(true)}
@@ -127,7 +129,7 @@ export default function MapPage() {
     </>
   );
 
-  if (loading) {
+  if (authLoading || loading) {
     return (
       <PageContainer>
         <div className="p-4">Loading map...</div>

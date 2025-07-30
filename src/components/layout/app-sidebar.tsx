@@ -73,7 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { refreshKey } = useRefresh();
 
   const [maps, setMaps] = React.useState<any[]>([]);
-  console.log("map problem", maps);
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
