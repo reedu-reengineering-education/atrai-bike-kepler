@@ -3,7 +3,6 @@
   "Sign In": "Einloggen",
   "Sign Up": "Registrieren",
   "Home": "Startseite",
-
   "Projects": "Projekte",
   "Campaign": "Kampagne",
   "Profile": "Profil",
@@ -16,9 +15,7 @@
   "Road Roughness": "Straßenrauheit",
   "Charts": "Diagramme",
   "Regional Charts": "Regionale Diagramme",
-
   "Sign out": "Abmelden",
-
   "Platform": "Plattform",
   "nav": {
     "playground": "Spielplatz",
@@ -52,5 +49,13 @@
     "email": "E-Mail",
     "footer": "Haben Sie kein Konto?",
     "loading": "Einloggen......"
+  },
+  "singup": {
+    "password": "Passwort",
+    "email": "E-Mail",
+    "footer": "Bereits ein Benutzer?",
+    "loading": "Erstelle Konto......",
+    "confirmPassword": "Passwort bestätigen",
+    "buttonText": "Konto erstellen"
   }
 }
