@@ -99,7 +99,7 @@ export function NavUser() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Sparkles className="mr-2" />
-                    {t("Upgrade to Pro")}
+                    {t("nav.Upgrade to Pro")}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
 
@@ -108,15 +108,15 @@ export function NavUser() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <BadgeCheck className="mr-2" />
-                    {t("Account")}
+                    {t("nav.Account")}
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <CreditCard className="mr-2" />
-                    {t("Billing")}
+                    {t("nav.billing")}
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Bell className="mr-2" />
-                    {t("Notifications")}
+                    {t("nav.Notifications")}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
 

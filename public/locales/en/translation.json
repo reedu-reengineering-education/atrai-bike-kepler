@@ -3,7 +3,7 @@
   "Sign In": "Sign In",
   "Sign Up": "Sign Up",
   "Home": "Home",
-  "Map": "Map",
+
   "Projects": "Projects",
   "Campaign": "Campaign",
   "Profile": "Profile",
@@ -16,9 +16,10 @@
   "Road Roughness": "Road Roughness",
   "Charts": "Charts",
   "Regional Charts": "Regional Charts",
-  "Account": "Account",
+
   "Sign out": "Sign out",
   "Platform": "Platform",
+
   "nav": {
     "playground": "Playground",
     "statistics": "Statistics",
@@ -36,7 +37,10 @@
     "team": "Team",
     "billing": "Billing",
     "limits": "Limits",
-    "maps": "Maps"
+    "maps": "Maps",
+    "Upgrade to Pro": "Upgrade to Pro",
+    "Notifications": "Notifications",
+    "Account": "Account"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",

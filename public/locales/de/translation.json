@@ -3,7 +3,7 @@
   "Sign In": "Einloggen",
   "Sign Up": "Registrieren",
   "Home": "Startseite",
-  "Map": "Karte",
+
   "Projects": "Projekte",
   "Campaign": "Kampagne",
   "Profile": "Profil",
@@ -16,9 +16,9 @@
   "Road Roughness": "Straßenrauheit",
   "Charts": "Diagramme",
   "Regional Charts": "Regionale Diagramme",
-  "Account": "Konto",
+
   "Sign out": "Abmelden",
-  "Upgrade to Pro": "Auf Pro upgraden",
+
   "Platform": "Plattform",
   "nav": {
     "playground": "Spielplatz",
@@ -37,7 +37,10 @@
     "team": "Team",
     "billing": "Abrechnung",
     "limits": "Grenzen",
-    "maps": "Karten"
+    "maps": "Karten",
+    "Notifications": "Benachrichtigungen",
+    "Upgrade to Pro": "Auf Pro upgraden",
+    "Account": "Konto"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
