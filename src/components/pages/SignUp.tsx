@@ -3,6 +3,7 @@ import { useRouter } from "@tanstack/react-router";
 import { UserAuth } from "@/context/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useTranslation } from "react-i18next";
 
 interface SignupProps {
   heading?: string;
@@ -18,13 +19,16 @@ interface SignupProps {
   signupUrl?: string;
 }
 
-const Signup: React.FC<SignupProps> = ({
-  heading = "Signup",
+const Signup: React.FC<SignupProps> = (props) => {
+  const { t } = useTranslation();
 
-  buttonText = "Create Account",
-  signupText = "Already a user?",
-  signupUrl = "/signin",
-}) => {
+  const {
+    heading = t("Sign Up"),
+    buttonText = t("signup.buttonText"),
+    signupText = t("signup.footer"),
+    signupUrl = "/signin",
+  } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -85,7 +89,7 @@ const Signup: React.FC<SignupProps> = ({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t("signup.email")}
               className="text-sm"
               required
             />
@@ -94,7 +98,7 @@ const Signup: React.FC<SignupProps> = ({
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={t("signup.password")}
               className="text-sm"
               required
             />
@@ -102,7 +106,7 @@ const Signup: React.FC<SignupProps> = ({
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm Password"
+              placeholder={t("signup.confirmPassword")}
               className="text-sm"
               required
             />
@@ -110,7 +114,7 @@ const Signup: React.FC<SignupProps> = ({
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Creating..." : buttonText}
+              {loading ? t("signup.loading") : buttonText}
             </Button>
           </form>
 
@@ -121,7 +125,7 @@ const Signup: React.FC<SignupProps> = ({
               href={signupUrl}
               className="text-primary font-medium hover:underline"
             >
-              Login
+              {t("Sign In")}
             </a>
           </div>
         </div>
