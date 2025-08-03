@@ -42,5 +42,11 @@
     "confirmDelete": "Are you sure you want to delete this map?",
     "deleteSuccess": "Map deleted successfully.",
     "deleteError": "Error deleting map."
+  },
+  "signIn": {
+    "password": "Password",
+    "email": "Email",
+    "footer": "Don't have an account?",
+    "loading": "Signing in......"
   }
 }

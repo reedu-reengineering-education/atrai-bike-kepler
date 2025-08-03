@@ -43,5 +43,11 @@
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
     "deleteSuccess": "Karte erfolgreich gelöscht.",
     "deleteError": "Fehler beim Löschen der Karte."
+  },
+  "signIn": {
+    "password": "Passwort",
+    "email": "E-Mail",
+    "footer": "Haben Sie kein Konto?",
+    "loading": "Einloggen......"
   }
 }

@@ -3,6 +3,7 @@ import { useRouter } from "@tanstack/react-router";
 import { UserAuth } from "@/context/AuthContext";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface SigninProps {
   heading?: string;
@@ -18,14 +19,17 @@ interface SigninProps {
   promptLinkText?: string;
 }
 
-const Signin: React.FC<SigninProps> = ({
-  heading = "Sign In",
+const Signin: React.FC<SigninProps> = (props) => {
+  const { t } = useTranslation();
 
-  buttonText = "Sign In",
-  promptText = "Don't have an account?",
-  promptUrl = "/signup",
-  promptLinkText = "Sign up",
-}) => {
+  const {
+    heading = "Sign In",
+    buttonText = t("Sign In"),
+    promptText = t("signIn.footer"),
+    promptUrl = "/signup",
+    promptLinkText = t("Sign Up"),
+  } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -75,13 +79,13 @@ const Signin: React.FC<SigninProps> = ({
             onSubmit={handleSignIn}
             className="min-w-sm border-muted bg-background flex w-full max-w-sm flex-col items-center gap-y-4 rounded-md border px-6 py-8 shadow-md"
           >
-            {heading && <h1 className="text-xl font-semibold">{heading}</h1>}
+            {heading && <h1 className="text-xl font-semibold">{t(heading)}</h1>}
 
             <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t("signIn.email")}
               className="text-sm"
               required
             />
@@ -90,7 +94,7 @@ const Signin: React.FC<SigninProps> = ({
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
+              placeholder={t("signIn.password")}
               className="text-sm"
               required
             />
@@ -98,7 +102,7 @@ const Signin: React.FC<SigninProps> = ({
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Signing in..." : buttonText}
+              {loading ? t("signIn.loading") : buttonText}
             </Button>
           </form>
 
