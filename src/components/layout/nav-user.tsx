@@ -25,11 +25,12 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { UserAuth } from "@/context/AuthContext";
-
+import { useTranslation } from "react-i18next";
 export function NavUser() {
   const { isMobile } = useSidebar();
   const auth = UserAuth();
   const session = auth?.session;
+  const { t } = useTranslation();
 
   const user = session?.user;
 
@@ -98,7 +99,7 @@ export function NavUser() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Sparkles className="mr-2" />
-                    Upgrade to Pro
+                    {t("Upgrade to Pro")}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
 
@@ -107,15 +108,15 @@ export function NavUser() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <BadgeCheck className="mr-2" />
-                    Account
+                    {t("Account")}
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <CreditCard className="mr-2" />
-                    Billing
+                    {t("Billing")}
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Bell className="mr-2" />
-                    Notifications
+                    {t("Notifications")}
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
 
@@ -127,16 +128,16 @@ export function NavUser() {
                     window.location.reload();
                   }}
                 >
-                  Sign Out
+                  {t("Sign out")}
                 </DropdownMenuItem>
               </>
             ) : (
               <>
                 <DropdownMenuItem>
-                  <a href="/signin">Sign In</a>
+                  <a href="/signin">{t("Sign In")}</a>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <a href="/signup">Sign Up</a>
+                  <a href="/signup">{t("Sign Up")}</a>
                 </DropdownMenuItem>
               </>
             )}
