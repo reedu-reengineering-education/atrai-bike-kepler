@@ -24,8 +24,8 @@ const Signup: React.FC<SignupProps> = (props) => {
 
   const {
     heading = t("Sign Up"),
-    buttonText = t("singup.buttonText"),
-    signupText = t("singup.footer"),
+    buttonText = t("signup.buttonText"),
+    signupText = t("signup.footer"),
     signupUrl = "/signin",
   } = props;
 
@@ -89,7 +89,7 @@ const Signup: React.FC<SignupProps> = (props) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={t("singup.email")}
+              placeholder={t("signup.email")}
               className="text-sm"
               required
             />
@@ -98,7 +98,7 @@ const Signup: React.FC<SignupProps> = (props) => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder={t("singup.password")}
+              placeholder={t("signup.password")}
               className="text-sm"
               required
             />
@@ -106,7 +106,7 @@ const Signup: React.FC<SignupProps> = (props) => {
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder={t("singup.confirmPassword")}
+              placeholder={t("signup.confirmPassword")}
               className="text-sm"
               required
             />
@@ -114,7 +114,7 @@ const Signup: React.FC<SignupProps> = (props) => {
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? t("signup.loading") : t(buttonText)}
+              {loading ? t("signup.loading") : buttonText}
             </Button>
           </form>
 

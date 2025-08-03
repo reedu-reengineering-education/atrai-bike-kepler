@@ -50,7 +50,7 @@
     "footer": "Don't have an account?",
     "loading": "Signing in......"
   },
-  "singup": {
+  "signup": {
     "password": "Password",
     "email": "Email",
     "footer": "Already a user?",

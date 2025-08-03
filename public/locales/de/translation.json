@@ -50,7 +50,7 @@
     "footer": "Haben Sie kein Konto?",
     "loading": "Einloggen......"
   },
-  "singup": {
+  "signup": {
     "password": "Passwort",
     "email": "E-Mail",
     "footer": "Bereits ein Benutzer?",
