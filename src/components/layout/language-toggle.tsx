@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function LanguageToggle() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [language, setLanguage] = useState(i18n.language);
+  const [, setLanguage] = useState(i18n.language);
   const { t } = useTranslation();
 
   const changeLanguage = (lang: string) => {
