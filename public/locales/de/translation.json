@@ -57,5 +57,8 @@
     "loading": "Erstelle Konto......",
     "confirmPassword": "Passwort bestätigen",
     "buttonText": "Konto erstellen"
+  },
+  "save": {
+    "buttonMsg": "Aktuelle Karte speichern"
   }
 }

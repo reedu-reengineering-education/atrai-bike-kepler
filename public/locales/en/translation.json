@@ -57,5 +57,8 @@
     "loading": "create account......",
     "confirmPassword": "Confirm Password",
     "buttonText": "Create Account"
+  },
+  "save": {
+    "buttonMsg": "Save Current Map"
   }
 }

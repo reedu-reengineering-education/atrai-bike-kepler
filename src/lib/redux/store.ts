@@ -5,7 +5,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import keplerGlReducer, {
   enhanceReduxMiddleware,
   KeplerGlState,
-} from "@kepler.gl/reducers";
+} from "@reedu-kepler.gl/reducers";
 import appReducer from "./app-reducer";
 import compignReducer from "./campaign-slice";
 import { keplerApi } from "./keplerApi";

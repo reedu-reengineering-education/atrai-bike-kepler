@@ -37,6 +37,17 @@ export function LanguageToggle() {
       >
         EN
       </button>
+      <button
+        onClick={() => changeLanguage("pt")}
+        className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+          i18n.language === "pt"
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted"
+        }`}
+        title={t("language.portuguese")}
+      >
+        PT
+      </button>
     </div>
   );
 }

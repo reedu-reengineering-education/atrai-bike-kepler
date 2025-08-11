@@ -2,12 +2,17 @@
 // Copyright contributors to the kepler.gl project
 
 import { createAction, handleActions } from "redux-actions";
+import { initApplicationConfig } from "@kepler.gl/utils";
 
 // CONSTANTS
 export const INIT = "INIT";
 
 // ACTIONS
 export const appInit = createAction(INIT);
+initApplicationConfig({
+  enableRasterTileLayer: true,
+  showReleaseBanner: true,
+});
 
 // INITIAL_STATE
 const initialState = {
