@@ -1,8 +1,8 @@
 import { useNavigate, useMatch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addDataToMap } from "@kepler.gl/actions";
-import KeplerGlSchema from "@kepler.gl/schemas";
+import { addDataToMap } from "@reedu-kepler.gl/actions";
+import KeplerGlSchema from "@reedu-kepler.gl/schemas";
 import { SaveIcon, Save, EditIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,7 +67,7 @@ export default function MapPage() {
       );
       dispatch(addDataToMap(keplerMap as any));
     } catch (e) {
-      console.error("Failed to load map into Kepler.gl", e);
+      console.error("Failed to load map into @reedu-kepler.gl", e);
     }
   }, [mapDetails, dispatch]);
   const handleUpdate = async () => {

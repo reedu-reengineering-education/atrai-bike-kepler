@@ -1,5 +1,5 @@
 import store from "@/lib/redux/store"; // adjust if your store export is default/named
-import { KeplerGlSchema } from "@kepler.gl/schemas";
+import { KeplerGlSchema } from "@reedu-kepler.gl/schemas";
 
 export function exportKeplerDatasetAndConfig() {
   const state = store.getState() as { keplerGl: any };

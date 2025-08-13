@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { SidePanelFactory } from "@kepler.gl/components";
+import { SidePanelFactory } from "@reedu-kepler.gl/components";
 import { Card } from "@/components/ui/card";
 import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";

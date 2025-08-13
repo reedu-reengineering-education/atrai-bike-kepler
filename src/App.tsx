@@ -1,8 +1,11 @@
 import { connect } from "react-redux";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
 
-import { injectComponents, SidePanelFactory } from "@kepler.gl/components";
-import { KeplerGlState } from "@kepler.gl/reducers";
+import {
+  injectComponents,
+  SidePanelFactory,
+} from "@reedu-kepler.gl/components";
+import { KeplerGlState } from "@reedu-kepler.gl/reducers";
 import { Action, Dispatch } from "redux";
 import CustomSidePanelFactory from "./components/kepler/side-panel";
 

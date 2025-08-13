@@ -1,5 +1,5 @@
-import { processGeojson } from "@kepler.gl/processors";
-import { addDataToMap } from "@kepler.gl/actions";
+import { processGeojson } from "@reedu-kepler.gl/processors";
+import { addDataToMap } from "@reedu-kepler.gl/actions";
 import store from "@/lib/redux/store";
 
 export async function loadKeplerDataset({
