@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: MIT
 // Copyright contributors to the @reedu-kepler.gl project
-
+import "@/loaders-config";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import keplerGlReducer, {
   enhanceReduxMiddleware,
