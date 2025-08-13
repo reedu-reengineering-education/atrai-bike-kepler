@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 interface SignupProps {
   heading?: string;
-  logo: {
+  logo?: {
     url: string;
     src: string;
     alt: string;
