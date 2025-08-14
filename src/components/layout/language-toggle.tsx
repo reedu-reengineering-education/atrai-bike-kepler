@@ -1,14 +1,29 @@
 import i18n from "@/i18n";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { setLocale } from "@reedu-kepler.gl/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 export function LanguageToggle() {
   const [, setLanguage] = useState(i18n.language);
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const keplerLocale = useSelector(
+    (state: any) => state?.keplerGl?.map?.uiState?.locale,
+  );
+
+  useEffect(() => {
+    if (keplerLocale && i18n.language !== keplerLocale) {
+      i18n.changeLanguage(keplerLocale);
+      setLanguage(keplerLocale);
+    }
+  }, [keplerLocale, i18n]);
 
   const changeLanguage = (lang: string) => {
     if (i18n.language !== lang) {
       i18n.changeLanguage(lang);
+      dispatch(setLocale(lang));
       setLanguage(lang);
     }
   };
