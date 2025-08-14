@@ -3,7 +3,7 @@
 
 import { createAction, handleActions } from "redux-actions";
 import { initApplicationConfig } from "@reedu-kepler.gl/utils";
-import "@/loaders-config";
+
 // CONSTANTS
 export const INIT = "INIT";
 
