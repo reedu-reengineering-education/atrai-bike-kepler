@@ -60,10 +60,10 @@ const staticNavMain: NavItem[] = [
   },
   {
     translationKey: "documentation",
-    url: "#",
+    url: "docs",
     icon: BookOpen,
     items: [
-      { translationKey: "introduction", url: "#" },
+      { translationKey: "introduction", url: "/docs/introduction" },
       { translationKey: "getStarted", url: "#" },
       { translationKey: "tutorials", url: "#" },
       { translationKey: "changelog", url: "#" },

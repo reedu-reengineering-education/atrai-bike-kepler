@@ -1,0 +1,33 @@
+# Introdução
+
+Bem-vindo ao projeto!  
+Este aplicativo usa **[Kepler.gl](https://kepler.gl/)** para visualizar dados geoespaciais diretamente no seu navegador.  
+Com o Kepler.gl, você pode carregar conjuntos de dados, explorar mapas interativos e criar visualizações bonitas sem escrever código.
+
+## Principais Funcionalidades
+
+- 📍 Carregar arquivos CSV, JSON ou GeoJSON
+- 🗺️ Explorar e filtrar dados do mapa interativamente
+- 🎨 Personalizar estilos e camadas do mapa
+- 📤 Exportar mapas e compartilhar com outras pessoas
+
+## Para quem é destinado?
+
+Esta ferramenta foi criada para:
+
+- Analistas de dados
+- Pesquisadores
+- Qualquer pessoa que trabalhe com dados baseados em localização
+
+# Como carregar seu próprio arquivo CSV, JSON ou GeoJSON no Kepler.gl
+
+Carregar seus dados no Kepler.gl é rápido e fácil.
+
+## Passos
+
+1. **Abra o aplicativo** no seu navegador.
+2. **Clique no** botão "Layer".
+3. **Clique no** botão "Adicionar Dados".
+4. **Escolha o seu arquivo** do seu computador.
+5. **Aguarde o carregamento dos dados** — o mapa será atualizado automaticamente.
+6. **Personalize** as camadas e estilos do mapa conforme necessário.
