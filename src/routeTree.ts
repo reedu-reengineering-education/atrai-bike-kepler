@@ -9,6 +9,7 @@ import StatisticsPage from "./components/pages/Statistics";
 import Signin from "./components/pages/Signin";
 import SignUpPage from "./components/pages/SignUp";
 import MapPage from "@/components/pages/MapPage";
+import DocumentationIntroductionPage from "@/components/pages/Documentation/Introduction";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -44,6 +45,12 @@ const quantumRoute = createRoute({
   component: Quantum,
 });
 
+const introductionRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/introduction",
+  component: DocumentationIntroductionPage,
+});
+
 const signinRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/signin",
@@ -69,4 +76,5 @@ export const routeTree = rootRoute.addChildren([
   signinRoute,
   signupRoute,
   mapDetailRoute,
+  introductionRoute,
 ]);

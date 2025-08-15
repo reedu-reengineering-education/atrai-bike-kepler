@@ -47,7 +47,7 @@ const staticNavMain = [
     url: "#",
     icon: BookOpen,
     items: [
-      { title: "Introduction", url: "#" },
+      { title: "Introduction", url: "/introduction" },
       { title: "Get Started", url: "#" },
       { title: "Tutorials", url: "#" },
       { title: "Changelog", url: "#" },
