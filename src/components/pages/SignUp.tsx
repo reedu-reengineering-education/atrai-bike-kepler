@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 
 interface SignupProps {
   heading?: string;
-  logo: {
+  logo?: {
     url: string;
     src: string;
     alt: string;
