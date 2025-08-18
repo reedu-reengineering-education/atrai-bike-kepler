@@ -2,6 +2,7 @@ import store from "@/lib/redux/store";
 import { addDataToMap } from "@reedu-kepler.gl/actions";
 import { processGeojson } from "@reedu-kepler.gl/processors";
 import configJson from "./config-distances.json";
+import { DISTANCES_FLOWMAP_INFO } from "./dataset-info";
 
 export async function addDistancesFlowmapData() {
   const dataReq = await fetch(
@@ -30,6 +31,7 @@ export async function addDistancesFlowmapData() {
       },
       // @ts-expect-error not-compatible
       config: configJson,
+      info: DISTANCES_FLOWMAP_INFO,
     }),
   );
 }

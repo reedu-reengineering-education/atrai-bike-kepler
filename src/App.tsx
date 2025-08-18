@@ -8,10 +8,13 @@ import {
 import { KeplerGlState } from "@reedu-kepler.gl/reducers";
 import { Action, Dispatch } from "redux";
 import CustomSidePanelFactory from "./components/kepler/side-panel";
+import { replaceMapControl } from "./factories/map-control-factory";
 
 // Inject custom components
+
 const KeplerGl = injectComponents([
   [SidePanelFactory, CustomSidePanelFactory] as never,
+  replaceMapControl() as never,
 ]);
 const ApiAccessToken = import.meta.env.VITE_BASE_MAP_TOKEN;
 
