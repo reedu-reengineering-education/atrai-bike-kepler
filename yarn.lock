@@ -417,6 +417,7 @@
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.18.20.tgz#fedb265bc3a589c84cc11f810804f234947c3682"
   integrity sha512-fyi7TDI/ijKKNZTUJAQqiG5T7YjJXgnzkURqmGj13C6dCqckZBLdl4h7bkhHt/t0WP+zO9/zwroDvANaOqO5Sw==
 
+
 "@esbuild/android-arm@0.25.9":
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/@esbuild/android-arm/-/android-arm-0.25.9.tgz#d2a753fe2a4c73b79437d0ba1480e2d760097419"
@@ -426,6 +427,7 @@
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/android-x64/-/android-x64-0.18.20.tgz#35cf419c4cfc8babe8893d296cd990e9e9f756f2"
   integrity sha512-8GDdlePJA8D6zlZYJV/jnrRAi6rOiNaCC/JclcXpB+KIuvfBN4owLtgzY2bsxnx666XjJx2kDPUmnTtR8qKQUg==
+
 
 "@esbuild/android-x64@0.25.9":
   version "0.25.9"
@@ -516,7 +518,7 @@
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/linux-mips64el/-/linux-mips64el-0.18.20.tgz#eeff3a937de9c2310de30622a957ad1bd9183231"
   integrity sha512-d5NeaXZcHp8PzYy5VnXV3VSd2D328Zb+9dEq5HE6bw6+N86JVPExrA6O68OPwobntbNJ0pzCpUFZTo3w0GyetQ==
-
+  
 "@esbuild/linux-mips64el@0.25.9":
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/@esbuild/linux-mips64el/-/linux-mips64el-0.25.9.tgz#a4d4cc693d185f66a6afde94f772b38ce5d64eb5"
@@ -601,7 +603,7 @@
   version "0.18.20"
   resolved "https://registry.yarnpkg.com/@esbuild/sunos-x64/-/sunos-x64-0.18.20.tgz#d5c275c3b4e73c9b0ecd38d1ca62c020f887ab9d"
   integrity sha512-kDbFRFp0YpTQVVrqUd5FTYmWo45zGaXe0X8E1G/LKFC0v8x0vWrhOWSLITcCn63lmZIxfOMXtCfti/RxN/0wnQ==
-
+  
 "@esbuild/sunos-x64@0.25.9":
   version "0.25.9"
   resolved "https://registry.yarnpkg.com/@esbuild/sunos-x64/-/sunos-x64-0.25.9.tgz#69b99a9b5bd226c9eb9c6a73f990fddd497d732e"
@@ -1478,7 +1480,7 @@
     "@loaders.gl/worker-utils" "3.4.15"
     "@probe.gl/log" "^3.5.0"
 
-"@loaders.gl/core@^4.3.2":
+"@loaders.gl/core@^4.3.2", "@loaders.gl/core@^4.3.4":
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/@loaders.gl/core/-/core-4.3.4.tgz#f6495a375dec5f33ed631c7d116e7e9292bccb0b"
   integrity sha512-cG0C5fMZ1jyW6WCsf4LoHGvaIAJCEVA/ioqKoYRwoSfXkOf+17KupK1OUQyUCw5XoRn+oWA1FulJQOYlXnb9Gw==
@@ -1832,6 +1834,18 @@
     deep-strict-equal "^0.2.0"
     lerc "^4.0.1"
 
+"@loaders.gl/wms@^4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@loaders.gl/wms/-/wms-4.3.4.tgz#e37463bae5cb53993e254ae50e8f9d0a2f5212a0"
+  integrity sha512-yXF0wuYzJUdzAJQrhLIua6DnjOiBJusaY1j8gpvuH1VYs3mzvWlIRuZKeUd9mduQZKK88H2IzHZbj2RGOauq4w==
+  dependencies:
+    "@loaders.gl/images" "4.3.4"
+    "@loaders.gl/loader-utils" "4.3.4"
+    "@loaders.gl/schema" "4.3.4"
+    "@loaders.gl/xml" "4.3.4"
+    "@turf/rewind" "^5.1.5"
+    deep-strict-equal "^0.2.0"
+
 "@loaders.gl/worker-utils@3.4.15":
   version "3.4.15"
   resolved "https://registry.yarnpkg.com/@loaders.gl/worker-utils/-/worker-utils-3.4.15.tgz#28dc1dcc526648fd68e317d8a8b7aa482d9e8198"
@@ -1866,6 +1880,15 @@
   dependencies:
     "@loaders.gl/loader-utils" "4.3.2"
     "@loaders.gl/schema" "4.3.2"
+    fast-xml-parser "^4.2.5"
+
+"@loaders.gl/xml@4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@loaders.gl/xml/-/xml-4.3.4.tgz#3fabc216cc0711b67a5ccb9e4abdf7f07e829d7d"
+  integrity sha512-p+y/KskajsvyM3a01BwUgjons/j/dUhniqd5y1p6keLOuwoHlY/TfTKd+XluqfyP14vFrdAHCZTnFCWLblN10w==
+  dependencies:
+    "@loaders.gl/loader-utils" "4.3.4"
+    "@loaders.gl/schema" "4.3.4"
     fast-xml-parser "^4.2.5"
 
 "@loaders.gl/zip@^3.4.13":
@@ -3131,6 +3154,458 @@
     "@types/estree" "^1.0.0"
     estree-walker "^2.0.2"
     picomatch "^4.0.2"
+
+"@reedu-kepler.gl/actions@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/actions/-/actions-3.1.9.tgz#67d146e5eddd8d039ea1003ddd0d8b4aec6f5433"
+  integrity sha512-lmZiocGRgXIKmGoDl4+i91aRyLVKQ1HYZY/JL4kRI1MjioRM769iXgXw7uf2PHsQ1tzeEbqQNFfUEh6wA7ZvBw==
+  dependencies:
+    "@deck.gl/core" "^8.9.27"
+    "@reduxjs/toolkit" "^1.7.2"
+    "@reedu-kepler.gl/cloud-providers" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/layers" "3.1.9"
+    "@reedu-kepler.gl/processors" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@types/lodash" "4.17.5"
+    "@types/react-redux" "^7.1.23"
+    "@types/redux-actions" "^2.6.2"
+    lodash "4.17.21"
+    react-palm "^3.3.8"
+    react-redux "^8.0.5"
+    redux "^4.2.1"
+    redux-actions "^2.2.1"
+
+"@reedu-kepler.gl/cloud-providers@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/cloud-providers/-/cloud-providers-3.1.9.tgz#975dd8c6a9ec10eb562d7b09a62c6910bff9f7d3"
+  integrity sha512-HxTr9TA05RFczv6eHmAx9gLXpakUgcGKi15HM2mIuIRtv0ps1pRCB6DThPk+4Zkw/7fbYFrA+vBCyT0dQlb9nQ==
+  dependencies:
+    "@reedu-kepler.gl/types" "3.1.9"
+    react "^18.2.0"
+
+"@reedu-kepler.gl/common-utils@3.1.9", "@reedu-kepler.gl/common-utils@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/common-utils/-/common-utils-3.1.9.tgz#f64ba7e098be657af1a3bf8d320092587ace5a06"
+  integrity sha512-KzFlTCWumIhdLk1otgQO0rYlog48HAz+LrLGVhC+Dp/5tg4w+Uy0r9kZANH+mdx7N0Gyilrd1MxmjV5Doq/Ltw==
+  dependencies:
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    d3-array "^2.8.0"
+    global "^4.3.0"
+    h3-js "^3.1.0"
+    type-analyzer "0.4.0"
+
+"@reedu-kepler.gl/components@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/components/-/components-3.1.9.tgz#19b703d155577f5b650da2e2eef05c88e82c487e"
+  integrity sha512-sSqsdWpQSdvLmepaxjv3/krc45DRYnUufwR6z/fi9+rb1ki0mFUlzzsoGPA6R2V9w3khzAkUNdfpHDbSRge+BA==
+  dependencies:
+    "@deck.gl/core" "^8.9.27"
+    "@deck.gl/react" "^8.9.27"
+    "@dnd-kit/core" "^6.1.0"
+    "@dnd-kit/modifiers" "^7.0.0"
+    "@dnd-kit/sortable" "^8.0.0"
+    "@dnd-kit/utilities" "^3.2.2"
+    "@emotion/is-prop-valid" "^1.2.1"
+    "@floating-ui/react" "0.25.1"
+    "@loaders.gl/mvt" "^4.3.2"
+    "@loaders.gl/pmtiles" "^4.3.2"
+    "@loaders.gl/wms" "4.3.2"
+    "@mapbox/mapbox-sdk" "^0.15.3"
+    "@nebula.gl/edit-modes" "1.0.2-alpha.1"
+    "@reedu-kepler.gl/actions" "3.1.9"
+    "@reedu-kepler.gl/cloud-providers" "3.1.9"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/effects" "3.1.9"
+    "@reedu-kepler.gl/layers" "3.1.9"
+    "@reedu-kepler.gl/localization" "3.1.9"
+    "@reedu-kepler.gl/processors" "3.1.9"
+    "@reedu-kepler.gl/reducers" "3.1.9"
+    "@reedu-kepler.gl/schemas" "3.1.9"
+    "@reedu-kepler.gl/styles" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@tippyjs/react" "^4.2.0"
+    "@types/classnames" "^2.3.1"
+    "@types/d3-array" "^2.8.0"
+    "@types/d3-brush" "^3.0.1"
+    "@types/d3-scale" "^3.2.2"
+    "@types/d3-selection" "^3.0.2"
+    "@types/exenv" "^1.2.0"
+    "@types/lodash" "4.17.5"
+    "@types/react" "^18.0.28"
+    "@types/react-copy-to-clipboard" "^5.0.2"
+    "@types/react-dom" "^18.0.11"
+    "@types/react-lifecycles-compat" "^3.0.1"
+    "@types/react-map-gl" "^6.1.3"
+    "@types/react-modal" "^3.13.1"
+    "@types/react-redux" "^7.1.23"
+    "@types/react-virtualized" "^9.21.30"
+    "@types/react-vis" "1.11.7"
+    "@types/styled-components" "^5.1.32"
+    classnames "^2.2.1"
+    copy-to-clipboard "^3.3.1"
+    d3-array "^2.8.0"
+    d3-axis "^2.0.0"
+    d3-brush "^2.1.0"
+    d3-color "^2.0.0"
+    d3-format "^2.0.0"
+    d3-scale "^3.2.3"
+    d3-selection "^2.0.0"
+    exenv "^1.2.2"
+    fuzzy "^0.1.3"
+    global "^4.3.0"
+    lodash "4.17.21"
+    mapbox-gl "1.13.1"
+    maplibre-gl "^3.6.2"
+    markdown-to-jsx "^7.7.6"
+    mjolnir.js "^2.7.0"
+    moment "^2.10.6"
+    moment-timezone "^0.5.35"
+    prop-types "^15.6.0"
+    react "^18.2.0"
+    react-color "^2.19.3"
+    react-copy-to-clipboard "^5.0.2"
+    react-date-picker "^10.2.0"
+    react-dom "^18.2.0"
+    react-intl "^6.3.0"
+    react-json-pretty "^2.2.0"
+    react-lifecycles-compat "^3.0.4"
+    react-map-gl "^7.1.6"
+    react-modal "^3.12.1"
+    react-redux "^8.0.5"
+    react-sortable-hoc "^1.8.3"
+    react-time-picker "^6.2.0"
+    react-tooltip "^4.2.17"
+    react-virtualized "^9.22.5"
+    react-vis "1.11.7"
+    redux "^4.2.1"
+    reselect "^4.1.0"
+    styled-components "6.1.8"
+    suncalc "^1.9.0"
+    viewport-mercator-project "^6.0.0"
+
+"@reedu-kepler.gl/constants@3.1.9", "@reedu-kepler.gl/constants@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/constants/-/constants-3.1.9.tgz#af276be2cac3ae304255b9fae777afdb05820bd9"
+  integrity sha512-HEYYHCHHbf2jWY1FSVc6QC/pvrzP9DhuW95TtO6Nipag37Ba+fKYxfdx9/CMYIWcycxVVj/gOLR82KhvCjI+Fg==
+  dependencies:
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@types/d3-scale" "^3.2.2"
+    "@types/keymirror" "^0.1.1"
+    chroma-js "2.1.2"
+    colorbrewer "^1.5.0"
+    d3-array "^2.8.0"
+    d3-color "^2.0.0"
+    d3-scale "^3.2.3"
+    d3-scale-chromatic "2.0.0"
+    d3-time "^2.0.0"
+    global "^4.3.0"
+    keymirror "^0.1.1"
+
+"@reedu-kepler.gl/deckgl-arrow-layers@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/deckgl-arrow-layers/-/deckgl-arrow-layers-3.1.9.tgz#1d837b0ed317a8e84fb58fdc867ccaae6b172008"
+  integrity sha512-3MZ4n3qyIOizIShTaOxH8Znn1pdhR/X+S/m7x9iXtk7Yi+W+4YE1MiLIa+3QT9yb+u1CxYpC7eDcgRNJt0TJAg==
+  dependencies:
+    "@geoarrow/geoarrow-js" "^0.3.0"
+    "@math.gl/core" "^4.0.0"
+    "@math.gl/polygon" "^4.0.0"
+    "@math.gl/types" "^4.0.0"
+    "@reedu-kepler.gl/constants" "^3.1.9"
+    apache-arrow ">=15"
+    threads "^1.7.0"
+
+"@reedu-kepler.gl/deckgl-layers@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/deckgl-layers/-/deckgl-layers-3.1.9.tgz#8d27a032a18d417d197b2b54e7fde3431c5eb61c"
+  integrity sha512-vcJ0s+lo2dzuGA0Y9cTJZN0ciSv305bP4e0ELSbqEvkOw9UId7z+s1ct6CnYWAdfY+WGW9AECV+j59lyp4wkgg==
+  dependencies:
+    "@danmarshall/deckgl-typings" "4.9.22"
+    "@deck.gl/aggregation-layers" "^8.9.27"
+    "@deck.gl/core" "^8.9.27"
+    "@deck.gl/geo-layers" "^8.9.27"
+    "@deck.gl/layers" "^8.9.27"
+    "@loaders.gl/wms" "4.3.2"
+    "@luma.gl/constants" "^8.5.20"
+    "@luma.gl/core" "^8.5.20"
+    "@mapbox/geo-viewport" "^0.4.1"
+    "@mapbox/vector-tile" "^1.3.1"
+    "@math.gl/web-mercator" "^3.6.2"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@types/d3-array" "^2.8.0"
+    "@types/geojson" "^7946.0.8"
+    "@types/lodash" "4.17.5"
+    "@types/supercluster" "^7.1.0"
+    d3-array "^2.8.0"
+    global "^4.3.0"
+    lodash "4.17.21"
+    pbf "^3.1.0"
+    supercluster "^7.1.0"
+    viewport-mercator-project "^6.0.0"
+
+"@reedu-kepler.gl/effects@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/effects/-/effects-3.1.9.tgz#29dee4f0fb45dc00e2042348362b3c117dd0f4ae"
+  integrity sha512-e1v5bK3hvAdEIR2KLbWNHbvdaVUg+F/hSCRNVFaQSxXWp1b9yI7wOeUMzyQlR86enxq56N3JXnVCPk2svzN6Lw==
+  dependencies:
+    "@deck.gl/core" "^8.9.27"
+    "@luma.gl/core" "^8.5.20"
+    "@luma.gl/shadertools" "^8.5.20"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    moment-timezone "^0.5.35"
+    suncalc "^1.9.0"
+
+"@reedu-kepler.gl/layers@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/layers/-/layers-3.1.9.tgz#d71e6d3c5c1c51d8759030872ad0e447b3bea9af"
+  integrity sha512-rAoogwb1K2c9pG1OGDeIL5ksEummNUvsTDMXyQX+G+8X36jDSmo4YGlwV3ffcx4zEBxfVvsuj2u+cfVsz/CjSA==
+  dependencies:
+    "@danmarshall/deckgl-typings" "4.9.22"
+    "@deck.gl/core" "^8.9.27"
+    "@deck.gl/extensions" "^8.9.27"
+    "@deck.gl/geo-layers" "^8.9.27"
+    "@deck.gl/layers" "^8.9.27"
+    "@deck.gl/mesh-layers" "^8.9.27"
+    "@loaders.gl/arrow" "^4.3.2"
+    "@loaders.gl/core" "^4.3.2"
+    "@loaders.gl/gis" "^4.3.2"
+    "@loaders.gl/gltf" "^4.3.2"
+    "@loaders.gl/mvt" "^4.3.2"
+    "@loaders.gl/parquet" "^4.3.2"
+    "@loaders.gl/pmtiles" "^4.3.2"
+    "@loaders.gl/schema" "^4.3.2"
+    "@loaders.gl/wkt" "^4.3.2"
+    "@luma.gl/constants" "^8.5.20"
+    "@mapbox/geojson-normalize" "0.0.1"
+    "@nebula.gl/edit-modes" "1.0.2-alpha.1"
+    "@nebula.gl/layers" "1.0.2-alpha.1"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/deckgl-arrow-layers" "3.1.9"
+    "@reedu-kepler.gl/deckgl-layers" "3.1.9"
+    "@reedu-kepler.gl/localization" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@turf/bbox" "^6.0.1"
+    "@turf/boolean-within" "^6.0.1"
+    "@turf/center" "^6.0.1"
+    "@turf/helpers" "^6.1.4"
+    "@types/geojson" "^7946.0.8"
+    "@types/keymirror" "^0.1.1"
+    "@types/lodash" "4.17.5"
+    "@types/styled-components" "^5.1.32"
+    apache-arrow ">=15.0.0"
+    buffer "6.0.3"
+    d3-array "^2.8.0"
+    d3-shape "^1.2.0"
+    global "^4.3.0"
+    keymirror "^0.1.1"
+    lodash "4.17.21"
+    long "^4.0.0"
+    markdown-to-jsx "^7.7.6"
+    prop-types "^15.6.0"
+    react "^18.2.0"
+    react-intl "^6.3.0"
+    reselect "^4.1.0"
+    s2-geometry "^1.2.10"
+    styled-components "6.1.8"
+    type-analyzer "0.4.0"
+    viewport-mercator-project "^6.0.0"
+
+"@reedu-kepler.gl/localization@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/localization/-/localization-3.1.9.tgz#41fe972676ca3754b25e7f7645714215317fafcd"
+  integrity sha512-32eDWcrGmR+2naYFY+QgIehkP++TVzfdv3matNIv3GWEIOpe0tFUnNhzbDnK3O3Ogj15+OlY6cPE7rwYz8kZGg==
+  dependencies:
+    react "^18.2.0"
+    react-intl "^6.3.0"
+    redux "^4.2.1"
+
+"@reedu-kepler.gl/processors@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/processors/-/processors-3.1.9.tgz#4a04de34efd1f1833d1c07ad8854f111f5c478a8"
+  integrity sha512-wZOdAymHYGwrwVlqf59rqJU6oB2SUsmc0YVoXWInT+nYmLoZPCh7STX3oHcIlWt/5M1NEMeeHgxLf505HjRjWQ==
+  dependencies:
+    "@danmarshall/deckgl-typings" "4.9.22"
+    "@loaders.gl/arrow" "^4.3.2"
+    "@loaders.gl/core" "^4.3.2"
+    "@loaders.gl/csv" "^4.3.2"
+    "@loaders.gl/gis" "^4.3.2"
+    "@loaders.gl/json" "^4.3.2"
+    "@loaders.gl/loader-utils" "^4.3.2"
+    "@loaders.gl/parquet" "^4.3.2"
+    "@loaders.gl/schema" "^4.3.2"
+    "@loaders.gl/wkt" "^4.3.2"
+    "@mapbox/geojson-normalize" "0.0.1"
+    "@nebula.gl/edit-modes" "1.0.2-alpha.1"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/schemas" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@turf/helpers" "^6.1.4"
+    apache-arrow ">=15.0.0"
+    d3-dsv "^2.0.0"
+    type-analyzer "0.4.0"
+
+"@reedu-kepler.gl/reducers@3.1.9", "@reedu-kepler.gl/reducers@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/reducers/-/reducers-3.1.9.tgz#d1829ba5117462009399b8ba1365bca9c74d6089"
+  integrity sha512-SFbKbbaO/Q8FCj3O8WTT4nbTp7dTwbp2oBXyMD1xDLnypRttXpLv5NfRH0GhJk8fQ98LmmHNAfn2F5Kvh7tZtQ==
+  dependencies:
+    "@loaders.gl/loader-utils" "^4.3.2"
+    "@mapbox/geo-viewport" "^0.4.1"
+    "@math.gl/web-mercator" "^3.6.2"
+    "@reedu-kepler.gl/actions" "3.1.9"
+    "@reedu-kepler.gl/cloud-providers" "3.1.9"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/deckgl-arrow-layers" "3.1.9"
+    "@reedu-kepler.gl/deckgl-layers" "3.1.9"
+    "@reedu-kepler.gl/effects" "3.1.9"
+    "@reedu-kepler.gl/layers" "3.1.9"
+    "@reedu-kepler.gl/localization" "3.1.9"
+    "@reedu-kepler.gl/processors" "3.1.9"
+    "@reedu-kepler.gl/schemas" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/tasks" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@turf/bbox" "^6.0.1"
+    "@turf/bbox-polygon" "^6.0.1"
+    "@turf/boolean-within" "^6.0.1"
+    "@types/lodash" "4.17.5"
+    "@types/redux-actions" "^2.6.2"
+    copy-to-clipboard "^3.3.1"
+    d3-color "^2.0.0"
+    d3-dsv "^2.0.0"
+    deepmerge "^4.2.2"
+    global "^4.3.0"
+    lodash "4.17.21"
+    react-palm "^3.3.8"
+    redux "^4.2.1"
+    redux-actions "^2.2.1"
+    reselect "^4.1.0"
+
+"@reedu-kepler.gl/schemas@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/schemas/-/schemas-3.1.9.tgz#da66b7879a988d0ea819e5c011f768fca03ae659"
+  integrity sha512-rAiwD0UdZ5iol9Uku/mxucHNx8gbVu6sRfLR+IJRqficrYDOG4QNifK9QjHsqekZhkLjdPUwnpbDS7c2DJt29w==
+  dependencies:
+    "@loaders.gl/loader-utils" "^4.3.2"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/layers" "3.1.9"
+    "@reedu-kepler.gl/table" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@types/keymirror" "^0.1.1"
+    "@types/lodash" "4.17.5"
+    apache-arrow ">=15.0.0"
+    global "^4.3.0"
+    keymirror "^0.1.1"
+    lodash "4.17.21"
+
+"@reedu-kepler.gl/styles@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/styles/-/styles-3.1.9.tgz#9adc1934735c6c50e72bfd3bf9780c93a0f96570"
+  integrity sha512-jqziFdFEPDXLlLLOxfoMhXcpZdCZlETEhK9IE276HoLdEiTerfpNp0JKfGANis+X41UMNyVKseNkBDJG0z9oyw==
+  dependencies:
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@types/styled-components" "^5.1.32"
+    styled-components "6.1.8"
+
+"@reedu-kepler.gl/table@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/table/-/table-3.1.9.tgz#8f6129607f6e5600c6b0bffdb08cb51b256b9adc"
+  integrity sha512-XNZPUt8Wq6olUlw7GMmpPuwFsgJStnlK2JjDwtBQ3WgOM+sNoe8lFYQTITMeoGGWpvalWiwrDU1jK8W8pBPMyg==
+  dependencies:
+    "@loaders.gl/mvt" "^4.3.2"
+    "@loaders.gl/pmtiles" "^4.3.2"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@reedu-kepler.gl/utils" "3.1.9"
+    "@types/d3-array" "^2.8.0"
+    "@types/lodash" "4.17.5"
+    d3-array "^2.8.0"
+    global "^4.3.0"
+    lodash "4.17.21"
+    moment "^2.10.6"
+    react-palm "^3.3.8"
+    type-analyzer "0.4.0"
+
+"@reedu-kepler.gl/tasks@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/tasks/-/tasks-3.1.9.tgz#958084e673822bc17d70e5f6b81c6f9ce95302cc"
+  integrity sha512-Hvfol7BhrTJCzPWuANJF14YmC4OAjEw+Gj1DWWbESs2MCpDlArHDpp3AU15Eb4t8Jp6Ge6cm1FIuwK1kzu0Oug==
+  dependencies:
+    "@reedu-kepler.gl/processors" "3.1.9"
+    react-palm "^3.3.8"
+
+"@reedu-kepler.gl/types@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/types/-/types-3.1.9.tgz#3994a0a5f822108c19eefa3c520d9a6d506e4336"
+  integrity sha512-xBIdzWkD0iYn3rk3JZk12QO+fZ17D7PUDB4faI/herG5yfzdqi0JwpyQTIJiEU/TrcaufyH9AWUCpxk7oCyGjg==
+
+"@reedu-kepler.gl/utils@3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@reedu-kepler.gl/utils/-/utils-3.1.9.tgz#b2e330b9d0dadbfd072ad0b0875e61fa0cb28b0b"
+  integrity sha512-VdiMDbF2cVR5v5qNaOpH10h4e/BgCYIEmOAswhBYp9wq3wS7eNpeIqc9y8WvaACNIeah35T9wjcEFA1tKohY8w==
+  dependencies:
+    "@deck.gl/core" "^8.9.27"
+    "@loaders.gl/arrow" "^4.3.2"
+    "@luma.gl/constants" "^8.5.20"
+    "@luma.gl/core" "^8.5.20"
+    "@mapbox/geo-viewport" "^0.4.1"
+    "@reedu-kepler.gl/common-utils" "3.1.9"
+    "@reedu-kepler.gl/constants" "3.1.9"
+    "@reedu-kepler.gl/types" "3.1.9"
+    "@turf/boolean-within" "^6.0.1"
+    "@turf/helpers" "^6.1.4"
+    "@types/d3-array" "^2.8.0"
+    "@types/keymirror" "^0.1.1"
+    "@types/lodash" "4.17.5"
+    apache-arrow ">=15.0.0"
+    d3-array "^2.8.0"
+    d3-color "^2.0.0"
+    d3-format "^2.0.0"
+    d3-interpolate "^2.0.1"
+    decimal.js "^10.2.0"
+    global "^4.3.0"
+    h3-js "^3.1.0"
+    keymirror "^0.1.1"
+    lodash "4.17.21"
+    mapbox-gl "^1.13.1"
+    maplibre-gl "^3.6.2"
+    maplibregl-mapbox-request-transformer "^0.0.2"
+    mini-svg-data-uri "^1.0.3"
+    moment "^2.10.6"
+    moment-timezone "^0.5.35"
+    react "^18.2.0"
+    react-map-gl "^7.1.6"
+    resize-observer-polyfill "^1.5.1"
+    suncalc "^1.9.0"
+    type-analyzer "0.4.0"
+    viewport-mercator-project "^6.0.0"
+
+"@rolldown/pluginutils@1.0.0-beta.27":
+  version "1.0.0-beta.27"
+  resolved "https://registry.yarnpkg.com/@rolldown/pluginutils/-/pluginutils-1.0.0-beta.27.tgz#47d2bf4cef6d470b22f5831b420f8964e0bf755f"
+  integrity sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==
 
 "@rollup/rollup-android-arm-eabi@4.46.2":
   version "4.46.2"

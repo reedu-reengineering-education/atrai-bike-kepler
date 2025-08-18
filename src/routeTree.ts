@@ -10,9 +10,14 @@ import Signin from "./components/pages/Signin";
 import SignUpPage from "./components/pages/SignUp";
 import MapPage from "@/components/pages/MapPage";
 import DocumentationIntroductionPage from "@/components/pages/Documentations/Introduction";
+import NotFound from "./components/pages/NotFound";
+import Forgetpassword from "@/components/pages/ForgetPassword";
+import ResetPassword from "@/components/pages/ResetPassword";
+
 
 const rootRoute = createRootRoute({
   component: Layout,
+  notFoundComponent: NotFound,
 });
 
 const indexRoute = createRoute({
@@ -60,6 +65,16 @@ const signupRoute = createRoute({
   path: "/signup",
   component: SignUpPage,
 });
+const ForgetPasswordRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/forget-password",
+  component: Forgetpassword,
+});
+const ResetPasswordRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/reset-password",
+  component: ResetPassword,
+});
 export const mapDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/maps/$mapId",
@@ -76,4 +91,6 @@ export const routeTree = rootRoute.addChildren([
   signupRoute,
   mapDetailRoute,
   introductionRoute,
+  ForgetPasswordRoute,
+  ResetPasswordRoute,
 ]);

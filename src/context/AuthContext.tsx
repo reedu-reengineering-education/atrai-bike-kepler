@@ -15,6 +15,7 @@ import {
 
 interface AuthContextType {
   session: Session | null;
+  authLoading: boolean;
   signUpNewUser: (
     email: string,
     password: string,
@@ -42,6 +43,7 @@ interface AuthContextProviderProps {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [session, setSession] = useState<Session | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
     const getInitialSession = async () => {
@@ -55,6 +57,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       }
 
       setSession(session);
+      setAuthLoading(false);
     };
 
     getInitialSession();
@@ -63,6 +66,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event: AuthChangeEvent, session) => {
       setSession(session);
+      setAuthLoading(false);
     });
 
     return () => subscription.unsubscribe();
@@ -108,6 +112,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     <AuthContext.Provider
       value={{
         session,
+        authLoading,
         signUpNewUser,
         signInUser,
         signOut,

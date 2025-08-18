@@ -82,13 +82,14 @@ const staticNavMain: NavItem[] = [
   },
 ];
 
-export const AppSidebar: React.FC<React.ComponentProps<typeof Sidebar>> = (
-  props,
-) => {
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
-  const { triggerRefresh, refreshKey } = useRefresh();
   const { session } = UserAuth();
-  const [maps, setMaps] = React.useState<NavItem[]>([]);
+  const { triggerRefresh, refreshKey } = useRefresh();
+
+  const [maps, setMaps] = React.useState<any[]>([]);
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
