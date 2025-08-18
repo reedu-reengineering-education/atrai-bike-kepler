@@ -1,6 +1,6 @@
 import store from "@/lib/redux/store";
-import { addDataToMap } from "@kepler.gl/actions";
-import { processGeojson } from "@kepler.gl/processors";
+import { addDataToMap } from "@reedu-kepler.gl/actions";
+import { processGeojson } from "@reedu-kepler.gl/processors";
 import configJson from "./config-distances.json";
 
 export async function addDistancesFlowmapData() {
