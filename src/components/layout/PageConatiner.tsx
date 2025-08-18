@@ -14,10 +14,12 @@ export function PageContainer({
   children,
   breadcrumb,
   breadcrumbRight,
+  urlPath,
 }: {
   children: React.ReactNode;
   breadcrumb?: React.ReactNode;
   breadcrumbRight?: React.ReactNode;
+  urlPath?: string;
 }) {
   return (
     <SidebarInset className="border rounded-lg">
@@ -33,7 +35,7 @@ export function PageContainer({
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Playground</BreadcrumbPage>
+                  <BreadcrumbPage>{urlPath || "playground"}</BreadcrumbPage>
                 </BreadcrumbItem>
                 {breadcrumb && (
                   <>

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useTranslation } from "react-i18next";
-
+import { PageContainer } from "@/components/layout/PageConatiner";
+import { useRouter } from "@tanstack/react-router";
+import { formatUrlPath } from "@/utils/formatPath";
+import { useMatch } from "@tanstack/react-router";
 // import type { MDXComponents } from "@mdx-js/react";
 
 interface DocumentationViewerProps {
@@ -15,7 +18,10 @@ export default function DocumentationViewer({
   const [MdxContent, setMdxContent] = useState<React.ComponentType | null>(
     null,
   );
-
+  const match = useMatch({
+    strict: false,
+  });
+  const currentPath = match.pathname;
   useEffect(() => {
     const loadDocumentation = async () => {
       try {
@@ -44,41 +50,43 @@ export default function DocumentationViewer({
   }
 
   return (
-    <div className=" max-w-4xl mx-auto px-4 py-8">
-      <MDXProvider
-        components={{
-          h1: ({ children }) => (
-            <h1 className="text-3xl font-bold mt-6 mb-4 text-blue-700">
-              {children}
-            </h1>
-          ),
-          h2: ({ children }) => (
-            <h2 className="text-2xl font-bold mt-5 mb-3">{children}</h2>
-          ),
-          p: ({ children }) => (
-            <p className="my-2 leading-relaxed">{children}</p>
-          ),
-          ul: ({ children }) => (
-            <ul className="list-disc pl-6 my-3 space-y-1">{children}</ul>
-          ),
-          ol: ({ children }) => (
-            <ol className="list-decimal pl-6 my-3 space-y-1">{children}</ol>
-          ),
-          li: ({ children }) => <li className="ml-1">{children}</li>,
-          a: ({ href, children }: any) => (
-            <a
-              href={href}
-              className="text-blue-600 underline hover:text-blue-800"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {children}
-            </a>
-          ),
-        }}
-      >
-        <MdxContent />
-      </MDXProvider>
-    </div>
+    <PageContainer urlPath={formatUrlPath(currentPath)}>
+      <div className=" max-w-4xl mx-auto px-4 py-8">
+        <MDXProvider
+          components={{
+            h1: ({ children }) => (
+              <h1 className="text-3xl font-bold mt-6 mb-4 text-blue-700">
+                {children}
+              </h1>
+            ),
+            h2: ({ children }) => (
+              <h2 className="text-2xl font-bold mt-5 mb-3">{children}</h2>
+            ),
+            p: ({ children }) => (
+              <p className="my-2 leading-relaxed">{children}</p>
+            ),
+            ul: ({ children }) => (
+              <ul className="list-disc pl-6 my-3 space-y-1">{children}</ul>
+            ),
+            ol: ({ children }) => (
+              <ol className="list-decimal pl-6 my-3 space-y-1">{children}</ol>
+            ),
+            li: ({ children }) => <li className="ml-1">{children}</li>,
+            a: ({ href, children }: any) => (
+              <a
+                href={href}
+                className="text-blue-600 underline hover:text-blue-800"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {children}
+              </a>
+            ),
+          }}
+        >
+          <MdxContent />
+        </MDXProvider>
+      </div>
+    </PageContainer>
   );
 }
