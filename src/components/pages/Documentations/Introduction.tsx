@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { useTranslation } from "react-i18next";
 import { PageContainer } from "@/components/layout/PageConatiner";
-import { useRouter } from "@tanstack/react-router";
+
 import { formatUrlPath } from "@/utils/formatPath";
 import { useMatch } from "@tanstack/react-router";
 // import type { MDXComponents } from "@mdx-js/react";
