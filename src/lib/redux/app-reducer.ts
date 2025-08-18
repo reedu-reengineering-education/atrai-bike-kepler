@@ -11,7 +11,6 @@ export const INIT = "INIT";
 export const appInit = createAction(INIT);
 initApplicationConfig({
   enableRasterTileLayer: true,
-  showReleaseBanner: true,
   enableWMSLayer: true,
 });
 

@@ -14,6 +14,7 @@ import { BikeIcon, SaveIcon } from "lucide-react";
 import { saveMapToSupabase } from "@/utils/saveMapeSupabase";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
+import { useTranslation } from "react-i18next";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
@@ -25,6 +26,7 @@ function CustomSidePanelFactory(...args) {
 
     const [isLoadingRoughness, setIsLoadingRoughness] = useState(false);
     const [isLoadingDistance, setIsLoadingDistance] = useState(false);
+    const { t } = useTranslation();
 
     const auth = UserAuth();
     const session = auth?.session;
@@ -138,7 +140,7 @@ function CustomSidePanelFactory(...args) {
                     onClick={handleSaveMap}
                   >
                     <SaveIcon className="w-5 h-5" />
-                    <span>Save Current Map</span>
+                    <span>{t("save.buttonMsg")}</span>
                   </button>
                 </div>
               ),

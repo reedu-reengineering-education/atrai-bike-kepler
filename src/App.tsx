@@ -21,6 +21,7 @@ const App = () => {
       <AutoSizer>
         {({ height, width }) => (
           <KeplerGl
+            id="map"
             width={width}
             height={height}
             theme="light"

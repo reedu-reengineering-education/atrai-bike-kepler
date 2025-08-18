@@ -1,0 +1,64 @@
+{
+  "login": "login",
+  "Sign In": "Sign In",
+  "Sign Up": "Sign Up",
+  "Home": "Home",
+  "Projects": "Projetos",
+  "Campaign": "Campanha",
+  "Profile": "Perfil",
+  "Logout": "Logout",
+  "Save": "Salvar",
+  "Delete": "Delete",
+  "Export": "Exportar",
+  "Update": "Update",
+  "Distance": "Distância",
+  "Road Roughness": "Roughness da estrada",
+  "Charts": "Gráficos",
+  "Regional Charts": "Gráficos Regionais",
+  "Sign out": "Sign out",
+  "Platform": "Plataforma",
+  "nav": {
+    "playground": "Playground",
+    "statistics": "Estatísticas",
+    "models": "Models",
+    "documentation": "Documentação",
+    "settings": "Settings",
+    "genesis": "Genesis",
+    "explorer": "Explorer",
+    "quantum": "Quantum",
+    "introduction": "Introdução",
+    "getStarted": "Get Started",
+    "tutorials": "Tutoriais",
+    "changelog": "Changelog",
+    "general": "Geral",
+    "team": "Team",
+    "billing": "Billing",
+    "limits": "Limits",
+    "maps": "Maps",
+    "Upgrade to Pro": "Upgrade to Pro",
+    "Notifications": "Notificações",
+    "Account": "Conta"
+  },
+  "map": {
+    "confirmDelete": "Tem certeza que quer deletar este map?",
+    "deleteSuccess": "Map deletado com sucesso.",
+    "deleteError": "Erro ao deletar o map."
+  },
+  "signIn": {
+    "password": "Senha",
+    "email": "Email",
+    "footer": "Não tem uma conta?",
+    "loading": "Signing in......"
+  },
+  "signup": {
+    "password": "Senha",
+    "email": "Email",
+    "footer": "Já é usuário?",
+    "loading": "Criando account......",
+    "confirmPassword": "Confirmar Senha",
+    "buttonText": "Create Account"
+  },
+  "save": {
+    "buttonMsg": "Salvar Mapa Atual"
+  }
+}

@@ -1,6 +1,13 @@
 import * as React from "react";
-import { BookOpen, Bot, ChartLine, MapIcon, Settings2 } from "lucide-react";
-
+import {
+  BookOpen,
+  Bot,
+  ChartLine,
+  MapIcon,
+  Settings2,
+  Trash2,
+} from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
 import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
@@ -12,65 +19,74 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { listMapsFromSupabase } from "@/utils/listMaps";
-import { UserAuth } from "@/context/AuthContext";
-
-import { useNavigate } from "@tanstack/react-router";
-import { useRefresh } from "@/context/RefreshContext";
-import { Trash2 } from "lucide-react";
 import { deleteMapById } from "@/utils/deleteMap";
+import { UserAuth } from "@/context/AuthContext";
+import { useRefresh } from "@/context/RefreshContext";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { LanguageToggle } from "@/components/layout/language-toggle";
 
-const staticNavMain = [
+interface NavItem {
+  translationKey?: string;
+  title?: string;
+  url: string;
+  icon?: React.ElementType;
+  items?: NavItem[];
+  isActive?: boolean;
+  endicon?: React.ReactNode;
+}
+
+const staticNavMain: NavItem[] = [
   {
-    title: "Playground",
+    translationKey: "playground",
     url: "/",
     icon: MapIcon,
     isActive: true,
   },
   {
-    title: "Statistics",
+    translationKey: "statistics",
     url: "/statistics",
     icon: ChartLine,
   },
   {
-    title: "Models",
-    url: "??",
+    translationKey: "models",
+    url: "",
     icon: Bot,
     items: [
-      { title: "Genesis", url: "/genesis" },
-      { title: "Explorer", url: "/explorer" },
-      { title: "Quantum", url: "/quantum" },
+      { translationKey: "genesis", url: "/genesis" },
+      { translationKey: "explorer", url: "/explorer" },
+      { translationKey: "quantum", url: "/quantum" },
     ],
   },
   {
-    title: "Documentation",
-    url: "#",
+    translationKey: "documentation",
+    url: "docs",
     icon: BookOpen,
     items: [
-      { title: "Introduction", url: "#" },
-      { title: "Get Started", url: "#" },
-      { title: "Tutorials", url: "#" },
-      { title: "Changelog", url: "#" },
+      { translationKey: "introduction", url: "/docs/introduction" },
+      { translationKey: "getStarted", url: "#" },
+      { translationKey: "tutorials", url: "#" },
+      { translationKey: "changelog", url: "#" },
     ],
   },
   {
-    title: "Settings",
+    translationKey: "settings",
     url: "#",
     icon: Settings2,
     items: [
-      { title: "General", url: "#" },
-      { title: "Team", url: "#" },
-      { title: "Billing", url: "#" },
-      { title: "Limits", url: "#" },
+      { translationKey: "general", url: "#" },
+      { translationKey: "team", url: "#" },
+      { translationKey: "billing", url: "#" },
+      { translationKey: "limits", url: "#" },
     ],
   },
 ];
 
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const auth = UserAuth();
-  const { triggerRefresh } = useRefresh();
-  const session = auth?.session;
-  const { refreshKey } = useRefresh();
+  const { t } = useTranslation();
+  const { session } = UserAuth();
+  const { triggerRefresh, refreshKey } = useRefresh();
 
   const [maps, setMaps] = React.useState<any[]>([]);
 
@@ -82,8 +98,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         const fetchedMaps = await listMapsFromSupabase(session.user.id);
         if (fetchedMaps) {
           setMaps(
-            fetchedMaps.map((map) => ({
-              ...map,
+            fetchedMaps.map((map: any) => ({
+              title: map.title,
+              url: `/maps/${map.id}`,
+              endicon: (
+                <Button
+                  onClick={() => handleDelete(map.id)}
+                  variant="destructive"
+                  className="mr-0 pr-0"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              ),
             })),
           );
         }
@@ -94,49 +120,49 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     fetchMaps();
   }, [session, refreshKey]);
 
+  const handleDelete = async (mapId: string) => {
+    const confirm = window.confirm(t("map.confirmDelete"));
+    if (!confirm) return;
+
+    try {
+      await deleteMapById(mapId);
+      alert(t("map.deleteSuccess"));
+      triggerRefresh();
+      navigate({ to: "/" });
+    } catch (e: any) {
+      alert(t("map.deleteError") + e.message);
+    }
+  };
+
+  const translateNavItems = React.useCallback(
+    (items: NavItem[]): NavItem[] => {
+      return items.map((item) => ({
+        ...item,
+        title: item.translationKey
+          ? t(`nav.${item.translationKey}`)
+          : item.title,
+        items: item.items ? translateNavItems(item.items) : undefined,
+      }));
+    },
+    [t],
+  );
+
   const navMain = React.useMemo(() => {
-    if (maps.length === 0) return staticNavMain;
+    const baseItems =
+      maps.length === 0
+        ? staticNavMain
+        : [
+            ...staticNavMain,
+            {
+              translationKey: "maps",
+              icon: MapIcon,
+              url: "",
+              items: maps,
+            },
+          ];
 
-    const handleDelete = async (mapId: string) => {
-      const confirm = window.confirm(
-        "Are you sure you want to delete this map?",
-      );
-      if (!confirm) return;
-
-      try {
-        await deleteMapById(mapId);
-
-        alert("Map deleted successfully");
-        triggerRefresh();
-        navigate({ to: "/" });
-        // or another route
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (e: any) {
-        alert("Failed to delete map");
-      }
-    };
-
-    return [
-      ...staticNavMain,
-      {
-        title: "Maps",
-        icon: MapIcon,
-        items: maps.map((map) => ({
-          title: map.title,
-          url: `/maps/${map.id}`,
-          endicon: (
-            <Button
-              onClick={() => handleDelete(map.id)}
-              variant="destructive"
-              className="mr-0 pr-0"
-            >
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          ),
-        })),
-      },
-    ];
-  }, [maps]);
+    return translateNavItems(baseItems);
+  }, [maps, translateNavItems]);
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -145,12 +171,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain as any} />
-        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="flex items-center justify-between px-2">
+        <LanguageToggle />
         <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );
-}
+};

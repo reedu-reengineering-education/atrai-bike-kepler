@@ -1,0 +1,64 @@
+{
+  "login": "Anmelden",
+  "Sign In": "Einloggen",
+  "Sign Up": "Registrieren",
+  "Home": "Startseite",
+  "Projects": "Projekte",
+  "Campaign": "Kampagne",
+  "Profile": "Profil",
+  "Logout": "Ausloggen",
+  "Save": "Speichern",
+  "Delete": "Löschen",
+  "Export": "Exportieren",
+  "Update": "Aktualisieren",
+  "Distance": "Distanz",
+  "Road Roughness": "Straßenrauheit",
+  "Charts": "Diagramme",
+  "Regional Charts": "Regionale Diagramme",
+  "Sign out": "Abmelden",
+  "Platform": "Plattform",
+  "nav": {
+    "playground": "Spielplatz",
+    "statistics": "Statistiken",
+    "models": "Modelle",
+    "documentation": "Dokumentation",
+    "settings": "Einstellungen",
+    "genesis": "Genesis",
+    "explorer": "Explorer",
+    "quantum": "Quanten",
+    "introduction": "Einführung",
+    "getStarted": "Erste Schritte",
+    "tutorials": "Tutorials",
+    "changelog": "Änderungsprotokoll",
+    "general": "Allgemein",
+    "team": "Team",
+    "billing": "Abrechnung",
+    "limits": "Grenzen",
+    "maps": "Karten",
+    "Notifications": "Benachrichtigungen",
+    "Upgrade to Pro": "Auf Pro upgraden",
+    "Account": "Konto"
+  },
+  "map": {
+    "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
+    "deleteSuccess": "Karte erfolgreich gelöscht.",
+    "deleteError": "Fehler beim Löschen der Karte."
+  },
+  "signIn": {
+    "password": "Passwort",
+    "email": "E-Mail",
+    "footer": "Haben Sie kein Konto?",
+    "loading": "Einloggen......"
+  },
+  "signup": {
+    "password": "Passwort",
+    "email": "E-Mail",
+    "footer": "Bereits ein Benutzer?",
+    "loading": "Erstelle Konto......",
+    "confirmPassword": "Passwort bestätigen",
+    "buttonText": "Konto erstellen"
+  },
+  "save": {
+    "buttonMsg": "Aktuelle Karte speichern"
+  }
+}
