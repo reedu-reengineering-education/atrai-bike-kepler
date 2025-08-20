@@ -59,6 +59,7 @@ const StyledPanelAction = styled.div`
     display: flex;
     height: 16px;
     padding-right: 10px;
+    ${ /* @ts-expect-error does not exist */'' }
     color: ${(props) => props.theme.subtextColor};
 
     svg {
@@ -69,6 +70,7 @@ const StyledPanelAction = styled.div`
   &:hover {
     cursor: pointer;
     a {
+      ${ /* @ts-expect-error does not exist */'' }
       color: ${(props) => props.theme.textColorHl};
     }
   }
