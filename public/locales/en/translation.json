@@ -61,5 +61,12 @@
   },
   "save": {
     "buttonMsg": "Save Current Map"
+  },
+
+  "docs": {
+    "docs": "docs",
+    "introduction": "introduction",
+    "get-started": "get-started",
+    "custom-features": "custom-features"
   }
 }

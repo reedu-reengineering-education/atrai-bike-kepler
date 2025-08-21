@@ -61,5 +61,11 @@
   },
   "save": {
     "buttonMsg": "Salvar Mapa Atual"
+  },
+  "docs": {
+    "docs": "documentação",
+    "introduction": "introdução",
+    "get-started": "primeiros-passos",
+    "custom-features": "funcionalidades-personalizadas"
   }
 }

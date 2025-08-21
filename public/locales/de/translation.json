@@ -61,5 +61,11 @@
   },
   "save": {
     "buttonMsg": "Aktuelle Karte speichern"
+  },
+  "docs": {
+    "docs": "dokumentation",
+    "introduction": "einführung",
+    "get-started": "erste-schritte",
+    "custom-features": "benutzerdefinierte-funktionen"
   }
 }

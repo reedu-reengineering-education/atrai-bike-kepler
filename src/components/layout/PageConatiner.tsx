@@ -2,6 +2,7 @@
 import { SidebarInset } from "@/components/ui/sidebar";
 import { Separator } from "@radix-ui/react-separator";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -22,6 +23,7 @@ export function PageContainer({
   breadcrumbRight?: React.ReactNode;
   urlPath?: string[];
 }) {
+  const { t } = useTranslation();
   return (
     <SidebarInset className="border rounded-lg">
       <header className="flex h-16 shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
@@ -38,7 +40,7 @@ export function PageContainer({
                 {urlPath?.map((item, i) => (
                   <React.Fragment key={i}>
                     <BreadcrumbItem>
-                      <BreadcrumbPage>{item}</BreadcrumbPage>
+                      <BreadcrumbPage>{t(`docs.${item}`)}</BreadcrumbPage>
                     </BreadcrumbItem>
                     {i < urlPath.length - 1 && (
                       <BreadcrumbSeparator className="hidden md:block" />
