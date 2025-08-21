@@ -25,7 +25,6 @@ import { useRefresh } from "@/context/RefreshContext";
 import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
-import LogoTile from "./logo-tille";
 
 interface NavItem {
   translationKey?: string;
@@ -65,9 +64,12 @@ const staticNavMain: NavItem[] = [
     icon: BookOpen,
     items: [
       { translationKey: "introduction", url: "/docs/introduction" },
-      { translationKey: "getStarted", url: "#" },
-      { translationKey: "tutorials", url: "#" },
-      { translationKey: "changelog", url: "#" },
+      {
+        translationKey: "getStarted",
+        url: "#",
+      },
+
+      { translationKey: "Custom Features", url: "/docs/custom-features" },
     ],
   },
   {
@@ -167,7 +169,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <LogoTile />
+        <img
+          src="/logo.png"
+          alt="Logo"
+          className="h-10 w-auto object-contain"
+        />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain as any} />
