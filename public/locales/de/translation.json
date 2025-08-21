@@ -39,9 +39,9 @@
     "Upgrade to Pro": "Auf Pro upgraden",
     "Account": "Konto",
     "Custom Features": "Benutzerdefinierte Funktionen",
-    "Custom Maps": "Benutzerdefinierte Karten",
-    "road roughness": "Straßenrauheit",
-    "overtaking distance": "Überholabstand"
+    "Atrai Data": "Atrai-Daten",
+    "road roughness Dataset": "Datensatz zur Straßenbelag",
+    "overtaking distance Dataset": "Datensatz zum Überholabstand"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",

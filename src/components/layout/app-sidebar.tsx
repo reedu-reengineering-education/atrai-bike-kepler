@@ -71,16 +71,16 @@ const staticNavMain: NavItem[] = [
 
       { translationKey: "Custom Features", url: "/docs/custom-features" },
       {
-        translationKey: "Custom Maps",
+        translationKey: "Atrai Data",
         url: "",
         items: [
           {
-            translationKey: "road roughness",
-            url: "/docs/custom-maps/road-roughness",
+            translationKey: "road roughness Dataset",
+            url: "/docs/Atrai-Data/road-roughness",
           },
           {
-            translationKey: "overtaking distance",
-            url: "/docs/custom-maps/overtaking-distance",
+            translationKey: "overtaking distance Dataset",
+            url: "/docs/Atrai Data/overtaking-distance",
           },
         ],
       },

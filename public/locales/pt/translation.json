@@ -39,9 +39,9 @@
     "Notifications": "Notificações",
     "Account": "Conta",
     "Custom Features": "Funcionalidades Personalizadas",
-    "Custom Maps": "Mapas Personalizados",
-    "road roughness": "Rugosidade da Estrada",
-    "overtaking distance": "Distância de Ultrapassagem"
+    "Atrai Data": "Dados Atrai",
+    "road roughness Dataset": "Conjunto de Dados de Rugosidade da Estrada",
+    "overtaking distance Dataset": "Conjunto de Dados de Distância de Ultrapassagem"
   },
   "map": {
     "confirmDelete": "Tem certeza que quer deletar este map?",
