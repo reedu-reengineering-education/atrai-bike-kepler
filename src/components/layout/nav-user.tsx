@@ -6,6 +6,7 @@ import {
   ChevronsUpDown,
   CreditCard,
   Sparkles,
+  User,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -26,6 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import { UserAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
+
 export function NavUser() {
   const { isMobile } = useSidebar();
   const auth = UserAuth();
@@ -49,15 +51,15 @@ export function NavUser() {
                   alt={user?.user_metadata?.name || "User"}
                 />
                 <AvatarFallback className="rounded-lg">
-                  {user?.email?.[0]?.toUpperCase() || "CN"}
+                  {user?.email?.[0]?.toUpperCase() || <User className="mr-2" />}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">
-                  {user?.email?.split("@")[0] || "shadcn"}
+                  {user?.email?.split("@")[0] || "LogIn"}
                 </span>
                 <span className="truncate text-xs">
-                  {user?.email || "m@example.com"}
+                  {user?.email || "Save and Update your maps"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
