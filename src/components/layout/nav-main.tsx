@@ -63,7 +63,7 @@ export function NavMain({
                         <div>{renderNavItem(subItem, level + 1)}</div>
                       ) : (
                         <SidebarMenuSubButton asChild>
-                          <div className="flex justify-between">
+                          <div className="flex justify-between h-10">
                             <Link to={subItem.url}>
                               <span>{subItem.title}</span>
                             </Link>
