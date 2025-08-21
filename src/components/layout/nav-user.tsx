@@ -51,15 +51,15 @@ export function NavUser() {
                   alt={user?.user_metadata?.name || "User"}
                 />
                 <AvatarFallback className="rounded-lg">
-                  {user?.email?.[0]?.toUpperCase() || <User className="mr-2" />}
+                  {user?.email?.[0]?.toUpperCase() || <User />}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">
-                  {user?.email?.split("@")[0] || "LogIn"}
+                  {user?.email?.split("@")[0] || ""}
                 </span>
                 <span className="truncate text-xs">
-                  {user?.email || "Save and Update your maps"}
+                  {user?.email || "Login to Save and Update your maps"}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
