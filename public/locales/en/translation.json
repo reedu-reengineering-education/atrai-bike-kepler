@@ -38,7 +38,10 @@
     "Upgrade to Pro": "Upgrade to Pro",
     "Notifications": "Notifications",
     "Account": "Account",
-    "Custom Features": "Custom Features"
+    "Custom Features": "Custom Features",
+    "Custom Maps": "Custom Maps",
+    "road roughness": "road roughness",
+    "overtaking distance": "overtaking distance"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",
@@ -64,9 +67,9 @@
   },
 
   "docs": {
-    "docs": "docs",
-    "introduction": "introduction",
-    "get-started": "get-started",
-    "custom-features": "custom-features"
+    "docs": "Documentation",
+    "introduction": "Introduction",
+    "get-started": "Get Started",
+    "custom-features": "Custom-Features"
   }
 }

@@ -38,7 +38,10 @@
     "Upgrade to Pro": "Upgrade to Pro",
     "Notifications": "Notificações",
     "Account": "Conta",
-    "Custom Features": "Funcionalidades Personalizadas"
+    "Custom Features": "Funcionalidades Personalizadas",
+    "Custom Maps": "Mapas Personalizados",
+    "road roughness": "Rugosidade da Estrada",
+    "overtaking distance": "Distância de Ultrapassagem"
   },
   "map": {
     "confirmDelete": "Tem certeza que quer deletar este map?",

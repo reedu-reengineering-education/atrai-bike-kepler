@@ -70,6 +70,20 @@ const staticNavMain: NavItem[] = [
       },
 
       { translationKey: "Custom Features", url: "/docs/custom-features" },
+      {
+        translationKey: "Custom Maps",
+        url: "",
+        items: [
+          {
+            translationKey: "road roughness",
+            url: "/docs/custom-maps/road-roughness",
+          },
+          {
+            translationKey: "overtaking distance",
+            url: "/docs/custom-maps/overtaking-distance",
+          },
+        ],
+      },
     ],
   },
   {
