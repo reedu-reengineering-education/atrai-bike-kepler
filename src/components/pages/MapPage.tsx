@@ -17,6 +17,8 @@ import { updateMapById } from "@/utils/updateMap";
 import { exportKeplerDatasetAndConfig } from "@/utils/exportKeplerMap";
 import { useRefresh } from "@/context/RefreshContext";
 
+import { formatUrlPath } from "@/utils/formatPath";
+
 export default function MapPage() {
   const { session, authLoading } = UserAuth();
   const { triggerRefresh } = useRefresh();
@@ -31,6 +33,8 @@ export default function MapPage() {
   const [error, setError] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+
+  const currentPath = match.pathname;
 
   useEffect(() => {
     if (authLoading) return;
@@ -154,7 +158,11 @@ export default function MapPage() {
   }
 
   return (
-    <PageContainer breadcrumb={breadcrumb} breadcrumbRight={breadcrumbRight}>
+    <PageContainer
+      breadcrumb={breadcrumb}
+      breadcrumbRight={breadcrumbRight}
+      urlPath={formatUrlPath(currentPath)}
+    >
       <div className="w-full h-full">
         <App />
       </div>

@@ -1,6 +1,7 @@
 // components/page-container.tsx
 import { SidebarInset } from "@/components/ui/sidebar";
 import { Separator } from "@radix-ui/react-separator";
+import React from "react";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -19,7 +20,7 @@ export function PageContainer({
   children: React.ReactNode;
   breadcrumb?: React.ReactNode;
   breadcrumbRight?: React.ReactNode;
-  urlPath?: string;
+  urlPath?: string[];
 }) {
   return (
     <SidebarInset className="border rounded-lg">
@@ -34,9 +35,16 @@ export function PageContainer({
                   <BreadcrumbLink href="#">ATRAI Data Platform</BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>{urlPath || "playground"}</BreadcrumbPage>
-                </BreadcrumbItem>
+                {urlPath?.map((item, i) => (
+                  <React.Fragment key={i}>
+                    <BreadcrumbItem>
+                      <BreadcrumbPage>{item}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                    {i < urlPath.length - 1 && (
+                      <BreadcrumbSeparator className="hidden md:block" />
+                    )}
+                  </React.Fragment>
+                ))}
                 {breadcrumb && (
                   <>
                     <BreadcrumbSeparator />

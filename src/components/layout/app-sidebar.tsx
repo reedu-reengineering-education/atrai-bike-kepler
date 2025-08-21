@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
-import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
+// import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -25,6 +25,7 @@ import { useRefresh } from "@/context/RefreshContext";
 import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
+import LogoTile from "./logo-tille";
 
 interface NavItem {
   translationKey?: string;
@@ -81,7 +82,6 @@ const staticNavMain: NavItem[] = [
     ],
   },
 ];
-
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
@@ -167,7 +167,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <CampaignSwitcher />
+        <LogoTile />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain as any} />
@@ -179,4 +179,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
     </Sidebar>
   );
-};
+}
