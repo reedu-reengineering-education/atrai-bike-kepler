@@ -37,7 +37,8 @@
     "maps": "Karten",
     "Notifications": "Benachrichtigungen",
     "Upgrade to Pro": "Auf Pro upgraden",
-    "Account": "Konto"
+    "Account": "Konto",
+    "Custom Features": "Benutzerdefinierte Funktionen"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",

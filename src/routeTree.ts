@@ -13,7 +13,7 @@ import DocumentationIntroductionPage from "@/components/pages/Documentations/Int
 import NotFound from "./components/pages/NotFound";
 import Forgetpassword from "@/components/pages/ForgetPassword";
 import ResetPassword from "@/components/pages/ResetPassword";
-
+import CustomFeatures from "./components/pages/Documentations/CustomFeatures";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -81,6 +81,12 @@ export const mapDetailRoute = createRoute({
   component: MapPage,
 });
 
+export const customFeatures = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/docs/custom-features",
+  component: CustomFeatures,
+});
+
 export const routeTree = rootRoute.addChildren([
   indexRoute,
   statisticsRoute,
@@ -93,4 +99,5 @@ export const routeTree = rootRoute.addChildren([
   introductionRoute,
   ForgetPasswordRoute,
   ResetPasswordRoute,
+  customFeatures,
 ]);

@@ -37,7 +37,8 @@
     "maps": "Maps",
     "Upgrade to Pro": "Upgrade to Pro",
     "Notifications": "Notifications",
-    "Account": "Account"
+    "Account": "Account",
+    "Custom Features": "Custom Features"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",

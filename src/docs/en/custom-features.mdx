@@ -1,0 +1,53 @@
+# 🚀 Custom Features in Our Kepler.gl Integration
+
+We’ve extended the core **[Kepler.gl](https://kepler.gl/)** package to better suit our project needs.  
+Below you’ll find an overview of the new functionality, why we added it, and how to use it.
+
+---
+
+## 🌍 Multi-Language Support
+
+We added **Deutsch (German)** as an additional language option.
+
+- Users can easily switch between English and German.
+- All UI labels, menus, and tooltips have been translated.
+- This helps make the platform accessible to a wider audience in the DACH region.
+
+> 💡 _If you’d like to contribute more translations, check out the `i18n` folder in the repo._
+
+---
+
+## 📊 Predefined Example Cards
+
+To help users explore data immediately, we added two **preloaded map cards**:
+
+1. **Road Roughness Data**
+
+   - Displays road condition datasets (roughness indices).
+   - Allows filtering and comparison between different road sections.
+
+2. **Overtaking Distances**
+   - Visualizes measured overtaking distances on selected routes.
+   - Helps researchers and traffic engineers analyze safety-related patterns.
+
+Users can open these cards directly from the dashboard and interact with them like any other Kepler.gl map.
+
+---
+
+## 🔐 Supabase Integration for User Accounts
+
+We integrated **[Supabase](https://supabase.com/)** to manage authentication and persistent storage.
+
+### ✨ What this enables:
+
+- **User Accounts** – Register and log in securely.
+- **Save Maps** – Store your custom maps in your profile.
+- **CRUD Operations** – Create, Read, Update, and Delete maps anytime.
+- **Collaboration Ready** – In the future, we can allow map sharing across accounts.
+
+### 🔧 How it works:
+
+- When a user logs in, their maps are automatically fetched from Supabase.
+- Saving a map writes its configuration + dataset references to Supabase.
+- Updates are synced instantly, so you can always pick up where you left off.
+- Deleting a map removes it both from the UI and the Supabase backend.
