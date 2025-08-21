@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  ChartLine,
-  MapIcon,
-  Settings2,
-  Trash2,
-} from "lucide-react";
+import { BookOpen, ChartLine, MapIcon, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
@@ -48,16 +41,7 @@ const staticNavMain: NavItem[] = [
     url: "/statistics",
     icon: ChartLine,
   },
-  {
-    translationKey: "models",
-    url: "",
-    icon: Bot,
-    items: [
-      { translationKey: "genesis", url: "/genesis" },
-      { translationKey: "explorer", url: "/explorer" },
-      { translationKey: "quantum", url: "/quantum" },
-    ],
-  },
+
   {
     translationKey: "documentation",
     url: "docs",
@@ -69,19 +53,7 @@ const staticNavMain: NavItem[] = [
       { translationKey: "changelog", url: "#" },
     ],
   },
-  {
-    translationKey: "settings",
-    url: "#",
-    icon: Settings2,
-    items: [
-      { translationKey: "general", url: "#" },
-      { translationKey: "team", url: "#" },
-      { translationKey: "billing", url: "#" },
-      { translationKey: "limits", url: "#" },
-    ],
-  },
 ];
-
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
@@ -179,4 +151,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
     </Sidebar>
   );
-};
+}
