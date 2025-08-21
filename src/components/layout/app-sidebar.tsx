@@ -66,7 +66,7 @@ const staticNavMain: NavItem[] = [
       { translationKey: "introduction", url: "/docs/introduction" },
       {
         translationKey: "getStarted",
-        url: "#",
+        url: "docs/get-Started",
       },
 
       { translationKey: "Custom Features", url: "/docs/custom-features" },

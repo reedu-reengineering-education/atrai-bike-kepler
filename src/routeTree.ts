@@ -14,6 +14,7 @@ import NotFound from "./components/pages/NotFound";
 import Forgetpassword from "@/components/pages/ForgetPassword";
 import ResetPassword from "@/components/pages/ResetPassword";
 import CustomFeatures from "./components/pages/Documentations/CustomFeatures";
+import GetStarted from "./components/pages/Documentations/GetStarted";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -87,6 +88,12 @@ export const customFeatures = createRoute({
   component: CustomFeatures,
 });
 
+export const getStarted = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "docs/get-started",
+  component: GetStarted,
+});
+
 export const routeTree = rootRoute.addChildren([
   indexRoute,
   statisticsRoute,
@@ -100,4 +107,5 @@ export const routeTree = rootRoute.addChildren([
   ForgetPasswordRoute,
   ResetPasswordRoute,
   customFeatures,
+  getStarted,
 ]);
