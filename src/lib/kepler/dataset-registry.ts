@@ -5,6 +5,8 @@ import {
   useLazyGetRoadRoughnessQuery,
 } from "@/lib/redux/keplerApi";
 import { DISTANCES_FLOWMAP_INFO, ROAD_ROUGHNESS_INFO } from "./dataset-info";
+import React from "react";
+import { SpaceIcon, WavesIcon } from "lucide-react";
 
 /**
  * Configuration interface for ATRAI datasets
@@ -16,6 +18,10 @@ export interface DatasetConfig {
   label: string;
   /** URL or imported image for the dataset preview */
   imageUrl: string;
+  /** Icon name from Lucide React for the dataset */
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  /** Icon color (CSS color value) */
+  iconColor: string;
   /** React Query lazy hook for data fetching - returns a trigger function */
   queryHook: () => any;
   /** Dataset information object containing metadata */
@@ -46,17 +52,21 @@ export interface DatasetRegistry {
  * 4. Add the preview image to the assets folder
  */
 export const ATRAI_DATASETS: DatasetRegistry = {
-  "road-roughness": {
-    id: "road-roughness",
+  road_roughness: {
+    id: "road_roughness",
     label: "Road Roughness",
     imageUrl: RoadRoughnessImageUrl,
+    icon: WavesIcon,
+    iconColor: "#0ea5e9", // Blue color
     queryHook: useLazyGetRoadRoughnessQuery,
     datasetInfo: ROAD_ROUGHNESS_INFO,
   },
-  "overtaking-distances": {
-    id: "overtaking-distances",
+  distances_flowmap: {
+    id: "distances_flowmap",
     label: "Overtaking Distances",
     imageUrl: DistancesImageUrl,
+    icon: SpaceIcon,
+    iconColor: "#0ea5e9", // Blue color
     queryHook: useLazyGetDistanceFlowQuery,
     datasetInfo: DISTANCES_FLOWMAP_INFO,
   },
