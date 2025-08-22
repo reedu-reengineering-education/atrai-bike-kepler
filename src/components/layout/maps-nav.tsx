@@ -2,6 +2,7 @@
 
 import { MoreHorizontal, type LucideIcon } from "lucide-react";
 import { Link, useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 import { Collapsible } from "@/components/ui/collapsible";
 import {
@@ -32,6 +33,7 @@ export function MapsNav({
     mapId?: string;
   }[];
 }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleDelete = async (mapId: string) => {
@@ -62,7 +64,7 @@ export function MapsNav({
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" align="start">
               <DropdownMenuItem onClick={() => handleDelete(item.mapId)}>
-                <span>Delete Map</span>
+                <span>{t("sidebar.deleteMap")}</span>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -79,7 +81,7 @@ export function MapsNav({
       )}
       {items.length === 0 && (
         <div className="px-2 py-1 text-sm text-muted-foreground">
-          No maps available
+          {t("sidebar.noMapsAvailable")}
         </div>
       )}
     </SidebarGroup>

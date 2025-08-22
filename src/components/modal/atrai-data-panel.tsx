@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { DatasetConfig } from "@/lib/kepler/dataset-registry";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
@@ -69,6 +70,7 @@ function DatasetItem({
   onClick,
   onRetry,
 }: DatasetItemProps) {
+  const { t } = useTranslation();
   const hasError = !!error;
   const hasStatusError = !!statusDetectionError;
   const isInteractive = !isLoading;
@@ -96,7 +98,7 @@ function DatasetItem({
       onClick={isInteractive ? onClick : undefined}
       role="button"
       tabIndex={isInteractive ? 0 : -1}
-      aria-label={`${dataset.label} dataset ${isLoaded ? "(loaded - click to reload)" : isLoading ? "(loading)" : hasError ? "(failed)" : hasStatusError ? "(status unknown)" : "(click to load)"}`}
+      aria-label={`${dataset.label} dataset ${isLoaded ? `(${t("atraiData.clickToReload")})` : isLoading ? `(${t("atraiData.loadingStatus")})` : hasError ? `(${t("atraiData.failedStatus")})` : hasStatusError ? `(${t("atraiData.statusUnknownStatus")})` : `(${t("atraiData.clickToLoad")})`}`}
     >
       <div className="flex items-center gap-3">
         {/* Custom dataset icon */}
@@ -142,7 +144,7 @@ function DatasetItem({
           </p>
           {isLoaded && !isLoading && !hasError && (
             <p className="text-xs text-green-600 mt-1">
-              Currently loaded • Click to reload
+              {t("atraiData.currentlyLoaded")}
             </p>
           )}
         </div>
@@ -152,7 +154,7 @@ function DatasetItem({
         {isLoading && (
           <div className="flex items-center gap-2 text-blue-600">
             <Loader2 className="w-4 h-4 animate-spin" />
-            <span className="text-sm">Loading...</span>
+            <span className="text-sm">{t("atraiData.loading")}</span>
           </div>
         )}
 
@@ -160,7 +162,7 @@ function DatasetItem({
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 text-green-600">
               <CheckCircle className="w-4 h-4" />
-              <span className="text-sm">Loaded</span>
+              <span className="text-sm">{t("atraiData.loaded")}</span>
             </div>
             <button
               onClick={(e) => {
@@ -168,10 +170,10 @@ function DatasetItem({
                 onClick();
               }}
               className="px-2 py-1 text-xs bg-green-100 text-green-700 hover:bg-green-200 rounded transition-colors"
-              title="Reload this dataset"
-              aria-label={`Reload ${dataset.label}`}
+              title={t("atraiData.reloadDataset")}
+              aria-label={`${t("atraiData.reload")} ${dataset.label}`}
             >
-              Reload
+              {t("atraiData.reload")}
             </button>
           </div>
         )}
@@ -179,7 +181,7 @@ function DatasetItem({
         {hasStatusError && !hasError && !isLoading && (
           <div className="flex items-center gap-2 text-yellow-600">
             <AlertTriangle className="w-4 h-4" />
-            <span className="text-sm">Status Unknown</span>
+            <span className="text-sm">{t("atraiData.statusUnknown")}</span>
           </div>
         )}
 
@@ -187,7 +189,7 @@ function DatasetItem({
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 text-red-600">
               <AlertCircle className="w-4 h-4" />
-              <span className="text-sm">Failed</span>
+              <span className="text-sm">{t("atraiData.failed")}</span>
             </div>
             {onRetry && (
               <button
@@ -196,8 +198,8 @@ function DatasetItem({
                   onRetry();
                 }}
                 className="p-1 text-red-600 hover:bg-red-100 rounded transition-colors"
-                title="Retry loading"
-                aria-label={`Retry loading ${dataset.label}`}
+                title={t("atraiData.retryLoading")}
+                aria-label={`${t("atraiData.retryLoading")} ${dataset.label}`}
               >
                 <RotateCcw className="w-4 h-4" />
               </button>
@@ -225,6 +227,7 @@ export function ATRAIDataPanel({
   onClose,
   onDataLoad,
 }: ATRAIDataPanelProps) {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   // Redux selectors to get loaded dataset IDs and error status from kepler.gl state
@@ -476,14 +479,14 @@ export function ATRAIDataPanel({
         let errorMessage: string;
         if (err instanceof Error) {
           if (err.message.includes("timeout")) {
-            errorMessage = "Loading timeout - please try again";
+            errorMessage = t("atraiData.loadingTimeout");
           } else if (
             err.message.includes("network") ||
             err.message.includes("fetch")
           ) {
-            errorMessage = "Network error - check your connection";
+            errorMessage = t("atraiData.networkError");
           } else if (err.message.includes("Query trigger")) {
-            errorMessage = "Dataset configuration error";
+            errorMessage = t("atraiData.configError");
           } else {
             errorMessage = getErrorMessage(err);
           }
@@ -512,7 +515,7 @@ export function ATRAIDataPanel({
         }
       }
     },
-    [dispatch, onDataLoad, onClose, activeRequests, queryHooks],
+    [activeRequests, queryHooks, dispatch, onDataLoad, onClose, t],
   );
 
   /**
@@ -532,12 +535,12 @@ export function ATRAIDataPanel({
         <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
           <div className="flex items-center gap-2 text-yellow-800">
             <AlertTriangle className="w-4 h-4" />
-            <span className="text-sm font-medium">Status Detection Issue</span>
+            <span className="text-sm font-medium">
+              {t("atraiData.statusDetectionIssue")}
+            </span>
           </div>
           <p className="text-sm text-yellow-700 mt-1">
-            Unable to detect which datasets are currently loaded. Dataset status
-            indicators may not be accurate. You can still load datasets, but
-            existing data status is unknown.
+            {t("atraiData.statusDetectionMessage")}
           </p>
         </div>
       )}

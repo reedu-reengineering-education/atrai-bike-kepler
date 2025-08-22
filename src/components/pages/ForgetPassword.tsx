@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/supbase-client";
 import LogoTile from "../layout/logo-tille";
 import { Input } from "@/components/ui/input";
@@ -14,13 +15,14 @@ interface ForgotPasswordProps {
 }
 
 export default function ForgotPassword({
-  heading = "Reset Password",
-  buttonText = "Send Reset Link",
-  signinText = "Remember your password?",
+  heading,
+  buttonText,
+  signinText,
   signinUrl = "/signin",
-  signupText = "Don't have an account?",
+  signupText,
   signupUrl = "/signup",
 }: ForgotPasswordProps) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -37,9 +39,9 @@ export default function ForgotPassword({
     });
 
     if (error) {
-      setError("Error: " + error.message);
+      setError(t("forgotPassword.error") + error.message);
     } else {
-      setMessage("Check your email for a reset link.");
+      setMessage(t("forgotPassword.checkEmail"));
     }
 
     setLoading(false);
@@ -56,13 +58,15 @@ export default function ForgotPassword({
             onSubmit={handleReset}
             className="min-w-sm border-muted bg-background flex w-full max-w-sm flex-col items-center gap-y-4 rounded-md border px-6 py-8 shadow-md"
           >
-            {heading && <h1 className="text-xl font-semibold">{heading}</h1>}
+            <h1 className="text-xl font-semibold">
+              {heading || t("forgotPassword.heading")}
+            </h1>
 
             <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
+              placeholder={t("signIn.email")}
               className="text-sm"
               required
             />
@@ -71,28 +75,30 @@ export default function ForgotPassword({
             {message && <p className="text-green-600 text-sm">{message}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Sending..." : buttonText}
+              {loading
+                ? t("forgotPassword.sending")
+                : buttonText || t("forgotPassword.buttonText")}
             </Button>
           </form>
 
           {/* Links to Sign In and Sign Up */}
           <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground">
             <div>
-              <span>{signinText} </span>
+              <span>{signinText || t("forgotPassword.signinText")} </span>
               <a
                 href={signinUrl}
                 className="text-primary font-medium hover:underline"
               >
-                Sign in
+                {t("forgotPassword.signIn")}
               </a>
             </div>
             <div>
-              <span>{signupText} </span>
+              <span>{signupText || t("forgotPassword.signupText")} </span>
               <a
                 href={signupUrl}
                 className="text-primary font-medium hover:underline"
               >
-                Sign up
+                {t("forgotPassword.signUp")}
               </a>
             </div>
           </div>

@@ -71,5 +71,84 @@
     "introduction": "introdução",
     "get-started": "primeiros-passos",
     "custom-features": "funcionalidades-personalizadas"
+  },
+  "forgotPassword": {
+    "heading": "Redefinir Senha",
+    "buttonText": "Enviar Link de Redefinição",
+    "signinText": "Lembrou da sua senha?",
+    "signupText": "Não tem uma conta?",
+    "sending": "Enviando...",
+    "signIn": "Entrar",
+    "signUp": "Cadastrar",
+    "checkEmail": "Verifique seu email para um link de redefinição.",
+    "error": "Erro: "
+  },
+  "resetPassword": {
+    "heading": "Redefinir Senha",
+    "buttonText": "Atualizar Senha",
+    "signupText": "Voltar ao login?",
+    "newPassword": "Nova Senha",
+    "confirmPassword": "Confirmar Nova Senha",
+    "updating": "Atualizando...",
+    "login": "Login",
+    "passwordsNoMatch": "As senhas não coincidem.",
+    "passwordUpdated": "Senha atualizada com sucesso."
+  },
+  "atraiData": {
+    "loading": "Carregando...",
+    "currentlyLoaded": "Atualmente carregado • Clique para recarregar",
+    "loaded": "Carregado",
+    "reload": "Recarregar",
+    "statusUnknown": "Status Desconhecido",
+    "failed": "Falhou",
+    "retryLoading": "Tentar carregar novamente",
+    "reloadDataset": "Recarregar este conjunto de dados",
+    "clickToLoad": "clique para carregar",
+    "clickToReload": "carregado - clique para recarregar",
+    "loadingStatus": "carregando",
+    "failedStatus": "falhou",
+    "statusUnknownStatus": "status desconhecido",
+    "statusDetectionIssue": "Problema de Detecção de Status",
+    "statusDetectionMessage": "Não é possível detectar quais conjuntos de dados estão atualmente carregados. Os indicadores de status do conjunto de dados podem não ser precisos. Você ainda pode carregar conjuntos de dados, mas o status dos dados existentes é desconhecido.",
+    "loadingTimeout": "Tempo limite de carregamento - tente novamente",
+    "networkError": "Erro de rede - verifique sua conexão",
+    "configError": "Erro de configuração do conjunto de dados"
+  },
+  "charts": {
+    "tripCount": "Contagem de Viagens",
+    "avgSpeed": "Velocidade Média (km/h)",
+    "totalKcal": "Total kcal",
+    "week": "Semana",
+    "avgDuration": "Duração Média (s)",
+    "weekOf": "Semana de"
+  },
+  "logo": {
+    "alt": "Logo Atraibike",
+    "title": "PLATAFORMA ATRAIBIKE"
+  },
+  "saveMap": {
+    "saveMap": "Salvar Mapa",
+    "saveNewMap": "Salvar novo Mapa",
+    "mapName": "Nome do mapa",
+    "provideName": "Por favor, forneça um nome para seu novo mapa.",
+    "create": "Criar",
+    "saveChanges": "Salvar alterações",
+    "cancel": "Cancelar",
+    "loadingMap": "Carregando mapa...",
+    "mapNotFound": "Mapa não encontrado",
+    "error": "Erro: ",
+    "updateFailed": "Falha na atualização"
+  },
+  "sidebar": {
+    "platform": "Plataforma",
+    "userMaps": "Mapas do Usuário",
+    "noMapsAvailable": "Nenhum mapa disponível",
+    "deleteMap": "Excluir Mapa",
+    "atraiDataPlatform": "Plataforma de Dados ATRAI",
+    "roadRoughness": "Rugosidade da Estrada",
+    "overtakingDistances": "Distâncias de Ultrapassagem",
+    "senseBoxBike": "senseBox:bike",
+    "loginFirst": "Você deve fazer login primeiro.",
+    "saveMapFailed": "Falha ao salvar o mapa. Tente novamente."
   }
 }

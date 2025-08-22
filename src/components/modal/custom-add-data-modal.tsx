@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
+import { useTranslation } from "react-i18next";
 import { LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { ATRAIDataPanel } from "./atrai-data-panel";
 import { getAllDatasets } from "@/lib/kepler/dataset-registry";
@@ -27,10 +28,12 @@ function CustomAddDataModalFactory(...args: any[]) {
 
   // Create wrapper component that adds ATRAI Data as the first option
   const CustomAddDataModalWrapper = (props) => {
+    const { t } = useTranslation();
+
     // Create the ATRAI Data loading method configuration
     const atraiDataMethod = {
       id: "atrai-data",
-      label: "ATRAI Data",
+      label: t("nav.Atrai Data"),
       elementType: () => (
         <ATRAIDataPanel
           datasets={getAllDatasets()}
@@ -56,7 +59,7 @@ function CustomAddDataModalFactory(...args: any[]) {
           className="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-100 rounded"
         >
           <BikeIcon className="w-4 h-4" />
-          <span>ATRAI Data</span>
+          <span>{t("nav.Atrai Data")}</span>
         </div>
       ),
     };

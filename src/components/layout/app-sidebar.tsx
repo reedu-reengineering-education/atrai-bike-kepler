@@ -125,17 +125,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
         {state === "expanded" && (
           <h1 className="font-bold text-primary mb-2 tracking-tight text-center">
-            ATRAI Data Platform
+            {t("sidebar.atraiDataPlatform")}
           </h1>
         )}
         <CampaignSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <NavMain
-          title="Platform"
+          title={t("sidebar.platform")}
           items={translateNavItems(staticNavMain) as any}
         />
-        {session && <MapsNav title="User Maps" items={maps} />}
+        {session && <MapsNav title={t("sidebar.userMaps")} items={maps} />}
       </SidebarContent>
       <SidebarFooter className="flex items-center justify-between px-2">
         <LanguageToggle />

@@ -5,6 +5,7 @@ import { LoaderCircle, Plus, Save } from "lucide-react";
 import { saveMapToSupabase } from "@/supabase/saveMap";
 import { UserAuth } from "@/context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import {
   Dialog,
   DialogContent,
@@ -27,6 +28,7 @@ import {
 import { useForm } from "react-hook-form";
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const { session } = UserAuth();
   const navigate = useNavigate();
 
@@ -61,15 +63,13 @@ export default function HomePage() {
       <DialogTrigger asChild>
         <Button>
           <Save />
-          Save Map
+          {t("saveMap.saveMap")}
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Save new Map</DialogTitle>
-          <DialogDescription>
-            Please provide a name for your new map.
-          </DialogDescription>
+          <DialogTitle>{t("saveMap.saveNewMap")}</DialogTitle>
+          <DialogDescription>{t("saveMap.provideName")}</DialogDescription>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
@@ -77,7 +77,7 @@ export default function HomePage() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Map name</FormLabel>
+                    <FormLabel>{t("saveMap.mapName")}</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -88,7 +88,7 @@ export default function HomePage() {
               <DialogFooter>
                 <Button type="submit" disabled={loading}>
                   {loading && <LoaderCircle className="mr-2 animate-spin" />}
-                  Create
+                  {t("saveMap.create")}
                 </Button>
               </DialogFooter>
             </form>

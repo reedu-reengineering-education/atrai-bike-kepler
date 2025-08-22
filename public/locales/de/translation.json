@@ -71,5 +71,84 @@
     "introduction": "Einführung",
     "get-started": "Erste Schritte",
     "custom-features": "Benutzerdefinierte Funktionen"
+  },
+  "forgotPassword": {
+    "heading": "Passwort zurücksetzen",
+    "buttonText": "Reset-Link senden",
+    "signinText": "Passwort wieder eingefallen?",
+    "signupText": "Haben Sie kein Konto?",
+    "sending": "Senden...",
+    "signIn": "Einloggen",
+    "signUp": "Registrieren",
+    "checkEmail": "Überprüfen Sie Ihre E-Mail für einen Reset-Link.",
+    "error": "Fehler: "
+  },
+  "resetPassword": {
+    "heading": "Passwort zurücksetzen",
+    "buttonText": "Passwort aktualisieren",
+    "signupText": "Zurück zum Login?",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Neues Passwort bestätigen",
+    "updating": "Aktualisieren...",
+    "login": "Anmelden",
+    "passwordsNoMatch": "Passwörter stimmen nicht überein.",
+    "passwordUpdated": "Passwort erfolgreich aktualisiert."
+  },
+  "atraiData": {
+    "loading": "Laden...",
+    "currentlyLoaded": "Derzeit geladen • Klicken zum Neuladen",
+    "loaded": "Geladen",
+    "reload": "Neuladen",
+    "statusUnknown": "Status unbekannt",
+    "failed": "Fehlgeschlagen",
+    "retryLoading": "Laden wiederholen",
+    "reloadDataset": "Datensatz neu laden",
+    "clickToLoad": "Klicken zum Laden",
+    "clickToReload": "geladen - klicken zum Neuladen",
+    "loadingStatus": "lädt",
+    "failedStatus": "fehlgeschlagen",
+    "statusUnknownStatus": "Status unbekannt",
+    "statusDetectionIssue": "Problem bei der Statuserkennung",
+    "statusDetectionMessage": "Es kann nicht erkannt werden, welche Datensätze derzeit geladen sind. Datensatz-Statusindikatoren sind möglicherweise nicht genau. Sie können weiterhin Datensätze laden, aber der Status vorhandener Daten ist unbekannt.",
+    "loadingTimeout": "Ladezeit überschritten - bitte versuchen Sie es erneut",
+    "networkError": "Netzwerkfehler - überprüfen Sie Ihre Verbindung",
+    "configError": "Datensatz-Konfigurationsfehler"
+  },
+  "charts": {
+    "tripCount": "Anzahl Fahrten",
+    "avgSpeed": "Durchschn. Geschwindigkeit (km/h)",
+    "totalKcal": "Gesamt kcal",
+    "week": "Woche",
+    "avgDuration": "Durchschn. Dauer (s)",
+    "weekOf": "Woche vom"
+  },
+  "logo": {
+    "alt": "Atraibike Logo",
+    "title": "ATRAIBIKE PLATTFORM"
+  },
+  "saveMap": {
+    "saveMap": "Karte speichern",
+    "saveNewMap": "Neue Karte speichern",
+    "mapName": "Kartenname",
+    "provideName": "Bitte geben Sie einen Namen für Ihre neue Karte an.",
+    "create": "Erstellen",
+    "saveChanges": "Änderungen speichern",
+    "cancel": "Abbrechen",
+    "loadingMap": "Karte wird geladen...",
+    "mapNotFound": "Karte nicht gefunden",
+    "error": "Fehler: ",
+    "updateFailed": "Aktualisierung fehlgeschlagen"
+  },
+  "sidebar": {
+    "platform": "Plattform",
+    "userMaps": "Benutzerkarten",
+    "noMapsAvailable": "Keine Karten verfügbar",
+    "deleteMap": "Karte löschen",
+    "atraiDataPlatform": "ATRAI Datenplattform",
+    "roadRoughness": "Straßenrauheit",
+    "overtakingDistances": "Überholabstände",
+    "senseBoxBike": "senseBox:bike",
+    "loginFirst": "Sie sollten sich zuerst anmelden.",
+    "saveMapFailed": "Karte konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
   }
 }

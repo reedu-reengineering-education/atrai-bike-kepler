@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart,
@@ -39,21 +40,23 @@ interface RegionStatsWithChartProps {
 }
 
 export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
+  const { t } = useTranslation();
+
   // Properties available for toggling
   const chartProperties = [
     {
       key: "trip_count",
-      label: "Trip Count",
+      label: t("charts.tripCount"),
       color: "#8884d8",
     },
     {
       key: "average_speed_kmh",
-      label: "Avg Speed (km/h)",
+      label: t("charts.avgSpeed"),
       color: "#82ca9d",
     },
     {
       key: "total_kcal",
-      label: "Total kcal",
+      label: t("charts.totalKcal"),
       color: "#ff7300",
     },
   ];
@@ -77,18 +80,20 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
               <Table className="min-w-full text-sm text-left">
                 <TableHeader>
                   <TableRow className="border-b">
-                    <TableHead className="p-2 font-semibold">Week</TableHead>
                     <TableHead className="p-2 font-semibold">
-                      Trip Count
+                      {t("charts.week")}
                     </TableHead>
                     <TableHead className="p-2 font-semibold">
-                      Avg Duration (s)
+                      {t("charts.tripCount")}
                     </TableHead>
                     <TableHead className="p-2 font-semibold">
-                      Avg Speed (km/h)
+                      {t("charts.avgDuration")}
                     </TableHead>
                     <TableHead className="p-2 font-semibold">
-                      Total kcal
+                      {t("charts.avgSpeed")}
+                    </TableHead>
+                    <TableHead className="p-2 font-semibold">
+                      {t("charts.totalKcal")}
                     </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -134,7 +139,7 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
                 <YAxis />
                 <Tooltip
                   labelFormatter={(label) =>
-                    `Week of ${new Date(label).toLocaleDateString()}`
+                    `${t("charts.weekOf")} ${new Date(label).toLocaleDateString()}`
                   }
                 />
                 <Legend />
