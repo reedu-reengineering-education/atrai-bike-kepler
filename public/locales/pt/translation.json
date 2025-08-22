@@ -37,7 +37,11 @@
     "maps": "Maps",
     "Upgrade to Pro": "Upgrade to Pro",
     "Notifications": "Notificações",
-    "Account": "Conta"
+    "Account": "Conta",
+    "Custom Features": "Funcionalidades Personalizadas",
+    "Atrai Data": "Dados Atrai",
+    "road roughness Dataset": "Conjunto de Dados de Rugosidade da Estrada",
+    "overtaking distance Dataset": "Conjunto de Dados de Distância de Ultrapassagem"
   },
   "map": {
     "confirmDelete": "Tem certeza que quer deletar este map?",
@@ -61,5 +65,11 @@
   },
   "save": {
     "buttonMsg": "Salvar Mapa Atual"
+  },
+  "docs": {
+    "docs": "documentação",
+    "introduction": "introdução",
+    "get-started": "primeiros-passos",
+    "custom-features": "funcionalidades-personalizadas"
   }
 }

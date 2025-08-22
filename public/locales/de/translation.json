@@ -37,7 +37,11 @@
     "maps": "Karten",
     "Notifications": "Benachrichtigungen",
     "Upgrade to Pro": "Auf Pro upgraden",
-    "Account": "Konto"
+    "Account": "Konto",
+    "Custom Features": "Benutzerdefinierte Funktionen",
+    "Atrai Data": "Atrai-Daten",
+    "road roughness Dataset": "Datensatz zur Straßenbelag",
+    "overtaking distance Dataset": "Datensatz zum Überholabstand"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
@@ -61,5 +65,11 @@
   },
   "save": {
     "buttonMsg": "Aktuelle Karte speichern"
+  },
+  "docs": {
+    "docs": "Dokumentation",
+    "introduction": "Einführung",
+    "get-started": "Erste Schritte",
+    "custom-features": "Benutzerdefinierte Funktionen"
   }
 }
