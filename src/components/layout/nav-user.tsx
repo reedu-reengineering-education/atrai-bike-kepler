@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/sidebar";
 import { UserAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 
 export function NavUser() {
   const { isMobile } = useSidebar();
@@ -58,8 +59,8 @@ export function NavUser() {
                 <span className="truncate font-medium">
                   {user?.email?.split("@")[0] || ""}
                 </span>
-                <span className="truncate text-xs">
-                  {user?.email || "Login to Save and Update your maps"}
+                <span className={cn(user?.email ? "truncate" : "", "text-xs")}>
+                  {user?.email || t("signIn.loginPrompt")}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
