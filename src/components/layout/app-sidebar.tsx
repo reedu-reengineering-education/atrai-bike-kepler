@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
-import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
+// import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -64,9 +64,26 @@ const staticNavMain: NavItem[] = [
     icon: BookOpen,
     items: [
       { translationKey: "introduction", url: "/docs/introduction" },
-      { translationKey: "getStarted", url: "#" },
-      { translationKey: "tutorials", url: "#" },
-      { translationKey: "changelog", url: "#" },
+      {
+        translationKey: "getStarted",
+        url: "docs/get-Started",
+      },
+
+      { translationKey: "Custom Features", url: "/docs/custom-features" },
+      {
+        translationKey: "Atrai Data",
+        url: "",
+        items: [
+          {
+            translationKey: "road roughness Dataset",
+            url: "/docs/Atrai-Data/road-roughness",
+          },
+          {
+            translationKey: "overtaking distance Dataset",
+            url: "/docs/Atrai Data/overtaking-distance",
+          },
+        ],
+      },
     ],
   },
   {
@@ -81,7 +98,6 @@ const staticNavMain: NavItem[] = [
     ],
   },
 ];
-
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
@@ -167,7 +183,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <CampaignSwitcher />
+        <img
+          src="/logo.png"
+          alt="Logo"
+          className="h-10 w-auto object-contain"
+        />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain as any} />
@@ -179,4 +199,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
     </Sidebar>
   );
-};
+}

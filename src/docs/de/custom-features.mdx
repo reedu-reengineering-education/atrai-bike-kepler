@@ -1,0 +1,53 @@
+# 🚀 Benutzerdefinierte Funktionen in unserer Kepler.gl-Integration
+
+Wir haben das Kernpaket **[Kepler.gl](https://kepler.gl/)** erweitert, um es besser an die Anforderungen unseres Projekts anzupassen.  
+Unten finden Sie eine Übersicht der neuen Funktionen, warum wir sie hinzugefügt haben und wie Sie sie verwenden können.
+
+---
+
+## 🌍 Mehrsprachige Unterstützung
+
+Wir haben **Deutsch** als zusätzliche Sprachoption hinzugefügt.
+
+- Benutzer können einfach zwischen Englisch und Deutsch wechseln.
+- Alle UI-Beschriftungen, Menüs und Tooltips wurden übersetzt.
+- Dies macht die Plattform für ein breiteres Publikum in der DACH-Region zugänglich.
+
+> 💡 _Wenn Sie weitere Übersetzungen beitragen möchten, sehen Sie im `i18n`-Ordner des Repositories nach._
+
+---
+
+## 📊 Vorgefertigte Beispielkarten
+
+Um Benutzern sofortiges Erkunden von Daten zu ermöglichen, haben wir zwei **vorgefertigte Karten** hinzugefügt:
+
+1. **Straßenglätte-Daten**
+
+   - Zeigt Datensätze zum Straßenzustand (Glätte-Indizes) an.
+   - Ermöglicht Filterung und Vergleich zwischen verschiedenen Straßenabschnitten.
+
+2. **Überholabstände**
+   - Visualisiert gemessene Überholabstände auf ausgewählten Routen.
+   - Hilft Forschern und Verkehrsingenieuren, sicherheitsrelevante Muster zu analysieren.
+
+Benutzer können diese Karten direkt über das Dashboard öffnen und wie jede andere Kepler.gl-Karte interaktiv nutzen.
+
+---
+
+## 🔐 Supabase-Integration für Benutzerkonten
+
+Wir haben **[Supabase](https://supabase.com/)** integriert, um Authentifizierung und persistente Speicherung zu verwalten.
+
+### ✨ Was das ermöglicht:
+
+- **Benutzerkonten** – Sicher registrieren und anmelden.
+- **Karten speichern** – Eigene Karten im Profil speichern.
+- **CRUD-Operationen** – Karten jederzeit erstellen, lesen, aktualisieren und löschen.
+- **Für Zusammenarbeit vorbereitet** – In Zukunft können wir das Teilen von Karten zwischen Konten ermöglichen.
+
+### 🔧 Funktionsweise:
+
+- Beim Einloggen eines Benutzers werden seine Karten automatisch von Supabase abgerufen.
+- Das Speichern einer Karte schreibt deren Konfiguration + Datensatzreferenzen in Supabase.
+- Aktualisierungen werden sofort synchronisiert, sodass Sie immer dort weitermachen können, wo Sie aufgehört haben.
+- Das Löschen einer Karte entfernt sie sowohl aus der UI als auch aus dem Supabase-Backend.
