@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 
 import { BikeIcon, SaveIcon } from "lucide-react";
-import { saveMapToSupabase } from "@/utils/saveMapeSupabase";
+import { saveMapToSupabase } from "@/supabase/saveMapeSupabase";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
 import { useTranslation } from "react-i18next";

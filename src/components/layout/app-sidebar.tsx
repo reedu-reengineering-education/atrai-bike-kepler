@@ -12,13 +12,14 @@ import {
   SidebarRail,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { listMapsFromSupabase } from "@/utils/listMaps";
-import { deleteMapById } from "@/utils/deleteMap";
+import { listMapsFromSupabase } from "@/supabase/listMaps";
+import { deleteMapById } from "@/supabase/deleteMap";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
 import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
+import { MapsNav } from "./maps-nav";
 
 interface NavItem {
   translationKey?: string;
@@ -75,11 +76,9 @@ const staticNavMain: NavItem[] = [
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
   const { session } = UserAuth();
-  const { triggerRefresh, refreshKey } = useRefresh();
+  const { refreshKey } = useRefresh();
 
   const [maps, setMaps] = React.useState<any[]>([]);
-
-  const navigate = useNavigate();
 
   const { state } = useSidebar();
 
@@ -92,15 +91,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             fetchedMaps.map((map: any) => ({
               title: map.title,
               url: `/maps/${map.id}`,
-              endicon: (
-                <Button
-                  onClick={() => handleDelete(map.id)}
-                  variant="ghost"
-                  className="p-0 bg-accent"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              ),
+              mapId: map.id,
             })),
           );
         }
@@ -110,19 +101,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     };
     fetchMaps();
   }, [session, refreshKey]);
-
-  const handleDelete = async (mapId: string) => {
-    const confirm = window.confirm(t("map.confirmDelete"));
-    if (!confirm) return;
-
-    try {
-      await deleteMapById(mapId);
-      triggerRefresh();
-      navigate({ to: "/" });
-    } catch (e: any) {
-      alert(t("map.deleteError") + e.message);
-    }
-  };
 
   const translateNavItems = React.useCallback(
     (items: NavItem[]): NavItem[] => {
@@ -136,23 +114,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     },
     [t],
   );
-
-  const navMain = React.useMemo(() => {
-    const baseItems =
-      maps.length === 0
-        ? staticNavMain
-        : [
-            ...staticNavMain,
-            {
-              translationKey: "maps",
-              icon: MapIcon,
-              url: "",
-              items: maps,
-            },
-          ];
-
-    return translateNavItems(baseItems);
-  }, [maps, translateNavItems]);
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -170,7 +131,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <CampaignSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMain as any} />
+        <NavMain
+          title="Platform"
+          items={translateNavItems(staticNavMain) as any}
+        />
+        {session && <MapsNav title="User Maps" items={maps} />}
       </SidebarContent>
       <SidebarFooter className="flex items-center justify-between px-2">
         <LanguageToggle />

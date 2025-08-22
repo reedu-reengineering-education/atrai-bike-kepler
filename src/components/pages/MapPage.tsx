@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addDataToMap } from "@reedu-kepler.gl/actions";
 import KeplerGlSchema from "@reedu-kepler.gl/schemas";
-import { SaveIcon, Save, EditIcon } from "lucide-react";
+import { SaveIcon, Save, EditIcon, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { UserAuth } from "@/context/AuthContext";
 import { mapDetailRoute } from "@/routeTree";
-import { getMapById } from "@/utils/getMap";
+import { getMapById } from "@/supabase/getMap";
 import { PageContainer } from "@/components/layout/PageConatiner";
 import App from "@/App";
-import { updateMapById } from "@/utils/updateMap";
+import { updateMapById } from "@/supabase/updateMap";
 
-import { exportKeplerDatasetAndConfig } from "@/utils/exportKeplerMap";
+import { exportKeplerDatasetAndConfig } from "@/supabase/exportKeplerMap";
 import { useRefresh } from "@/context/RefreshContext";
 
-import { formatUrlPath } from "@/utils/formatPath";
+import { formatUrlPath } from "@/supabase/formatPath";
 
 export default function MapPage() {
   const { session, authLoading } = UserAuth();
@@ -33,6 +33,8 @@ export default function MapPage() {
   const [error, setError] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+
+  const [updateLoading, setUpdateLoading] = useState(false);
 
   const currentPath = match.pathname;
 
@@ -75,29 +77,36 @@ export default function MapPage() {
       console.error("Failed to load map into @reedu-kepler.gl", e);
     }
   }, [mapDetails, dispatch]);
+
   const handleUpdate = async () => {
     if (!mapDetails) return;
     const { dataset, config } = exportKeplerDatasetAndConfig();
 
     try {
+      setUpdateLoading(true);
       await updateMapById(mapId, {
         title,
         dataset: dataset,
         config: config,
       });
       triggerRefresh();
-      alert("Map updated successfully");
       setIsEditingTitle(false);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e: any) {
-      alert("Update failed");
+      console.error("Update failed", e);
+    } finally {
+      setUpdateLoading(false);
     }
   };
   const breadcrumbRight = (
-    <Button onClick={handleUpdate}>
-      <SaveIcon />
-      save changes
+    <Button onClick={handleUpdate} disabled={updateLoading}>
+      {updateLoading ? (
+        <LoaderCircle className="mr-2 animate-spin" />
+      ) : (
+        <SaveIcon />
+      )}
+      Save changes
     </Button>
   );
 
@@ -162,10 +171,9 @@ export default function MapPage() {
       breadcrumb={breadcrumb}
       breadcrumbRight={breadcrumbRight}
       urlPath={formatUrlPath(currentPath)}
+      className="p-0"
     >
-      <div className="w-full h-full">
-        <App />
-      </div>
+      <App />
     </PageContainer>
   );
 }

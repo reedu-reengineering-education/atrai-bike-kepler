@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { useTranslation } from "react-i18next";
 import { PageContainer } from "@/components/layout/PageConatiner";
 
-import { formatUrlPath } from "@/utils/formatPath";
+import { formatUrlPath } from "@/supabase/formatPath";
 import { useMatch } from "@tanstack/react-router";
 // import type { MDXComponents } from "@mdx-js/react";
 
