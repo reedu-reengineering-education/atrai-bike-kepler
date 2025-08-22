@@ -23,7 +23,6 @@ import {
 import { useDispatch } from "react-redux";
 import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
 
-
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
   const CustomSidePanelWrapper = (props) => {

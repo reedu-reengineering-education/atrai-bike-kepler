@@ -20,7 +20,7 @@ const ApiAccessToken = import.meta.env.VITE_BASE_MAP_TOKEN;
 
 const App = () => {
   return (
-    <div className="w-full h-full rounded-lg overflow-hidden">
+    <div className="w-full h-full overflow-clip">
       <AutoSizer>
         {({ height, width }) => (
           <KeplerGl

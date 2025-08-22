@@ -3,7 +3,7 @@ import App from "@/App";
 
 export default function HomePage() {
   return (
-    <PageContainer>
+    <PageContainer className="p-0">
       <App />
     </PageContainer>
   );

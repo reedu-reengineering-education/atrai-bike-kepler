@@ -12,16 +12,19 @@ import {
   BreadcrumbPage,
 } from "../ui/breadcrumb";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 export function PageContainer({
   children,
   breadcrumb,
   breadcrumbRight,
   urlPath,
+  className = "",
 }: {
   children: React.ReactNode;
   breadcrumb?: React.ReactNode;
   breadcrumbRight?: React.ReactNode;
   urlPath?: string[];
+  className?: string;
 }) {
   const { t } = useTranslation();
   return (
@@ -65,7 +68,12 @@ export function PageContainer({
           )}
         </div>
       </header>
-      <div className="flex flex-1 flex-col gap-4 p-4 pt-0 overflow-auto">
+      <div
+        className={cn(
+          "flex flex-1 flex-col gap-4 p-4 pt-0 overflow-auto",
+          className,
+        )}
+      >
         {children}
       </div>
     </SidebarInset>

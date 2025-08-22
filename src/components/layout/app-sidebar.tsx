@@ -42,7 +42,6 @@ const staticNavMain: NavItem[] = [
     url: "/statistics",
     icon: ChartLine,
   },
-
   {
     translationKey: "documentation",
     url: "docs",
@@ -96,8 +95,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               endicon: (
                 <Button
                   onClick={() => handleDelete(map.id)}
-                  variant="destructive"
-                  className="mr-0 pr-0"
+                  variant="ghost"
+                  className="p-0 bg-accent"
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -118,7 +117,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
     try {
       await deleteMapById(mapId);
-      alert(t("map.deleteSuccess"));
       triggerRefresh();
       navigate({ to: "/" });
     } catch (e: any) {
