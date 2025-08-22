@@ -19,7 +19,7 @@ type DeepPartial<T> = {
 const initialState: DeepPartial<KeplerGlState> = {
   uiState: {
     currentModal: null,
-    activeSidePanel: "bike",
+    // activeSidePanel: "bike",
   },
   mapStyle: {
     styleType: "positron",
