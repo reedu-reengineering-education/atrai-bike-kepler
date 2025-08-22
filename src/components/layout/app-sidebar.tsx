@@ -1,22 +1,16 @@
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  ChartLine,
-  MapIcon,
-  Settings2,
-  Trash2,
-} from "lucide-react";
+import { BookOpen, ChartLine, MapIcon, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
-// import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
+import { CampaignSwitcher } from "@/components/layout/campaign-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { listMapsFromSupabase } from "@/utils/listMaps";
 import { deleteMapById } from "@/utils/deleteMap";
@@ -48,16 +42,7 @@ const staticNavMain: NavItem[] = [
     url: "/statistics",
     icon: ChartLine,
   },
-  {
-    translationKey: "models",
-    url: "",
-    icon: Bot,
-    items: [
-      { translationKey: "genesis", url: "/genesis" },
-      { translationKey: "explorer", url: "/explorer" },
-      { translationKey: "quantum", url: "/quantum" },
-    ],
-  },
+
   {
     translationKey: "documentation",
     url: "docs",
@@ -86,17 +71,6 @@ const staticNavMain: NavItem[] = [
       },
     ],
   },
-  {
-    translationKey: "settings",
-    url: "#",
-    icon: Settings2,
-    items: [
-      { translationKey: "general", url: "#" },
-      { translationKey: "team", url: "#" },
-      { translationKey: "billing", url: "#" },
-      { translationKey: "limits", url: "#" },
-    ],
-  },
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -107,6 +81,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [maps, setMaps] = React.useState<any[]>([]);
 
   const navigate = useNavigate();
+
+  const { state } = useSidebar();
 
   React.useEffect(() => {
     const fetchMaps = async () => {
@@ -188,6 +164,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           alt="Logo"
           className="h-10 w-auto object-contain"
         />
+        {state === "expanded" && (
+          <h1 className="font-bold text-primary mb-2 tracking-tight text-center">
+            ATRAI Data Platform
+          </h1>
+        )}
+        <CampaignSwitcher />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={navMain as any} />

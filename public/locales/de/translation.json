@@ -52,7 +52,8 @@
     "password": "Passwort",
     "email": "E-Mail",
     "footer": "Haben Sie kein Konto?",
-    "loading": "Einloggen......"
+    "loading": "Einloggen...",
+    "loginPrompt": "Melden Sie sich an, um Ihre Karten zu speichern"
   },
   "signup": {
     "password": "Passwort",

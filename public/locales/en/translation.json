@@ -52,7 +52,9 @@
     "password": "Password",
     "email": "Email",
     "footer": "Don't have an account?",
-    "loading": "Signing in......"
+    "loading": "Signing in...",
+    "loginPrompt": "Login to save your maps"
+
   },
   "signup": {
     "password": "Password",

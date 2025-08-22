@@ -29,10 +29,10 @@ export function LanguageToggle() {
   };
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-between w-full gap-2 flex-wrap">
       <button
         onClick={() => changeLanguage("de")}
-        className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
           i18n.language === "de"
             ? "bg-primary text-primary-foreground"
             : "bg-muted"
@@ -43,7 +43,7 @@ export function LanguageToggle() {
       </button>
       <button
         onClick={() => changeLanguage("en")}
-        className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
           i18n.language === "en"
             ? "bg-primary text-primary-foreground"
             : "bg-muted"
@@ -54,7 +54,7 @@ export function LanguageToggle() {
       </button>
       <button
         onClick={() => changeLanguage("pt")}
-        className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
           i18n.language === "pt"
             ? "bg-primary text-primary-foreground"
             : "bg-muted"

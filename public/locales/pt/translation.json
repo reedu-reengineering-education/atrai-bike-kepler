@@ -52,7 +52,8 @@
     "password": "Senha",
     "email": "Email",
     "footer": "Não tem uma conta?",
-    "loading": "Signing in......"
+    "loading": "Signing in...",
+    "loginPrompt": "Faça login para salvar seus mapas"
   },
   "signup": {
     "password": "Senha",
