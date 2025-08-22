@@ -10,6 +10,7 @@ export const keplerApi = createApi({
   }),
   endpoints: (builder) => ({
     getRoadRoughness: builder.query<any, void>({
+      // @ts-expect-error is not assignable to type
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery(
           "road_roughness/items?f=json&limit=1000000",
@@ -24,6 +25,7 @@ export const keplerApi = createApi({
     }),
 
     getDistanceFlow: builder.query<any, void>({
+      // @ts-expect-error is not assignable to type
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery(
           "distances_flowmap/items?f=json&limit=1000000",

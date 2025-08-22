@@ -1,7 +1,7 @@
 import { PageContainer } from "@/components/layout/PageConatiner";
 import App from "@/App";
 import { Button } from "../ui/button";
-import { LoaderCircle, Plus, Save } from "lucide-react";
+import { LoaderCircle, Save } from "lucide-react";
 import { saveMapToSupabase } from "@/supabase/saveMap";
 import { UserAuth } from "@/context/AuthContext";
 import { useNavigate } from "@tanstack/react-router";

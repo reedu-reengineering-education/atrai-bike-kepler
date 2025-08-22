@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BookOpen, ChartLine, MapIcon, Trash2 } from "lucide-react";
+import { BookOpen, ChartLine, MapIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
@@ -13,11 +13,8 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { listMapsFromSupabase } from "@/supabase/listMaps";
-import { deleteMapById } from "@/supabase/deleteMap";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
-import { useNavigate } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { MapsNav } from "./maps-nav";
 
