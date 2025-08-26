@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/supbase-client";
 import LogoTile from "../layout/logo-tille";
 import { Input } from "@/components/ui/input";
@@ -13,11 +14,12 @@ interface ResetPasswordProps {
 }
 
 export default function ResetPassword({
-  heading = "Reset Password",
-  buttonText = "Update Password",
-  signupText = "Back to login?",
+  heading,
+  buttonText,
+  signupText,
   signupUrl = "/signin",
 }: ResetPasswordProps) {
+  const { t } = useTranslation();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +33,7 @@ export default function ResetPassword({
     setMessage("");
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      setError(t("resetPassword.passwordsNoMatch"));
       return;
     }
 
@@ -39,9 +41,9 @@ export default function ResetPassword({
     const { error } = await supabase.auth.updateUser({ password });
 
     if (error) {
-      setError("Error: " + error.message);
+      setError(t("forgotPassword.error") + error.message);
     } else {
-      setMessage("Password updated successfully.");
+      setMessage(t("resetPassword.passwordUpdated"));
       setTimeout(() => {
         router.navigate({ to: "/signin" });
       }, 1000);
@@ -59,13 +61,15 @@ export default function ResetPassword({
             onSubmit={handleUpdatePassword}
             className="min-w-sm border-muted bg-background flex w-full max-w-sm flex-col items-center gap-y-4 rounded-md border px-6 py-8 shadow-md"
           >
-            {heading && <h1 className="text-xl font-semibold">{heading}</h1>}
+            <h1 className="text-xl font-semibold">
+              {heading || t("resetPassword.heading")}
+            </h1>
 
             <Input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="New Password"
+              placeholder={t("resetPassword.newPassword")}
               className="text-sm"
               required
             />
@@ -74,7 +78,7 @@ export default function ResetPassword({
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm New Password"
+              placeholder={t("resetPassword.confirmPassword")}
               className="text-sm"
               required
             />
@@ -83,17 +87,19 @@ export default function ResetPassword({
             {message && <p className="text-green-600 text-sm">{message}</p>}
 
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Updating..." : buttonText}
+              {loading
+                ? t("resetPassword.updating")
+                : buttonText || t("resetPassword.buttonText")}
             </Button>
           </form>
 
           <div className="text-muted-foreground flex justify-center gap-1 text-sm">
-            <p>{signupText}</p>
+            <p>{signupText || t("resetPassword.signupText")}</p>
             <a
               href={signupUrl}
               className="text-primary font-medium hover:underline"
             >
-              Login
+              {t("resetPassword.login")}
             </a>
           </div>
         </div>

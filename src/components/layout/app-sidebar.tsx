@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  ChartLine,
-  MapIcon,
-  Settings2,
-  Trash2,
-} from "lucide-react";
+import { BookOpen, ChartLine, MapIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
@@ -17,14 +10,13 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { listMapsFromSupabase } from "@/utils/listMaps";
-import { deleteMapById } from "@/utils/deleteMap";
+import { listMapsFromSupabase } from "@/supabase/listMaps";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
-import { useNavigate } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
 import { LanguageToggle } from "@/components/layout/language-toggle";
+import { MapsNav } from "./maps-nav";
 
 interface NavItem {
   translationKey?: string;
@@ -49,48 +41,43 @@ const staticNavMain: NavItem[] = [
     icon: ChartLine,
   },
   {
-    translationKey: "models",
-    url: "",
-    icon: Bot,
-    items: [
-      { translationKey: "genesis", url: "/genesis" },
-      { translationKey: "explorer", url: "/explorer" },
-      { translationKey: "quantum", url: "/quantum" },
-    ],
-  },
-  {
     translationKey: "documentation",
     url: "docs",
     icon: BookOpen,
     items: [
       { translationKey: "introduction", url: "/docs/introduction" },
-      { translationKey: "getStarted", url: "#" },
-      { translationKey: "tutorials", url: "#" },
-      { translationKey: "changelog", url: "#" },
-    ],
-  },
-  {
-    translationKey: "settings",
-    url: "#",
-    icon: Settings2,
-    items: [
-      { translationKey: "general", url: "#" },
-      { translationKey: "team", url: "#" },
-      { translationKey: "billing", url: "#" },
-      { translationKey: "limits", url: "#" },
+      {
+        translationKey: "getStarted",
+        url: "docs/get-Started",
+      },
+
+      { translationKey: "Custom Features", url: "/docs/custom-features" },
+      {
+        translationKey: "Atrai Data",
+        url: "",
+        items: [
+          {
+            translationKey: "road roughness Dataset",
+            url: "/docs/Atrai-Data/road-roughness",
+          },
+          {
+            translationKey: "overtaking distance Dataset",
+            url: "/docs/Atrai Data/overtaking-distance",
+          },
+        ],
+      },
     ],
   },
 ];
 
-
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { t } = useTranslation();
   const { session } = UserAuth();
-  const { triggerRefresh, refreshKey } = useRefresh();
+  const { refreshKey } = useRefresh();
 
   const [maps, setMaps] = React.useState<any[]>([]);
 
-  const navigate = useNavigate();
+  const { state } = useSidebar();
 
   React.useEffect(() => {
     const fetchMaps = async () => {
@@ -101,15 +88,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             fetchedMaps.map((map: any) => ({
               title: map.title,
               url: `/maps/${map.id}`,
-              endicon: (
-                <Button
-                  onClick={() => handleDelete(map.id)}
-                  variant="destructive"
-                  className="mr-0 pr-0"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              ),
+              mapId: map.id,
             })),
           );
         }
@@ -119,20 +98,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     };
     fetchMaps();
   }, [session, refreshKey]);
-
-  const handleDelete = async (mapId: string) => {
-    const confirm = window.confirm(t("map.confirmDelete"));
-    if (!confirm) return;
-
-    try {
-      await deleteMapById(mapId);
-      alert(t("map.deleteSuccess"));
-      triggerRefresh();
-      navigate({ to: "/" });
-    } catch (e: any) {
-      alert(t("map.deleteError") + e.message);
-    }
-  };
 
   const translateNavItems = React.useCallback(
     (items: NavItem[]): NavItem[] => {
@@ -147,30 +112,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     [t],
   );
 
-  const navMain = React.useMemo(() => {
-    const baseItems =
-      maps.length === 0
-        ? staticNavMain
-        : [
-            ...staticNavMain,
-            {
-              translationKey: "maps",
-              icon: MapIcon,
-              url: "",
-              items: maps,
-            },
-          ];
-
-    return translateNavItems(baseItems);
-  }, [maps, translateNavItems]);
-
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
+        <img
+          src="/logo.png"
+          alt="Logo"
+          className="h-10 w-auto object-contain"
+        />
+        {state === "expanded" && (
+          <h1 className="font-bold text-primary mb-2 tracking-tight text-center">
+            {t("sidebar.atraiDataPlatform")}
+          </h1>
+        )}
         <CampaignSwitcher />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={navMain as any} />
+        <NavMain
+          title={t("sidebar.platform")}
+          items={translateNavItems(staticNavMain) as any}
+        />
+        {session && <MapsNav title={t("sidebar.userMaps")} items={maps} />}
       </SidebarContent>
       <SidebarFooter className="flex items-center justify-between px-2">
         <LanguageToggle />
@@ -179,4 +141,4 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarRail />
     </Sidebar>
   );
-};
+}

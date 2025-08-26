@@ -6,6 +6,7 @@ import {
   ChevronsUpDown,
   CreditCard,
   Sparkles,
+  User,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -26,6 +27,8 @@ import {
 } from "@/components/ui/sidebar";
 import { UserAuth } from "@/context/AuthContext";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
+
 export function NavUser() {
   const { isMobile } = useSidebar();
   const auth = UserAuth();
@@ -38,7 +41,7 @@ export function NavUser() {
     <SidebarMenu>
       <SidebarMenuItem>
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
@@ -49,15 +52,15 @@ export function NavUser() {
                   alt={user?.user_metadata?.name || "User"}
                 />
                 <AvatarFallback className="rounded-lg">
-                  {user?.email?.[0]?.toUpperCase() || "CN"}
+                  {user?.email?.[0]?.toUpperCase() || <User />}
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">
-                  {user?.email?.split("@")[0] || "shadcn"}
+                  {user?.email?.split("@")[0] || ""}
                 </span>
-                <span className="truncate text-xs">
-                  {user?.email || "m@example.com"}
+                <span className={cn(user?.email ? "truncate" : "", "text-xs")}>
+                  {user?.email || t("signIn.loginPrompt")}
                 </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />

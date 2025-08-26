@@ -37,7 +37,11 @@
     "maps": "Maps",
     "Upgrade to Pro": "Upgrade to Pro",
     "Notifications": "Notifications",
-    "Account": "Account"
+    "Account": "Account",
+    "Custom Features": "Custom Features",
+    "Atrai Data": "Atrai Data",
+    "road roughness Dataset": "Road Roughness Dataset",
+    "overtaking distance Dataset": "Overtaking Distance Dataset"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",
@@ -48,7 +52,8 @@
     "password": "Password",
     "email": "Email",
     "footer": "Don't have an account?",
-    "loading": "Signing in......"
+    "loading": "Signing in...",
+    "loginPrompt": "Login to save your maps"
   },
   "signup": {
     "password": "Password",
@@ -60,5 +65,91 @@
   },
   "save": {
     "buttonMsg": "Save Current Map"
+  },
+
+  "docs": {
+    "docs": "Documentation",
+    "introduction": "Introduction",
+    "get-started": "Get Started",
+    "custom-features": "Custom-Features"
+  },
+  "forgotPassword": {
+    "heading": "Reset Password",
+    "buttonText": "Send Reset Link",
+    "signinText": "Remember your password?",
+    "signupText": "Don't have an account?",
+    "sending": "Sending...",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "checkEmail": "Check your email for a reset link.",
+    "error": "Error: "
+  },
+  "resetPassword": {
+    "heading": "Reset Password",
+    "buttonText": "Update Password",
+    "signupText": "Back to login?",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "updating": "Updating...",
+    "login": "Login",
+    "passwordsNoMatch": "Passwords do not match.",
+    "passwordUpdated": "Password updated successfully."
+  },
+  "atraiData": {
+    "loading": "Loading...",
+    "currentlyLoaded": "Currently loaded • Click to reload",
+    "loaded": "Loaded",
+    "reload": "Reload",
+    "statusUnknown": "Status Unknown",
+    "failed": "Failed",
+    "retryLoading": "Retry loading",
+    "reloadDataset": "Reload this dataset",
+    "clickToLoad": "click to load",
+    "clickToReload": "loaded - click to reload",
+    "loadingStatus": "loading",
+    "failedStatus": "failed",
+    "statusUnknownStatus": "status unknown",
+    "statusDetectionIssue": "Status Detection Issue",
+    "statusDetectionMessage": "Unable to detect which datasets are currently loaded. Dataset status indicators may not be accurate. You can still load datasets, but existing data status is unknown.",
+    "loadingTimeout": "Loading timeout - please try again",
+    "networkError": "Network error - check your connection",
+    "configError": "Dataset configuration error"
+  },
+  "charts": {
+    "tripCount": "Trip Count",
+    "avgSpeed": "Avg Speed (km/h)",
+    "totalKcal": "Total kcal",
+    "week": "Week",
+    "avgDuration": "Avg Duration (s)",
+    "weekOf": "Week of"
+  },
+  "logo": {
+    "alt": "Atraibike Logo",
+    "title": "ATRAIBIKE PLATFORM"
+  },
+  "saveMap": {
+    "saveMap": "Save Map",
+    "saveNewMap": "Save new Map",
+    "mapName": "Map name",
+    "provideName": "Please provide a name for your new map.",
+    "create": "Create",
+    "saveChanges": "Save changes",
+    "cancel": "Cancel",
+    "loadingMap": "Loading map...",
+    "mapNotFound": "Map not found",
+    "error": "Error: ",
+    "updateFailed": "Update failed"
+  },
+  "sidebar": {
+    "platform": "Platform",
+    "userMaps": "User Maps",
+    "noMapsAvailable": "No maps available",
+    "deleteMap": "Delete Map",
+    "atraiDataPlatform": "ATRAI Data Platform",
+    "roadRoughness": "Road Roughness",
+    "overtakingDistances": "Overtaking Distances",
+    "senseBoxBike": "senseBox:bike",
+    "loginFirst": "You should log in first.",
+    "saveMapFailed": "Failed to save map. Please try again."
   }
 }

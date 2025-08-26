@@ -39,6 +39,7 @@ export function LanguageToggle() {
   };
 
   return (
+
     <div className="flex items-center justify-between w-full">
       {["de", "en", "pt"].map((lng) => (
         <button
@@ -56,6 +57,7 @@ export function LanguageToggle() {
           {lng.toUpperCase()}
         </button>
       ))}
+
     </div>
   );
 }
