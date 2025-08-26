@@ -18,6 +18,11 @@ i18n
     backend: {
       loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
+    detection: {
+      order: ["localStorage", "navigator", "htmlTag", "path", "subdomain"],
+      caches: ["localStorage"],
+      lookupLocalStorage: "i18nextLng",
+    },
   });
 
 export default i18n;
