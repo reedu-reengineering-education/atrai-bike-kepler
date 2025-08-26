@@ -20,6 +20,7 @@ import {
   TableHead,
   TableCell,
 } from "../ui/table";
+import { useSelector } from "react-redux";
 
 export type WeeklyStat = {
   week: string;
@@ -62,98 +63,103 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
   const [selectedProperty, setSelectedProperty] = useState(
     chartProperties[0].key,
   );
+  const activeCampaign = useSelector(
+    (state: any) => state.campaign.activeCampaign,
+  );
+
+  const activeRegion = data.find(
+    (region) => region.region.toLowerCase() === activeCampaign?.toLowerCase(),
+  );
 
   return (
     <div className="space-y-10">
-      {data.map((region) => (
-        <Card key={region.region}>
-          <CardHeader>
-            <CardTitle className="capitalize">{region.region}</CardTitle>
-          </CardHeader>
+      <Card key={activeRegion?.region}>
+        <CardHeader>
+          <CardTitle className="capitalize">{activeRegion?.region}</CardTitle>
+        </CardHeader>
 
-          <CardContent>
-            {/* Table summary */}
-            <div className="overflow-x-auto mb-6">
-              <Table className="min-w-full text-sm text-left">
-                <TableHeader>
-                  <TableRow className="border-b">
-                    <TableHead className="p-2 font-semibold">Week</TableHead>
-                    <TableHead className="p-2 font-semibold">
-                      Trip Count
-                    </TableHead>
-                    <TableHead className="p-2 font-semibold">
-                      Avg Duration (s)
-                    </TableHead>
-                    <TableHead className="p-2 font-semibold">
-                      Avg Speed (km/h)
-                    </TableHead>
-                    <TableHead className="p-2 font-semibold">
-                      Total kcal
-                    </TableHead>
+        <CardContent>
+          {/* Table summary */}
+          <div className="overflow-x-auto mb-6">
+            <Table className="min-w-full text-sm text-left">
+              <TableHeader>
+                <TableRow className="border-b">
+                  <TableHead className="p-2 font-semibold">Week</TableHead>
+                  <TableHead className="p-2 font-semibold">
+                    Trip Count
+                  </TableHead>
+                  <TableHead className="p-2 font-semibold">
+                    Avg Duration (s)
+                  </TableHead>
+                  <TableHead className="p-2 font-semibold">
+                    Avg Speed (km/h)
+                  </TableHead>
+                  <TableHead className="p-2 font-semibold">
+                    Total kcal
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {activeRegion?.weekly_stats.map((weekStat) => (
+                  <TableRow key={weekStat.week}>
+                    <TableCell className="font-medium">
+                      {new Date(weekStat.week).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>{weekStat.trip_count}</TableCell>
+                    <TableCell>
+                      {weekStat.average_duration_s.toFixed(2)}
+                    </TableCell>
+                    <TableCell>
+                      {weekStat.average_speed_kmh.toFixed(2)}
+                    </TableCell>
+                    <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {region.weekly_stats.map((weekStat) => (
-                    <TableRow key={weekStat.week}>
-                      <TableCell className="font-medium">
-                        {new Date(weekStat.week).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell>{weekStat.trip_count}</TableCell>
-                      <TableCell>
-                        {weekStat.average_duration_s.toFixed(2)}
-                      </TableCell>
-                      <TableCell>
-                        {weekStat.average_speed_kmh.toFixed(2)}
-                      </TableCell>
-                      <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
 
-            {/* Toggle for chart property */}
-            <div className="mb-4 flex gap-2">
-              {chartProperties.map((prop) => (
-                <Button
-                  key={prop.key}
-                  onClick={() => setSelectedProperty(prop.key)}
-                >
-                  {prop.label}
-                </Button>
-              ))}
-            </div>
+          {/* Toggle for chart property */}
+          <div className="mb-4 flex gap-2">
+            {chartProperties.map((prop) => (
+              <Button
+                key={prop.key}
+                onClick={() => setSelectedProperty(prop.key)}
+              >
+                {prop.label}
+              </Button>
+            ))}
+          </div>
 
-            {/* Fancy chart */}
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={region.weekly_stats}>
-                <XAxis
-                  dataKey="week"
-                  tickFormatter={(date) => new Date(date).toLocaleDateString()}
-                />
-                <YAxis />
-                <Tooltip
-                  labelFormatter={(label) =>
-                    `Week of ${new Date(label).toLocaleDateString()}`
-                  }
-                />
-                <Legend />
-                {chartProperties
-                  .filter((prop) => prop.key === selectedProperty)
-                  .map((prop) => (
-                    <Bar
-                      key={prop.key}
-                      dataKey={prop.key}
-                      fill={prop.color}
-                      name={prop.label}
-                      radius={4}
-                    />
-                  ))}
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
-      ))}
+          {/* Fancy chart */}
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={activeRegion?.weekly_stats}>
+              <XAxis
+                dataKey="week"
+                tickFormatter={(date) => new Date(date).toLocaleDateString()}
+              />
+              <YAxis />
+              <Tooltip
+                labelFormatter={(label) =>
+                  `Week of ${new Date(label).toLocaleDateString()}`
+                }
+              />
+              <Legend />
+              {chartProperties
+                .filter((prop) => prop.key === selectedProperty)
+                .map((prop) => (
+                  <Bar
+                    key={prop.key}
+                    dataKey={prop.key}
+                    fill={prop.color}
+                    name={prop.label}
+                    radius={4}
+                  />
+                ))}
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </div>
   );
 }
