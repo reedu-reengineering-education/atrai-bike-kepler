@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart,
@@ -40,21 +41,23 @@ interface RegionStatsWithChartProps {
 }
 
 export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
+  const { t } = useTranslation();
+
   // Properties available for toggling
   const chartProperties = [
     {
       key: "trip_count",
-      label: "Trip Count",
+      label: t("charts.tripCount"),
       color: "#8884d8",
     },
     {
       key: "average_speed_kmh",
-      label: "Avg Speed (km/h)",
+      label: t("charts.avgSpeed"),
       color: "#82ca9d",
     },
     {
       key: "total_kcal",
-      label: "Total kcal",
+      label: t("charts.totalKcal"),
       color: "#ff7300",
     },
   ];
@@ -77,6 +80,7 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
         <CardHeader>
           <CardTitle className="capitalize">{activeRegion?.region}</CardTitle>
         </CardHeader>
+
 
         <CardContent>
           {/* Table summary */}
@@ -113,6 +117,7 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
                       {weekStat.average_speed_kmh.toFixed(2)}
                     </TableCell>
                     <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
+
                   </TableRow>
                 ))}
               </TableBody>
@@ -160,6 +165,8 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
           </ResponsiveContainer>
         </CardContent>
       </Card>
+
+            
     </div>
   );
 }

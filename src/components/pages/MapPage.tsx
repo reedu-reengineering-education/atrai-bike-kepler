@@ -1,23 +1,27 @@
 import { useNavigate, useMatch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { addDataToMap } from "@reedu-kepler.gl/actions";
 import KeplerGlSchema from "@reedu-kepler.gl/schemas";
-import { SaveIcon, Save, EditIcon } from "lucide-react";
+import { SaveIcon, Save, EditIcon, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { UserAuth } from "@/context/AuthContext";
 import { mapDetailRoute } from "@/routeTree";
-import { getMapById } from "@/utils/getMap";
+import { getMapById } from "@/supabase/getMap";
 import { PageContainer } from "@/components/layout/PageConatiner";
 import App from "@/App";
-import { updateMapById } from "@/utils/updateMap";
+import { updateMapById } from "@/supabase/updateMap";
 
-import { exportKeplerDatasetAndConfig } from "@/utils/exportKeplerMap";
+import { exportKeplerDatasetAndConfig } from "@/supabase/exportKeplerMap";
 import { useRefresh } from "@/context/RefreshContext";
 
+import { formatUrlPath } from "@/supabase/formatPath";
+
 export default function MapPage() {
+  const { t } = useTranslation();
   const { session, authLoading } = UserAuth();
   const { triggerRefresh } = useRefresh();
   const navigate = useNavigate();
@@ -31,6 +35,10 @@ export default function MapPage() {
   const [error, setError] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [isEditingTitle, setIsEditingTitle] = useState(false);
+
+  const [updateLoading, setUpdateLoading] = useState(false);
+
+  const currentPath = match.pathname;
 
   useEffect(() => {
     if (authLoading) return;
@@ -71,29 +79,36 @@ export default function MapPage() {
       console.error("Failed to load map into @reedu-kepler.gl", e);
     }
   }, [mapDetails, dispatch]);
+
   const handleUpdate = async () => {
     if (!mapDetails) return;
     const { dataset, config } = exportKeplerDatasetAndConfig();
 
     try {
+      setUpdateLoading(true);
       await updateMapById(mapId, {
         title,
         dataset: dataset,
         config: config,
       });
       triggerRefresh();
-      alert("Map updated successfully");
       setIsEditingTitle(false);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e: any) {
-      alert("Update failed");
+      console.error(t("saveMap.updateFailed"), e);
+    } finally {
+      setUpdateLoading(false);
     }
   };
   const breadcrumbRight = (
-    <Button onClick={handleUpdate}>
-      <SaveIcon />
-      save changes
+    <Button onClick={handleUpdate} disabled={updateLoading}>
+      {updateLoading ? (
+        <LoaderCircle className="mr-2 animate-spin" />
+      ) : (
+        <SaveIcon />
+      )}
+      {t("saveMap.saveChanges")}
     </Button>
   );
 
@@ -111,7 +126,7 @@ export default function MapPage() {
             <Save />
           </Button>
           <Button variant="ghost" onClick={() => setIsEditingTitle(false)}>
-            Cancel
+            {t("saveMap.cancel")}
           </Button>
         </>
       ) : (
@@ -132,7 +147,7 @@ export default function MapPage() {
   if (authLoading || loading) {
     return (
       <PageContainer>
-        <div className="p-4">Loading map...</div>
+        <div className="p-4">{t("saveMap.loadingMap")}</div>
       </PageContainer>
     );
   }
@@ -140,7 +155,10 @@ export default function MapPage() {
   if (error) {
     return (
       <PageContainer>
-        <div className="p-4 text-red-500">Error: {error}</div>
+        <div className="p-4 text-red-500">
+          {t("saveMap.error")}
+          {error}
+        </div>
       </PageContainer>
     );
   }
@@ -148,16 +166,19 @@ export default function MapPage() {
   if (!mapDetails) {
     return (
       <PageContainer>
-        <div className="p-4">Map not found</div>
+        <div className="p-4">{t("saveMap.mapNotFound")}</div>
       </PageContainer>
     );
   }
 
   return (
-    <PageContainer breadcrumb={breadcrumb} breadcrumbRight={breadcrumbRight}>
-      <div className="w-full h-full">
-        <App />
-      </div>
+    <PageContainer
+      breadcrumb={breadcrumb}
+      breadcrumbRight={breadcrumbRight}
+      urlPath={formatUrlPath(currentPath)}
+      className="p-0"
+    >
+      <App />
     </PageContainer>
   );
 }

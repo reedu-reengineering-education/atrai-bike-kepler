@@ -10,17 +10,24 @@ import {
   useLazyGetRoadRoughnessQuery,
 } from "@/lib/redux/keplerApi";
 import { useState } from "react";
+
 import { BikeIcon, SaveIcon } from "lucide-react";
-import { saveMapToSupabase } from "@/utils/saveMapeSupabase";
+import { saveMapToSupabase } from "@/supabase/saveMapeSupabase";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
 import { useTranslation } from "react-i18next";
+import {
+  DISTANCES_FLOWMAP_INFO,
+  ROAD_ROUGHNESS_INFO,
+} from "@/lib/kepler/dataset-info";
+import { useDispatch } from "react-redux";
+import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
-
   const CustomSidePanelWrapper = (props) => {
     const { triggerRefresh } = useRefresh();
+    const dispatch = useDispatch();
     const [triggerDistanceFlowQuery] = useLazyGetDistanceFlowQuery();
     const [triggerRoughnessQuery] = useLazyGetRoadRoughnessQuery();
 
@@ -35,17 +42,18 @@ function CustomSidePanelFactory(...args) {
       try {
         setIsLoadingDistance(true);
         await triggerDistanceFlowQuery();
+        dispatch(setActiveDataset(DISTANCES_FLOWMAP_INFO));
       } catch (err) {
         console.error("Failed to load distance flow data:", err);
       } finally {
         setIsLoadingDistance(false);
       }
     };
-
     const handleRoadRoughnessClick = async () => {
       try {
         setIsLoadingRoughness(true);
         await triggerRoughnessQuery();
+        dispatch(setActiveDataset(ROAD_ROUGHNESS_INFO));
       } catch (err) {
         console.error("Failed to load road roughness data:", err);
       } finally {
@@ -54,7 +62,7 @@ function CustomSidePanelFactory(...args) {
     };
     const handleSaveMap = async () => {
       if (!session?.user) {
-        alert("You should log in first.");
+        alert(t("sidebar.loginFirst"));
         return;
       }
 
@@ -63,7 +71,7 @@ function CustomSidePanelFactory(...args) {
         triggerRefresh();
       } catch (err) {
         console.error("Failed to save map:", err);
-        alert("Failed to save map. Please try again.");
+        alert(t("sidebar.saveMapFailed"));
       }
     };
 
@@ -74,7 +82,7 @@ function CustomSidePanelFactory(...args) {
           panels={[
             {
               id: "bike",
-              label: "senseBox:bike",
+              label: t("sidebar.senseBoxBike"),
               iconComponent: BikeIcon,
               component: () => (
                 <div className="grid grid-cols-2 gap-4 relative">
@@ -93,10 +101,13 @@ function CustomSidePanelFactory(...args) {
                       </div>
                     )}
                     <div className="relative w-full h-full">
-                      <img src={RoadRoughnessImageUrl} alt="Road Roughness" />
+                      <img
+                        src={RoadRoughnessImageUrl}
+                        alt={t("sidebar.roadRoughness")}
+                      />
                       <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
                         <span className="text-gray-700 text-xs font-medium">
-                          Road Roughness
+                          {t("sidebar.roadRoughness")}
                         </span>
                       </div>
                     </div>
@@ -117,10 +128,13 @@ function CustomSidePanelFactory(...args) {
                       </div>
                     )}
                     <div className="relative w-full h-full">
-                      <img src={DistancesImageUrl} alt="Overtaking Distances" />
+                      <img
+                        src={DistancesImageUrl}
+                        alt={t("sidebar.overtakingDistances")}
+                      />
                       <div className="absolute bottom-0 left-0 right-0 px-2 py-0.5 bg-card">
                         <span className="text-gray-700 text-xs font-medium">
-                          Overtaking Distances
+                          {t("sidebar.overtakingDistances")}
                         </span>
                       </div>
                     </div>
@@ -131,7 +145,7 @@ function CustomSidePanelFactory(...args) {
 
             {
               id: "save",
-              label: "Save",
+              label: t("Save"),
               iconComponent: SaveIcon,
               component: () => (
                 <div className="p-4">

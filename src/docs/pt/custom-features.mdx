@@ -1,0 +1,53 @@
+# 🚀 Funcionalidades Personalizadas na Nossa Integração com Kepler.gl
+
+Estendemos o pacote principal **[Kepler.gl](https://kepler.gl/)** para melhor atender às necessidades do nosso projeto.  
+Abaixo você encontra uma visão geral das novas funcionalidades, por que as adicionamos e como utilizá-las.
+
+---
+
+## 🌍 Suporte Multilíngue
+
+Adicionamos **Alemão (Deutsch)** como uma opção de idioma adicional.
+
+- Os usuários podem alternar facilmente entre Inglês e Alemão.
+- Todos os rótulos, menus e dicas de ferramentas da interface foram traduzidos.
+- Isso ajuda a tornar a plataforma acessível a um público mais amplo na região DACH.
+
+> 💡 _Se quiser contribuir com mais traduções, confira a pasta `i18n` no repositório._
+
+---
+
+## 📊 Cartões de Exemplo Predefinidos
+
+Para ajudar os usuários a explorar os dados imediatamente, adicionamos dois **cartões de mapa pré-carregados**:
+
+1. **Dados de Rugosidade de Estradas**
+
+   - Exibe conjuntos de dados sobre o estado das estradas (índices de rugosidade).
+   - Permite filtrar e comparar diferentes trechos de estrada.
+
+2. **Distâncias de Ultrapassagem**
+   - Visualiza distâncias de ultrapassagem medidas em rotas selecionadas.
+   - Ajuda pesquisadores e engenheiros de tráfego a analisar padrões relacionados à segurança.
+
+Os usuários podem abrir esses cartões diretamente do painel e interagir com eles como qualquer outro mapa do Kepler.gl.
+
+---
+
+## 🔐 Integração com Supabase para Contas de Usuário
+
+Integramos **[Supabase](https://supabase.com/)** para gerenciar autenticação e armazenamento persistente.
+
+### ✨ O que isso permite:
+
+- **Contas de Usuário** – Registrar e entrar com segurança.
+- **Salvar Mapas** – Armazenar seus mapas personalizados no perfil.
+- **Operações CRUD** – Criar, Ler, Atualizar e Excluir mapas a qualquer momento.
+- **Pronto para Colaboração** – No futuro, poderemos permitir o compartilhamento de mapas entre contas.
+
+### 🔧 Como funciona:
+
+- Quando um usuário faz login, seus mapas são automaticamente carregados do Supabase.
+- Salvar um mapa grava sua configuração + referências de dados no Supabase.
+- Atualizações são sincronizadas instantaneamente, permitindo continuar de onde parou.
+- Excluir um mapa remove-o tanto da interface quanto do backend do Supabase.

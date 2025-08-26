@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# ATRAI Data Platform Kepler
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the Kepler.gl-based frontend for the ATRAI Data Platform.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Supabase Setup**  
+   Create a Supabase project to store your map data.
 
-## Expanding the ESLint configuration
+2. **Database Table**  
+   In Supabase, create a table named `maps` with the following columns:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- `title` (type: text)
+- `config` (type: json)
+- `dataset` (type: json)
+- `created_at` (type: timestamp with time zone, default: `now()`)
+- `user_id` (type: uuid)
 
-- Configure the top-level `parserOptions` property like this:
+Now set a foreign key constraint on the `user_id` column to reference the `id` column in the `users` table.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+3. **Policies**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   In Supabase, set the following policies:
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+   DELETE
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+   Enable delete for users based on user_id
+   Applied to: public role
+
+   INSERT
+
+   Enable insert for authenticated users only
+   Applied to: authenticated role
+
+   UPDATE
+
+   Enable update for authenticated users only
+   Applied to: authenticated role
+
+   SELECT
+
+   Enable users to view their own data only
+   Applied to: authenticated role
