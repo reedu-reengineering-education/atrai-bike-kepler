@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import configJson from "@/lib/kepler/config.json";
 import configDistances from "@/lib/kepler/config-distances.json";
-import { loadKeplerDataset } from "./loadkeplerData";
+import configStandingMvt from "@/lib/kepler/config-standing-mvt.json";
+import datasetStandingMvt from "@/lib/kepler/dataset-standing-mvt.json";
+import { loadKeplerDataset, loadMvtDataset } from "./loadkeplerData";
 
 export const keplerApi = createApi({
   reducerPath: "keplerApi",
@@ -9,13 +11,24 @@ export const keplerApi = createApi({
     baseUrl: "https://api.atrai.bike/collections/",
   }),
   endpoints: (builder) => ({
+    getOsemBikeData: builder.query<any, void>({
+      async queryFn() {
+        await loadMvtDataset({
+          dataset: datasetStandingMvt,
+          config: configStandingMvt,
+        });
+
+        return { data: [] };
+      },
+    }),
+
     getRoadRoughness: builder.query<any, void>({
       // @ts-expect-error is not assignable to type
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery(
           "road_roughness/items?f=json&limit=1000000",
         );
-        return loadKeplerDataset({
+        loadKeplerDataset({
           response,
           datasetId: "road_roughness",
           label: "Road Roughness",
@@ -42,6 +55,8 @@ export const keplerApi = createApi({
 });
 
 export const {
+  useGetOsemBikeDataQuery,
+  useLazyGetOsemBikeDataQuery,
   useGetRoadRoughnessQuery,
   useLazyGetRoadRoughnessQuery,
   useGetDistanceFlowQuery,
