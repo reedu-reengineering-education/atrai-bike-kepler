@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { DatasetConfig } from "@/lib/kepler/dataset-registry";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
+import { RootState } from "@/lib/redux/store";
 import { getErrorMessage } from "@/lib/kepler/data-loader";
 import {
   selectLoadedDatasetIds,
@@ -15,6 +16,7 @@ import {
   CheckCircle,
   AlertTriangle,
 } from "lucide-react";
+import { toast } from "sonner";
 
 /**
  * Props interface for the ATRAI Data Panel component
@@ -234,6 +236,11 @@ export function ATRAIDataPanel({
   const loadedDatasetIds = useSelector(selectLoadedDatasetIds);
   const statusError = useSelector(selectDatasetStatusError);
 
+  // Get the active campaign for campaign-specific datasets
+  const activeCampaign = useSelector(
+    (state: RootState) => state.campaign.activeCampaign,
+  );
+
   // Enhanced state management for loading and errors
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {},
@@ -394,6 +401,13 @@ export function ATRAIDataPanel({
       }
 
       try {
+        console.log("🚀 Starting to load dataset:", {
+          datasetId,
+          label: dataset.label,
+          requiresCampaign: dataset.requiresCampaign,
+          activeCampaign,
+        });
+
         // Clear any previous error for this dataset
         setErrorStates((prev) => {
           const newState = { ...prev };
@@ -417,8 +431,23 @@ export function ATRAIDataPanel({
         // Execute the query and wait for the result with timeout handling
         let result;
         try {
+          // Check if this dataset requires campaign parameter
+          let queryPromise;
+          if (dataset.requiresCampaign && activeCampaign) {
+            console.log(
+              `Executing campaign-specific query for ${dataset.label} with campaign: ${activeCampaign}`,
+            );
+            queryPromise = triggerQuery(activeCampaign).unwrap();
+          } else if (dataset.requiresCampaign && !activeCampaign) {
+            throw new Error(
+              `Dataset ${dataset.label} requires a campaign to be selected`,
+            );
+          } else {
+            queryPromise = triggerQuery().unwrap();
+          }
+
           result = await Promise.race([
-            triggerQuery().unwrap(),
+            queryPromise,
             new Promise((_, reject) =>
               setTimeout(
                 () => reject(new Error("Dataset loading timeout")),
@@ -429,9 +458,18 @@ export function ATRAIDataPanel({
         } catch (queryError) {
           // Enhanced error handling for query execution
           console.error(
-            `Query execution failed for ${dataset.label}:`,
+            `🔥 Query execution failed for ${dataset.label}:`,
             queryError,
           );
+          console.log("🔍 Query error details:", {
+            errorType: typeof queryError,
+            errorMessage:
+              queryError instanceof Error
+                ? queryError.message
+                : String(queryError),
+            errorStack:
+              queryError instanceof Error ? queryError.stack : undefined,
+          });
           throw queryError;
         }
 
@@ -468,16 +506,53 @@ export function ATRAIDataPanel({
 
         console.log(`Successfully loaded dataset: ${dataset.label}`);
       } catch (err) {
-        console.error(`Failed to load ${dataset.label} data:`, {
+        console.error(`🚨 Failed to load ${dataset.label} data:`, {
           error: err instanceof Error ? err.message : String(err),
           stack: err instanceof Error ? err.stack : undefined,
           datasetId,
           datasetLabel: dataset.label,
         });
 
+        console.log("🔍 Error analysis for toast detection:", {
+          errorMessage: err instanceof Error ? err.message : String(err),
+          includesAvailableForCampaign: (err instanceof Error
+            ? err.message
+            : String(err)
+          ).includes("available for campaign"),
+          includes404: (err instanceof Error
+            ? err.message
+            : String(err)
+          ).includes("404"),
+          includesNotFound: (err instanceof Error
+            ? err.message
+            : String(err)
+          ).includes("not found"),
+        });
+
         // Set user-friendly error message with enhanced error categorization
         let errorMessage: string;
-        if (err instanceof Error) {
+        let showToast = false;
+
+        // Handle RTK Query error objects
+        if (
+          err &&
+          typeof err === "object" &&
+          "status" in err &&
+          "statusText" in err
+        ) {
+          const rtkError = err as { status: number; statusText: string };
+          console.log("🔍 RTK Query error detected:", rtkError);
+
+          if (
+            rtkError.status === 404 ||
+            rtkError.statusText.includes("available for campaign")
+          ) {
+            errorMessage = `${dataset.label} is not available for the selected campaign`;
+            showToast = true;
+          } else {
+            errorMessage = rtkError.statusText || "Failed to load dataset";
+          }
+        } else if (err instanceof Error) {
           if (err.message.includes("timeout")) {
             errorMessage = t("atraiData.loadingTimeout");
           } else if (
@@ -487,11 +562,32 @@ export function ATRAIDataPanel({
             errorMessage = t("atraiData.networkError");
           } else if (err.message.includes("Query trigger")) {
             errorMessage = t("atraiData.configError");
+          } else if (
+            err.message.includes("available for campaign") ||
+            err.message.includes("404") ||
+            err.message.includes("not found")
+          ) {
+            errorMessage = `${dataset.label} is not available for the selected campaign`;
+            showToast = true;
           } else {
             errorMessage = getErrorMessage(err);
           }
         } else {
           errorMessage = "Unknown error occurred";
+        }
+
+        // Show toast notification for campaign-specific collection not found
+        if (showToast) {
+          const campaignText = activeCampaign ? ` "${activeCampaign}"` : "";
+          console.log("🍞 Showing toast for collection not found:", {
+            dataset: dataset.label,
+            campaign: activeCampaign,
+            errorMessage,
+          });
+          toast.error(`${dataset.label} not available`, {
+            description: `No ${dataset.label.toLowerCase()} data found for campaign${campaignText}`,
+            duration: 4000,
+          });
         }
 
         setErrorStates((prev) => ({
@@ -515,7 +611,15 @@ export function ATRAIDataPanel({
         }
       }
     },
-    [activeRequests, queryHooks, dispatch, onDataLoad, onClose, t],
+    [
+      activeRequests,
+      queryHooks,
+      activeCampaign,
+      dispatch,
+      onDataLoad,
+      onClose,
+      t,
+    ],
   );
 
   /**

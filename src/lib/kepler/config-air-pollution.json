@@ -1,0 +1,66 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [],
+      "layers": [
+        {
+          "id": "air_pollution",
+          "type": "point",
+          "config": {
+            "dataId": "air_pollution",
+            "label": "Air Pollution (PM)",
+            "color": [139, 69, 19],
+            "columns": {
+              "lat": "latitude",
+              "lng": "longitude"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 10,
+              "fixedRadius": false,
+              "opacity": 0.7,
+              "outline": true,
+              "thickness": 2,
+              "strokeColor": [101, 67, 33],
+              "colorRange": {
+                "name": "ColorBrewer OrRd",
+                "type": "sequential",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#FFF7EC",
+                  "#FEE8C8",
+                  "#FDD49E",
+                  "#FDBB84",
+                  "#FC8D59",
+                  "#EF6548",
+                  "#D7301F",
+                  "#B30000",
+                  "#7F0000"
+                ]
+              },
+              "strokeColorRange": {
+                "name": "ColorBrewer OrRd",
+                "type": "sequential",
+                "category": "ColorBrewer",
+                "colors": [
+                  "#FFF7EC",
+                  "#FEE8C8",
+                  "#FDD49E",
+                  "#FDBB84",
+                  "#FC8D59",
+                  "#EF6548",
+                  "#D7301F",
+                  "#B30000",
+                  "#7F0000"
+                ]
+              },
+              "radiusRange": [0, 50],
+              "filled": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

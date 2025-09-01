@@ -1,0 +1,60 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [],
+      "layers": [
+        {
+          "id": "bumpy_roads",
+          "type": "point",
+          "config": {
+            "dataId": "bumpy_roads",
+            "label": "Bumpy Roads",
+            "color": [255, 165, 0],
+            "columns": {
+              "lat": "latitude",
+              "lng": "longitude"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "radius": 8,
+              "fixedRadius": false,
+              "opacity": 0.8,
+              "outline": false,
+              "thickness": 2,
+              "strokeColor": null,
+              "colorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300"
+                ]
+              },
+              "strokeColorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#5A1846",
+                  "#900C3F",
+                  "#C70039",
+                  "#E3611C",
+                  "#F1920E",
+                  "#FFC300"
+                ]
+              },
+              "radiusRange": [0, 50],
+              "filled": true
+            }
+          }
+        }
+      ]
+    }
+  }
+}

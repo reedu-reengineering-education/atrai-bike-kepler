@@ -1,6 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import configJson from "@/lib/kepler/config.json";
 import configDistances from "@/lib/kepler/config-distances.json";
+import configDangerZones from "@/lib/kepler/config-danger-zones.json";
+import configAirPollution from "@/lib/kepler/config-air-pollution.json";
+import configBumpyRoads from "@/lib/kepler/config-bumpy-roads.json";
+import configSpeedMap from "@/lib/kepler/config-speed-map.json";
+import configTrafficFlow from "@/lib/kepler/config-traffic-flow.json";
 import { loadKeplerDataset } from "./loadkeplerData";
 
 export const keplerApi = createApi({
@@ -38,6 +43,205 @@ export const keplerApi = createApi({
         });
       },
     }),
+
+    getDangerZones: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `danger_zones_${campaign.toLowerCase()}`;
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        // Check if the API request failed
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No danger zones data available for campaign: ${campaign}`,
+            },
+          };
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `danger_zones_${campaign.toLowerCase()}`,
+          label: `Danger Zones - ${campaign}`,
+          config: configDangerZones,
+        });
+      },
+    }),
+
+    getAirPollution: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `danger_zones_PM_${campaign.toLowerCase()}`;
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        // Check if the API request failed
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No air pollution data available for campaign: ${campaign}`,
+            },
+          };
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `air_pollution_${campaign.toLowerCase()}`,
+          label: `Air Pollution (PM) - ${campaign}`,
+          config: configAirPollution,
+        });
+      },
+    }),
+
+    getBumpyRoads: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `bumpy_roads_${campaign.toLowerCase()}`;
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        // Check if the API request failed
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No bumpy roads data available for campaign: ${campaign}`,
+            },
+          };
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `bumpy_roads_${campaign.toLowerCase()}`,
+          label: `Bumpy Roads - ${campaign}`,
+          config: configBumpyRoads,
+        });
+      },
+    }),
+
+    getOvertakingDistance: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `overtaking_distance_${campaign.toLowerCase()}`;
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        // Check if the API request failed
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No overtaking distance data available for campaign: ${campaign}`,
+            },
+          };
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `overtaking_distance_${campaign.toLowerCase()}`,
+          label: `Overtaking Distance - ${campaign}`,
+          config: configDistances,
+        });
+      },
+    }),
+
+    getSpeedMap: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `speed_map_${campaign.toLowerCase()}`;
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        // Check if the API request failed
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No speed map data available for campaign: ${campaign}`,
+            },
+          };
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `speed_map_${campaign.toLowerCase()}`,
+          label: `Speed Map - ${campaign}`,
+          config: configSpeedMap,
+        });
+      },
+    }),
+
+    getTrafficFlow: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `traffic_flow_${campaign.toLowerCase()}`;
+        console.log(
+          `🌐 API: Requesting traffic flow data for collection: ${collectionName}`,
+        );
+
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        console.log("🌐 API: Traffic flow response:", {
+          hasError: !!response.error,
+          errorStatus: response.error?.status,
+          errorData: response.error?.data,
+          hasData: !!response.data,
+        });
+
+        // Check if the API request failed
+        if (response.error) {
+          const errorResult = {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No traffic flow data available for campaign: ${campaign}`,
+            },
+          };
+          console.log("🌐 API: Returning error result:", errorResult);
+          return errorResult;
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `traffic_flow_${campaign.toLowerCase()}`,
+          label: `Traffic Flow - ${campaign}`,
+          config: configTrafficFlow,
+        });
+      },
+    }),
   }),
 });
 
@@ -46,4 +250,16 @@ export const {
   useLazyGetRoadRoughnessQuery,
   useGetDistanceFlowQuery,
   useLazyGetDistanceFlowQuery,
+  useGetDangerZonesQuery,
+  useLazyGetDangerZonesQuery,
+  useGetAirPollutionQuery,
+  useLazyGetAirPollutionQuery,
+  useGetBumpyRoadsQuery,
+  useLazyGetBumpyRoadsQuery,
+  useGetOvertakingDistanceQuery,
+  useLazyGetOvertakingDistanceQuery,
+  useGetSpeedMapQuery,
+  useLazyGetSpeedMapQuery,
+  useGetTrafficFlowQuery,
+  useLazyGetTrafficFlowQuery,
 } = keplerApi;
