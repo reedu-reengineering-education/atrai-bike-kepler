@@ -18,6 +18,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "react-audio-voice-recorder": path.resolve(
+        __dirname,
+        "node_modules/react-audio-voice-recorder/dist/index-1c988149.js",
+      ),
     },
   },
 });
