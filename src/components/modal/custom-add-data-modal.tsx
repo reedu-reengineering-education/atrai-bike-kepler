@@ -4,8 +4,10 @@
 import { useTranslation } from "react-i18next";
 import { LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { ATRAIDataPanel } from "./atrai-data-panel";
-import { getAllDatasets } from "@/lib/kepler/dataset-registry";
+import { getDatasetsByCampaign } from "@/lib/kepler/dataset-registry";
 import { BikeIcon } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/redux/store";
 
 /**
  * Custom Add Data Modal Factory
@@ -30,13 +32,16 @@ function CustomAddDataModalFactory(...args: any[]) {
   const CustomAddDataModalWrapper = (props) => {
     const { t } = useTranslation();
 
-    // Create the ATRAI Data loading method configuration
-    const atraiDataMethod = {
-      id: "atrai-data",
-      label: t("nav.Atrai Data"),
-      elementType: () => (
+    // Component to handle campaign-aware dataset loading
+    const ATRAIDataPanelWrapper = () => {
+      // Get the active campaign from Redux store
+      const activeCampaign = useSelector(
+        (state: RootState) => state.campaign.activeCampaign,
+      );
+
+      return (
         <ATRAIDataPanel
-          datasets={getAllDatasets()}
+          datasets={getDatasetsByCampaign(activeCampaign)}
           onClose={() => {
             // Modal close will be handled by the parent modal system
             if (props.onClose) {
@@ -52,7 +57,14 @@ function CustomAddDataModalFactory(...args: any[]) {
             }
           }}
         />
-      ),
+      );
+    };
+
+    // Create the ATRAI Data loading method configuration
+    const atraiDataMethod = {
+      id: "atrai-data",
+      label: t("nav.Atrai Data"),
+      elementType: ATRAIDataPanelWrapper,
       tabElementType: ({ onClick }) => (
         <div
           onClick={onClick}
