@@ -16,14 +16,14 @@ import App from "@/App";
 import { updateMapById } from "@/supabase/updateMap";
 
 import { exportKeplerDatasetAndConfig } from "@/supabase/exportKeplerMap";
-import { useRefresh } from "@/context/RefreshContext";
+// import { useRefresh } from "@/context/RefreshContext";
 
 import { formatUrlPath } from "@/supabase/formatPath";
 
 export default function MapPage() {
   const { t } = useTranslation();
   const { session, authLoading } = UserAuth();
-  const { triggerRefresh } = useRefresh();
+  // const { triggerRefresh } = useRefresh();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { mapId } = useMatch(mapDetailRoute);
@@ -91,7 +91,7 @@ export default function MapPage() {
         dataset: dataset,
         config: config,
       });
-      triggerRefresh();
+      // triggerRefresh();
       setIsEditingTitle(false);
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

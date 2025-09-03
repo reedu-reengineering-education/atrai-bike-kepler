@@ -14,7 +14,7 @@ export function RefreshProvider({ children }: { children: React.ReactNode }) {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const triggerRefresh = () => {
-    setRefreshKey((prev) => prev + 1);
+    // setRefreshKey((prev) => prev + 1);
   };
 
   return (

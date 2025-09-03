@@ -1,0 +1,623 @@
+{
+  "info": {
+    "label": "osem_bike_data",
+    "type": "vector-tile",
+    "format": "rows",
+    "id": "95k9n58b"
+  },
+  "data": {
+    "fields": [
+      {
+        "name": "Acceleration X",
+        "id": "Acceleration X",
+        "format": "",
+        "filterProps": {
+          "domain": [0, 1],
+          "value": [0, 1],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Acceleration Y",
+        "id": "Acceleration Y",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Acceleration Z",
+        "id": "Acceleration Z",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM1",
+        "id": "Finedust PM1",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM10",
+        "id": "Finedust PM10",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM2.5",
+        "id": "Finedust PM2.5",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM4",
+        "id": "Finedust PM4",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Overtaking Distance",
+        "id": "Overtaking Distance",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Overtaking Manoeuvre",
+        "id": "Overtaking Manoeuvre",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Rel. Humidity",
+        "id": "Rel. Humidity",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Speed",
+        "id": "Speed",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Standing",
+        "id": "Standing",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Anomaly",
+        "id": "Surface Anomaly",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Asphalt",
+        "id": "Surface Asphalt",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Compacted",
+        "id": "Surface Compacted",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Paving",
+        "id": "Surface Paving",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Sett",
+        "id": "Surface Sett",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Temperature",
+        "id": "Temperature",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "boxId",
+        "id": "boxId",
+        "format": "",
+        "filterProps": {
+          "domain": [],
+          "value": [],
+          "type": "multiSelect",
+          "gpu": false
+        },
+        "type": "string",
+        "analyzerType": "STRING"
+      },
+      {
+        "name": "createdAt",
+        "id": "createdAt",
+        "format": "",
+        "filterProps": {
+          "domain": [],
+          "value": [],
+          "type": "multiSelect",
+          "gpu": false
+        },
+        "type": "string",
+        "analyzerType": "STRING"
+      }
+    ],
+    "rows": []
+  },
+  "metadata": {
+    "attributions": [],
+    "metaJson": null,
+    "bounds": [-46.7571883, -23.7096077, 13.469011, 54.1004544],
+    "center": null,
+    "maxZoom": null,
+    "minZoom": null,
+    "fields": [
+      {
+        "name": "Acceleration X",
+        "id": "Acceleration X",
+        "format": "",
+        "filterProps": {
+          "domain": [0, 1],
+          "value": [0, 1],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Acceleration Y",
+        "id": "Acceleration Y",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Acceleration Z",
+        "id": "Acceleration Z",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM1",
+        "id": "Finedust PM1",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM10",
+        "id": "Finedust PM10",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM2.5",
+        "id": "Finedust PM2.5",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Finedust PM4",
+        "id": "Finedust PM4",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Overtaking Distance",
+        "id": "Overtaking Distance",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Overtaking Manoeuvre",
+        "id": "Overtaking Manoeuvre",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Rel. Humidity",
+        "id": "Rel. Humidity",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Speed",
+        "id": "Speed",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Standing",
+        "id": "Standing",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Anomaly",
+        "id": "Surface Anomaly",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Asphalt",
+        "id": "Surface Asphalt",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Compacted",
+        "id": "Surface Compacted",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Paving",
+        "id": "Surface Paving",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Surface Sett",
+        "id": "Surface Sett",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "Temperature",
+        "id": "Temperature",
+        "format": "",
+        "filterProps": {
+          "domain": [null, null],
+          "value": [null, null],
+          "type": "range",
+          "typeOptions": ["range"],
+          "gpu": true,
+          "step": 0.1
+        },
+        "type": "real",
+        "analyzerType": "FLOAT"
+      },
+      {
+        "name": "boxId",
+        "id": "boxId",
+        "format": "",
+        "filterProps": {
+          "domain": [],
+          "value": [],
+          "type": "multiSelect",
+          "gpu": false
+        },
+        "type": "string",
+        "analyzerType": "STRING"
+      },
+      {
+        "name": "createdAt",
+        "id": "createdAt",
+        "format": "",
+        "filterProps": {
+          "domain": [],
+          "value": [],
+          "type": "multiSelect",
+          "gpu": false
+        },
+        "type": "string",
+        "analyzerType": "STRING"
+      }
+    ],
+    "name": "osem_bike_data",
+    "description": "public.osem_bike_data.geometry",
+    "type": "remote",
+    "remoteTileFormat": "mvt",
+    "tilesetDataUrl": "https://martin.atrai.bike/osem_bike_data/{z}/{x}/{y}",
+    "tilesetMetadataUrl": "https://martin.atrai.bike/osem_bike_data"
+  },
+  "supportedFilterTypes": ["real", "integer"],
+  "disableDataOperation": true
+}

@@ -2,11 +2,16 @@ import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
 import DistancesImageUrl from "@/assets/distances.png";
 import {
   useLazyGetDistanceFlowQuery,
+  useLazyGetOsemBikeDataQuery,
   useLazyGetRoadRoughnessQuery,
 } from "@/lib/redux/keplerApi";
-import { DISTANCES_FLOWMAP_INFO, ROAD_ROUGHNESS_INFO } from "./dataset-info";
+import {
+  DISTANCES_FLOWMAP_INFO,
+  OSEM_BIKE_DATA,
+  ROAD_ROUGHNESS_INFO,
+} from "./dataset-info";
 import React from "react";
-import { SpaceIcon, WavesIcon } from "lucide-react";
+import { BikeIcon, SpaceIcon, WavesIcon } from "lucide-react";
 
 /**
  * Configuration interface for ATRAI datasets
@@ -17,7 +22,7 @@ export interface DatasetConfig {
   /** Display label for the dataset */
   label: string;
   /** URL or imported image for the dataset preview */
-  imageUrl: string;
+  imageUrl?: string;
   /** Icon name from Lucide React for the dataset */
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   /** Icon color (CSS color value) */
@@ -52,6 +57,14 @@ export interface DatasetRegistry {
  * 4. Add the preview image to the assets folder
  */
 export const ATRAI_DATASETS: DatasetRegistry = {
+  osem_bike_data: {
+    id: "osem_bike_data",
+    label: "openSenseMap Bike Data",
+    icon: BikeIcon,
+    iconColor: "#0ea5e9", // Blue color
+    queryHook: useLazyGetOsemBikeDataQuery,
+    datasetInfo: OSEM_BIKE_DATA,
+  },
   road_roughness: {
     id: "road_roughness",
     label: "Road Roughness",
