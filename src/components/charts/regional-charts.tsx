@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   BarChart,
   Bar,
@@ -21,7 +20,7 @@ import {
   TableHead,
   TableCell,
 } from "../ui/table";
-import { useSelector } from "react-redux";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export type WeeklyStat = {
   week: string;
@@ -36,11 +35,11 @@ export type RegionStats = {
   weekly_stats: WeeklyStat[];
 };
 
-interface RegionStatsWithChartProps {
-  data: RegionStats[];
-}
-
-export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
+export function RegionStatsWithChart({
+  activeRegion: activeRegion,
+}: {
+  activeRegion: RegionStats;
+}) {
   const { t } = useTranslation();
 
   // Properties available for toggling
@@ -62,111 +61,150 @@ export function RegionStatsWithChart({ data }: RegionStatsWithChartProps) {
     },
   ];
 
-  // State for selected property
+  // State for selected property and pagination
   const [selectedProperty, setSelectedProperty] = useState(
     chartProperties[0].key,
   );
-  const activeCampaign = useSelector(
-    (state: any) => state.campaign.activeCampaign,
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  // Pagination logic
+  const paginatedData = useMemo(() => {
+    if (!activeRegion?.weekly_stats) return [];
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return activeRegion.weekly_stats.slice(startIndex, endIndex);
+  }, [activeRegion?.weekly_stats, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(
+    (activeRegion?.weekly_stats?.length || 0) / itemsPerPage,
   );
 
-  const activeRegion = data.find(
-    (region) => region.region.toLowerCase() === activeCampaign?.toLowerCase(),
-  );
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
   return (
-    <div className="space-y-10">
-      <Card key={activeRegion?.region}>
-        <CardHeader>
-          <CardTitle className="capitalize">{activeRegion?.region}</CardTitle>
-        </CardHeader>
+    <div className="space-y-12 pt-6 px-6">
+      <h2 className="text-2xl font-bold capitalize">{activeRegion?.region}</h2>
 
-
-        <CardContent>
-          {/* Table summary */}
-          <div className="overflow-x-auto mb-6">
-            <Table className="min-w-full text-sm text-left">
-              <TableHeader>
-                <TableRow className="border-b">
-                  <TableHead className="p-2 font-semibold">Week</TableHead>
-                  <TableHead className="p-2 font-semibold">
-                    Trip Count
-                  </TableHead>
-                  <TableHead className="p-2 font-semibold">
-                    Avg Duration (s)
-                  </TableHead>
-                  <TableHead className="p-2 font-semibold">
-                    Avg Speed (km/h)
-                  </TableHead>
-                  <TableHead className="p-2 font-semibold">
-                    Total kcal
-                  </TableHead>
+      {/* Table summary with pagination */}
+      <div className="space-y-4">
+        <div className="overflow-x-auto">
+          <Table className="min-w-full text-sm text-left">
+            <TableHeader>
+              <TableRow className="border-b">
+                <TableHead className="p-2 font-semibold">Week</TableHead>
+                <TableHead className="p-2 font-semibold">Trip Count</TableHead>
+                <TableHead className="p-2 font-semibold">
+                  Avg Duration (s)
+                </TableHead>
+                <TableHead className="p-2 font-semibold">
+                  Avg Speed (km/h)
+                </TableHead>
+                <TableHead className="p-2 font-semibold">Total kcal</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {paginatedData.map((weekStat) => (
+                <TableRow key={weekStat.week}>
+                  <TableCell className="font-medium">
+                    {new Date(weekStat.week).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell>{weekStat.trip_count}</TableCell>
+                  <TableCell>
+                    {weekStat.average_duration_s.toFixed(2)}
+                  </TableCell>
+                  <TableCell>{weekStat.average_speed_kmh.toFixed(2)}</TableCell>
+                  <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
                 </TableRow>
-              </TableHeader>
-              <TableBody>
-                {activeRegion?.weekly_stats.map((weekStat) => (
-                  <TableRow key={weekStat.week}>
-                    <TableCell className="font-medium">
-                      {new Date(weekStat.week).toLocaleDateString()}
-                    </TableCell>
-                    <TableCell>{weekStat.trip_count}</TableCell>
-                    <TableCell>
-                      {weekStat.average_duration_s.toFixed(2)}
-                    </TableCell>
-                    <TableCell>
-                      {weekStat.average_speed_kmh.toFixed(2)}
-                    </TableCell>
-                    <TableCell>{weekStat.total_kcal.toFixed(2)}</TableCell>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
 
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-
-          {/* Toggle for chart property */}
-          <div className="mb-4 flex gap-2">
-            {chartProperties.map((prop) => (
+        {/* Pagination controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-between">
+            <div className="text-sm text-gray-600">
+              Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
+              {Math.min(
+                currentPage * itemsPerPage,
+                activeRegion?.weekly_stats?.length || 0,
+              )}{" "}
+              of {activeRegion?.weekly_stats?.length || 0} entries
+            </div>
+            <div className="flex items-center space-x-2">
               <Button
-                key={prop.key}
-                onClick={() => setSelectedProperty(prop.key)}
+                variant="outline"
+                size="sm"
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
               >
-                {prop.label}
+                <ChevronLeft className="h-4 w-4" />
+                Previous
               </Button>
-            ))}
+              <span className="text-sm">
+                Page {currentPage} of {totalPages}
+              </span>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+              >
+                Next
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
+        )}
+      </div>
 
-          {/* Fancy chart */}
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={activeRegion?.weekly_stats}>
-              <XAxis
-                dataKey="week"
-                tickFormatter={(date) => new Date(date).toLocaleDateString()}
-              />
-              <YAxis />
-              <Tooltip
-                labelFormatter={(label) =>
-                  `Week of ${new Date(label).toLocaleDateString()}`
-                }
-              />
-              <Legend />
-              {chartProperties
-                .filter((prop) => prop.key === selectedProperty)
-                .map((prop) => (
-                  <Bar
-                    key={prop.key}
-                    dataKey={prop.key}
-                    fill={prop.color}
-                    name={prop.label}
-                    radius={4}
-                  />
-                ))}
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
+      {/* Toggle for chart property */}
+      <div className="flex gap-2 pt-8">
+        {chartProperties.map((prop) => (
+          <Button
+            key={prop.key}
+            variant={selectedProperty === prop.key ? "default" : "outline"}
+            onClick={() => setSelectedProperty(prop.key)}
+          >
+            {prop.label}
+          </Button>
+        ))}
+      </div>
 
-            
+      {/* Chart */}
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart data={activeRegion?.weekly_stats}>
+          <XAxis
+            dataKey="week"
+            tickFormatter={(date) => new Date(date).toLocaleDateString()}
+          />
+          <YAxis />
+          <Tooltip
+            labelFormatter={(label) =>
+              `Week of ${new Date(label).toLocaleDateString()}`
+            }
+          />
+          <Legend />
+          {chartProperties
+            .filter((prop) => prop.key === selectedProperty)
+            .map((prop) => (
+              <Bar
+                key={prop.key}
+                dataKey={prop.key}
+                fill={prop.color}
+                name={prop.label}
+                radius={4}
+              />
+            ))}
+        </BarChart>
+      </ResponsiveContainer>
     </div>
   );
 }
