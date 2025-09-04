@@ -3,8 +3,6 @@ import DistancesImageUrl from "@/assets/distances.png";
 // Using existing images as placeholders for danger zones
 import DangerZonesImageUrl from "@/assets/road-roughness.png";
 import {
-  useLazyGetDistanceFlowQuery,
-  useLazyGetRoadRoughnessQuery,
   useLazyGetDangerZonesQuery,
   useLazyGetAirPollutionQuery,
   useLazyGetBumpyRoadsQuery,
@@ -13,8 +11,6 @@ import {
   useLazyGetTrafficFlowQuery,
 } from "@/lib/redux/keplerApi";
 import {
-  DISTANCES_FLOWMAP_INFO,
-  ROAD_ROUGHNESS_INFO,
   DANGER_ZONES_INFO,
   AIR_POLLUTION_INFO,
   BUMPY_ROADS_INFO,
@@ -80,24 +76,24 @@ export interface DatasetRegistry {
  * 4. Add the preview image to the assets folder
  */
 export const ATRAI_DATASETS: DatasetRegistry = {
-  road_roughness: {
-    id: "road_roughness",
-    label: "Road Roughness",
-    imageUrl: RoadRoughnessImageUrl,
-    icon: WavesIcon,
-    iconColor: "#0ea5e9", // Blue color
-    queryHook: useLazyGetRoadRoughnessQuery,
-    datasetInfo: ROAD_ROUGHNESS_INFO,
-  },
-  distances_flowmap: {
-    id: "distances_flowmap",
-    label: "Overtaking Distances",
-    imageUrl: DistancesImageUrl,
-    icon: SpaceIcon,
-    iconColor: "#0ea5e9", // Blue color
-    queryHook: useLazyGetDistanceFlowQuery,
-    datasetInfo: DISTANCES_FLOWMAP_INFO,
-  },
+  // road_roughness: {
+  //   id: "road_roughness",
+  //   label: "Road Roughness",
+  //   imageUrl: RoadRoughnessImageUrl,
+  //   icon: WavesIcon,
+  //   iconColor: "#0ea5e9", // Blue color
+  //   queryHook: useLazyGetRoadRoughnessQuery,
+  //   datasetInfo: ROAD_ROUGHNESS_INFO,
+  // },
+  // distances_flowmap: {
+  //   id: "distances_flowmap",
+  //   label: "Overtaking Distances",
+  //   imageUrl: DistancesImageUrl,
+  //   icon: SpaceIcon,
+  //   iconColor: "#0ea5e9", // Blue color
+  //   queryHook: useLazyGetDistanceFlowQuery,
+  //   datasetInfo: DISTANCES_FLOWMAP_INFO,
+  // },
   danger_zones: {
     id: "danger_zones",
     label: "Danger Zones",
