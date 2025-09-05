@@ -1,13 +1,12 @@
 import i18n from "@/i18n";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { setLocale } from "@reedu-kepler.gl/actions";
 import { useDispatch, useSelector } from "react-redux";
 
-const LOCAL_STORAGE_KEY = "keplerLocale";
+const I18NEXT_LNG_LOCAL_STORAGE_KEY = "i18nextLng";
 
 export function LanguageToggle() {
-  const [, setLanguage] = useState(i18n.language);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -16,30 +15,21 @@ export function LanguageToggle() {
   );
 
   useEffect(() => {
-    const savedKeplerLocale = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (savedKeplerLocale) {
-      dispatch(setLocale(savedKeplerLocale));
-      if (i18n.language !== savedKeplerLocale) {
-        i18n.changeLanguage(savedKeplerLocale);
-        setLanguage(savedKeplerLocale);
-      }
-    } else if (keplerLocale && i18n.language !== keplerLocale) {
-      i18n.changeLanguage(keplerLocale);
-      setLanguage(keplerLocale);
+    const savedI18nLanguage = localStorage.getItem(
+      I18NEXT_LNG_LOCAL_STORAGE_KEY,
+    );
+    if (savedI18nLanguage) {
+      dispatch(setLocale(savedI18nLanguage));
     }
-  }, [dispatch, keplerLocale]);
+  }, [dispatch, keplerLocale, t]);
 
   const changeLanguage = (lang: string) => {
     if (i18n.language !== lang) {
       i18n.changeLanguage(lang);
-      dispatch(setLocale(lang));
-      localStorage.setItem(LOCAL_STORAGE_KEY, lang);
-      setLanguage(lang);
     }
   };
 
   return (
-
     <div className="flex items-center justify-between w-full">
       {["de", "en", "pt"].map((lng) => (
         <button
@@ -57,7 +47,6 @@ export function LanguageToggle() {
           {lng.toUpperCase()}
         </button>
       ))}
-
     </div>
   );
 }
