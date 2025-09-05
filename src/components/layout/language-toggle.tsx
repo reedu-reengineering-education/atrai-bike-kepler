@@ -18,8 +18,11 @@ export function LanguageToggle() {
     const savedI18nLanguage = localStorage.getItem(
       I18NEXT_LNG_LOCAL_STORAGE_KEY,
     );
-    if (savedI18nLanguage) {
+    if (savedI18nLanguage && ["en", "de", "pt"].includes(savedI18nLanguage)) {
       dispatch(setLocale(savedI18nLanguage));
+    } else {
+      dispatch(setLocale("en"));
+      changeLanguage("en");
     }
   }, [dispatch, keplerLocale, t]);
 
