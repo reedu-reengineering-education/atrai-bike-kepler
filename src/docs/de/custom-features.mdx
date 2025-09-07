@@ -1,53 +1,77 @@
-# 🚀 Benutzerdefinierte Funktionen in unserer Kepler.gl-Integration
+# 🔧 Benutzerdefinierte Funktionen in unserer Kepler.gl-Integration
 
-Wir haben das Kernpaket **[Kepler.gl](https://kepler.gl/)** erweitert, um es besser an die Anforderungen unseres Projekts anzupassen.  
-Unten finden Sie eine Übersicht der neuen Funktionen, warum wir sie hinzugefügt haben und wie Sie sie verwenden können.
+Wir haben das Kernpaket **[Kepler.gl](https://kepler.gl/)** erweitert, um besser auf die Anforderungen unseres Projekts einzugehen.  
+Nachfolgend finden Sie eine Übersicht über die neuen Funktionen, warum wir sie hinzugefügt haben und wie sie verwendet werden.
 
 ---
 
 ## 🌍 Mehrsprachige Unterstützung
 
-Wir haben **Deutsch** als zusätzliche Sprachoption hinzugefügt.
+Wir haben die Mehrsprachigkeit auf **zwei Ebenen** implementiert:
 
-- Benutzer können einfach zwischen Englisch und Deutsch wechseln.
-- Alle UI-Beschriftungen, Menüs und Tooltips wurden übersetzt.
-- Dies macht die Plattform für ein breiteres Publikum in der DACH-Region zugänglich.
+1. **Kepler.gl Kernanpassung**
 
-> 💡 _Wenn Sie weitere Übersetzungen beitragen möchten, sehen Sie im `i18n`-Ordner des Repositories nach._
+   - Wir haben Kepler.gl selbst erweitert und **Deutsch** als integrierte Sprache hinzugefügt.
+   - Alle Kepler.gl-Beschriftungen, Menüs und Tooltips können auf Deutsch angezeigt werden.
+
+2. **Benutzerdefiniertes Seitenpanel (App i18n)**
+   - In der benutzerdefinierten Seitenleiste unserer Anwendung haben wir einen **Sprachumschalter** hinzugefügt.
+   - Unterstützte Sprachen: **Englisch, Deutsch, Portugiesisch**
+   - Damit werden Übersetzungen für zusätzliche UI-Elemente, Menüs und benutzerdefinierte Funktionen gesteuert.
+
+Damit sind sowohl die **Kepler.gl-Kernoberfläche** als auch unsere **erweiterten Funktionen** mehrsprachig verfügbar.
 
 ---
 
-## 📊 Vorgefertigte Beispielkarten
+## 🗂️ Atrai-Daten
 
-Um Benutzern sofortiges Erkunden von Daten zu ermöglichen, haben wir zwei **vorgefertigte Karten** hinzugefügt:
+Um den Nutzern sofortiges Erkunden von Daten zu ermöglichen, stellen wir mehrere **vorgefertigte Kartendatensätze** bereit:
 
-1. **Straßenglätte-Daten**
+- **Gefahrenzonen** – Markiert unfallgefährdete oder risikoreiche Bereiche.
+- **Luftverschmutzung** – Visualisiert Verschmutzungswerte in verschiedenen Regionen.
+- **Unebene Straßen** – Zeigt beschädigte Straßen und Infrastrukturprobleme.
+- **Überholabstände** – Stellt gemessene Überholabstände auf ausgewählten Strecken dar.
+- **Geschwindigkeitskarten** – Zeigt Durchschnittsgeschwindigkeiten auf verschiedenen Straßen.
+- **Verkehrsfluss** – Stellt Fahrzeugdichte und Bewegungsmuster dar.
 
-   - Zeigt Datensätze zum Straßenzustand (Glätte-Indizes) an.
-   - Ermöglicht Filterung und Vergleich zwischen verschiedenen Straßenabschnitten.
+Benutzer können diese Datensätze direkt über das Dashboard öffnen und wie jede andere Kepler.gl-Karte interaktiv nutzen.
 
-2. **Überholabstände**
-   - Visualisiert gemessene Überholabstände auf ausgewählten Routen.
-   - Hilft Forschern und Verkehrsingenieuren, sicherheitsrelevante Muster zu analysieren.
+---
 
-Benutzer können diese Karten direkt über das Dashboard öffnen und wie jede andere Kepler.gl-Karte interaktiv nutzen.
+## 📈 Statistiken
+
+Wir haben ein **Kampagnen-Statistikmodul** hinzugefügt, mit dem Benutzer Mobilitäts- und Sicherheitsdaten verschiedener Kampagnen analysieren können (z. B. Wiesbaden, Münster, São Paulo, Arnsberg, Greifswald).
+
+### 🔍 Verfügbare Kennzahlen
+
+- 🚴 **Anzahl der Fahrten** – Gesamtzahl der erfassten Fahrten.
+- ⏱️ **Durchschnittliche Dauer** – Mittlere Fahrzeit.
+- 🛣️ **Durchschnittsgeschwindigkeit** – Berechnet über ausgewählte Fahrten.
+- 📊 **Gesamt-CLA** – Aggregierte Kampagnenkennzahlen.
+
+### 📊 Ansichtsmöglichkeiten
+
+- **Diagramme** – Interaktive Visualisierungen für schnelle Einblicke.
+- **Tabellen** – Strukturierte Tabellenansicht für detaillierte Analysen.
+
+Benutzer können je nach Analysebedarf zwischen Diagramm- und Tabellenansicht wechseln.
 
 ---
 
 ## 🔐 Supabase-Integration für Benutzerkonten
 
-Wir haben **[Supabase](https://supabase.com/)** integriert, um Authentifizierung und persistente Speicherung zu verwalten.
+Wir haben **[Supabase](https://supabase.com/)** zur Verwaltung von Authentifizierung und persistentem Speicher integriert.
 
-### ✨ Was das ermöglicht:
+### ✨ Ermöglicht Folgendes
 
 - **Benutzerkonten** – Sicher registrieren und anmelden.
 - **Karten speichern** – Eigene Karten im Profil speichern.
-- **CRUD-Operationen** – Karten jederzeit erstellen, lesen, aktualisieren und löschen.
-- **Für Zusammenarbeit vorbereitet** – In Zukunft können wir das Teilen von Karten zwischen Konten ermöglichen.
+- **CRUD-Operationen** – Karten jederzeit erstellen, anzeigen, aktualisieren oder löschen.
+- **Zukunftssicher für Zusammenarbeit** – In Zukunft können Karten zwischen Konten geteilt werden.
 
-### 🔧 Funktionsweise:
+### 🔧 Funktionsweise
 
-- Beim Einloggen eines Benutzers werden seine Karten automatisch von Supabase abgerufen.
-- Das Speichern einer Karte schreibt deren Konfiguration + Datensatzreferenzen in Supabase.
-- Aktualisierungen werden sofort synchronisiert, sodass Sie immer dort weitermachen können, wo Sie aufgehört haben.
-- Das Löschen einer Karte entfernt sie sowohl aus der UI als auch aus dem Supabase-Backend.
+- Nach der Anmeldung werden die Karten eines Benutzers automatisch aus Supabase geladen.
+- Beim Speichern einer Karte werden deren Konfiguration + Datensatzreferenzen in Supabase geschrieben.
+- Updates werden sofort synchronisiert, sodass man jederzeit weitermachen kann.
+- Das Löschen einer Karte entfernt sie sowohl aus der Benutzeroberfläche als auch aus dem Supabase-Backend.

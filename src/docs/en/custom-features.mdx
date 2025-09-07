@@ -1,4 +1,4 @@
-# 🚀 Custom Features in Our Kepler.gl Integration
+# 🔧 Custom Features in Our Kepler.gl Integration
 
 We’ve extended the core **[Kepler.gl](https://kepler.gl/)** package to better suit our project needs.  
 Below you’ll find an overview of the new functionality, why we added it, and how to use it.
@@ -7,30 +7,54 @@ Below you’ll find an overview of the new functionality, why we added it, and h
 
 ## 🌍 Multi-Language Support
 
-We added **Deutsch (German)** as an additional language option.
+We implemented multilingual support at **two levels**:
 
-- Users can easily switch between English and German.
-- All UI labels, menus, and tooltips have been translated.
-- This helps make the platform accessible to a wider audience in the DACH region.
+1. **Kepler.gl Core Customization**
 
-> 💡 _If you’d like to contribute more translations, check out the `i18n` folder in the repo._
+   - We extended Kepler.gl itself to add **Deutsch (German)** as a built-in language.
+   - All Kepler.gl UI labels, menus, and tooltips can be displayed in German.
+
+2. **Custom Side Panel (App i18n)**
+   - In our application’s custom sidebar, we added a **language toggle**.
+   - Supported languages: **English, Deutsch (German), Português (Portuguese)**.
+   - This controls translations for our additional UI elements, menus, and custom features.
+
+Together, these ensure both the **Kepler.gl core interface** and our **extended features** are accessible in multiple languages.
 
 ---
 
-## 📊 Predefined Example Cards
+## 🗂️ Atrai Data
 
-To help users explore data immediately, we added two **preloaded map cards**:
+To help users explore data immediately, we provide several **preloaded map datasets**:
 
-1. **Road Roughness Data**
+- **Danger Zones** – Highlights accident-prone or high-risk areas.
+- **Air Pollution** – Visualizes pollution levels across regions.
+- **Bumpy Roads** – Shows rough surfaces and infrastructure issues.
+- **Overtaking Distances** – Displays measured overtaking distances on selected routes.
+- **Speed Maps** – Provides average speed information for different roads.
+- **Traffic Flow** – Represents vehicle density and movement patterns.
 
-   - Displays road condition datasets (roughness indices).
-   - Allows filtering and comparison between different road sections.
+Users can open these datasets directly from the dashboard and interact with them like any other Kepler.gl map.
 
-2. **Overtaking Distances**
-   - Visualizes measured overtaking distances on selected routes.
-   - Helps researchers and traffic engineers analyze safety-related patterns.
+---
 
-Users can open these cards directly from the dashboard and interact with them like any other Kepler.gl map.
+## 📈 Statistics
+
+We added a **campaign statistics module** where users can analyze mobility and safety data from different campaigns (e.g., Wiesbaden, Münster, São Paulo, Arnsberg, Greifswald).
+
+### 🔍 Available Metrics
+
+- 🚴 **Trip Counts** – Total number of trips recorded.
+- ⏱️ **Average Duration** – Mean trip time.
+- 🛣️ **Average Speed** – Calculated across selected trips.
+- 📊 **Total CLA** – Aggregated campaign-level analytics.
+
+### 📊 How to View
+
+- **Charts** – Interactive visualizations for quick insights.
+- **Tables** – Structured tabular view for detailed analysis.
+
+Users can switch between chart and table views depending on their analysis needs.
 
 ---
 
@@ -38,14 +62,14 @@ Users can open these cards directly from the dashboard and interact with them li
 
 We integrated **[Supabase](https://supabase.com/)** to manage authentication and persistent storage.
 
-### ✨ What this enables:
+### ✨ What this enables
 
 - **User Accounts** – Register and log in securely.
 - **Save Maps** – Store your custom maps in your profile.
 - **CRUD Operations** – Create, Read, Update, and Delete maps anytime.
 - **Collaboration Ready** – In the future, we can allow map sharing across accounts.
 
-### 🔧 How it works:
+### 🔧 How it works
 
 - When a user logs in, their maps are automatically fetched from Supabase.
 - Saving a map writes its configuration + dataset references to Supabase.
