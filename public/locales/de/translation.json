@@ -70,7 +70,8 @@
     "docs": "Dokumentation",
     "introduction": "Einführung",
     "get-started": "Erste Schritte",
-    "custom-features": "Benutzerdefinierte Funktionen"
+    "custom-features": "Benutzerdefinierte Funktionen",
+    "maps": "Karten"
   },
   "forgotPassword": {
     "heading": "Passwort zurücksetzen",
