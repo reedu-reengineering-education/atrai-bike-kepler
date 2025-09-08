@@ -71,7 +71,7 @@ function CustomAddDataModalFactory(...args: any[]) {
           className="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-100 rounded"
         >
           <BikeIcon className="w-4 h-4" />
-          <span>{t("nav.Atrai Data")}</span>
+          <span className="text-[14px]">{t("nav.Atrai Data")}</span>
         </div>
       ),
     };
