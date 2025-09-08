@@ -71,7 +71,8 @@
     "docs": "Documentation",
     "introduction": "Introduction",
     "get-started": "Get Started",
-    "custom-features": "Custom-Features"
+    "custom-features": "Custom-Features",
+    "maps": "Maps"
   },
   "forgotPassword": {
     "heading": "Reset Password",
