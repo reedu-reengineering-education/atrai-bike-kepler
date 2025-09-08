@@ -2,6 +2,42 @@ import { processGeojson } from "@reedu-kepler.gl/processors";
 import { addDataToMap, replaceDataInMap } from "@reedu-kepler.gl/actions";
 import store from "@/lib/redux/store";
 
+// Utility function to update config with dynamic dataId and label
+function updateConfigWithDynamicValues(
+  config: any,
+  datasetId: string,
+  label: string,
+) {
+  if (!config?.config?.visState?.layers) return config;
+
+  const updatedConfig = JSON.parse(JSON.stringify(config)); // Deep clone
+
+  // Update layers
+  updatedConfig.config.visState.layers.forEach((layer: any) => {
+    if (layer.config) {
+      // Update dataId and label in layer config
+      layer.config.dataId = datasetId;
+      layer.config.label = label;
+    }
+  });
+
+  // Update tooltip fieldsToShow keys
+  if (updatedConfig.config.visState.interactionConfig?.tooltip?.fieldsToShow) {
+    const fieldsToShow =
+      updatedConfig.config.visState.interactionConfig.tooltip.fieldsToShow;
+    const oldKeys = Object.keys(fieldsToShow);
+
+    oldKeys.forEach((oldKey) => {
+      if (oldKey !== datasetId) {
+        fieldsToShow[datasetId] = fieldsToShow[oldKey];
+        delete fieldsToShow[oldKey];
+      }
+    });
+  }
+
+  return updatedConfig;
+}
+
 export async function loadKeplerDataset({
   response,
   datasetId,
@@ -19,6 +55,9 @@ export async function loadKeplerDataset({
   if (!geojson) {
     return { error: { status: 500, statusText: "GeoJSON processing failed" } };
   }
+
+  // Update config with dynamic dataId and label values
+  const updatedConfig = updateConfigWithDynamicValues(config, datasetId, label);
 
   // Check if dataset already exists and handle replacement properly
   const currentState = store.getState();
@@ -69,7 +108,7 @@ export async function loadKeplerDataset({
             keepExistingConfig: true,
             autoCreateLayers: true,
           },
-          config: config,
+          config: updatedConfig,
         }),
       );
 
