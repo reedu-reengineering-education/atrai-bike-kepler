@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { ATRAIDataPanel } from "./atrai-data-panel";
 import { getDatasetsByCampaign } from "@/lib/kepler/dataset-registry";
-import { BikeIcon } from "lucide-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 
@@ -65,22 +64,19 @@ function CustomAddDataModalFactory(...args: any[]) {
       id: "atrai-data",
       label: t("nav.Atrai Data"),
       elementType: ATRAIDataPanelWrapper,
-      tabElementType: ({ onClick }) => (
-        <div
-          onClick={onClick}
-          className="flex items-center gap-2 cursor-pointer p-2 hover:bg-gray-100 rounded"
-        >
-          <BikeIcon className="w-4 h-4" />
-          <span className="text-[14px]">{t("nav.Atrai Data")}</span>
-        </div>
-      ),
+      tabElement: t("nav.Atrai Data"),
     };
 
     // Get the default loading methods from the base component
     const defaultMethods = LoadDataModal.defaultLoadingMethods || [];
 
+    // remove id storage from defaultMethods
+    const filteredDefaultMethods = defaultMethods.filter(
+      (method) => method.id !== "storage",
+    );
+
     // Add ATRAI Data as the first option, followed by existing options
-    const customLoadingMethods = [atraiDataMethod, ...defaultMethods];
+    const customLoadingMethods = [atraiDataMethod, ...filteredDefaultMethods];
 
     return <LoadDataModal {...props} loadingMethods={customLoadingMethods} />;
   };
