@@ -2,7 +2,7 @@ export function AirPollutionDE() {
   return (
     <div className="space-y-4">
       <p className="text-base">
-        Der <strong>PMAnalysis</strong> Prozessor bewertet die
+        Der <strong>PMAnalysis </strong> Prozessor bewertet die
         Feinstaubkonzentrationen (PM), die von Fahrradsensoren gesammelt werden.
         Er erstellt Visualisierungen und Heatmaps, um räumliche, zeitliche und
         saisonale Variationen der PM-Werte zu analysieren.
