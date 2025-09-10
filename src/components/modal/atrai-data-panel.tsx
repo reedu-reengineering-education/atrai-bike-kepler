@@ -140,9 +140,9 @@ function DatasetItem({
         </div>
 
         <div>
-          <h3 className="font-medium text-gray-900">{dataset.label}</h3>
+          <h3 className="font-medium text-gray-900">{t(dataset.label)}</h3>
           <p className="text-sm text-gray-500">
-            {dataset.datasetInfo.description}
+            {t(dataset.datasetInfo.description)}
           </p>
           {isLoaded && !isLoading && !hasError && (
             <p className="text-xs text-green-600 mt-1">
