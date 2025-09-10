@@ -67,3 +67,12 @@ export const AIR_POLLUTION_INFO = {
   configUrl:
     "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-air-pollution.json",
 };
+
+export const ROAD_NETWORK_INFO = {
+  title: "Road Network",
+  description:
+    "The road network dataset provides detailed information about the road infrastructure, including road surface.",
+  url: "https://api.atrai.bike/collections/road_network_*/items?f=json&limit=1000000",
+  configUrl:
+    "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-road-network.json",
+};

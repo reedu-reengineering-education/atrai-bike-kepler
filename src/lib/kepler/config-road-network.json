@@ -1,0 +1,174 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [
+        {
+          "dataId": ["road_network_muenster"],
+          "id": "x0qcqbb5v",
+          "name": ["surface"],
+          "type": "multiSelect",
+          "value": [],
+          "plotType": { "type": "histogram" },
+          "animationWindow": "free",
+          "yAxis": null,
+          "view": "side",
+          "speed": 1,
+          "enabled": true
+        }
+      ],
+      "layers": [
+        {
+          "id": "9da3bi4",
+          "type": "geojson",
+          "config": {
+            "dataId": "road_network_muenster",
+            "columnMode": "geojson",
+            "label": "Road Network - muenster",
+            "color": [231, 159, 213],
+            "highlightColor": [252, 242, 26, 255],
+            "columns": { "geojson": "_geojson" },
+            "isVisible": true,
+            "visConfig": {
+              "opacity": 0.8,
+              "strokeOpacity": 0.8,
+              "thickness": 1,
+              "strokeColor": null,
+              "colorRange": {
+                "name": "Global Warming",
+                "type": "sequential",
+                "category": "Uber",
+                "colors": [
+                  "#4C0035",
+                  "#880030",
+                  "#B72F15",
+                  "#D6610A",
+                  "#EF9100",
+                  "#FFC300"
+                ]
+              },
+              "strokeColorRange": {
+                "colors": [
+                  "#12939A",
+                  "#DDB27C",
+                  "#88572C",
+                  "#FF991F",
+                  "#F15C17",
+                  "#223F9A",
+                  "#DA70BF",
+                  "#125C77",
+                  "#4DC19C",
+                  "#776E57",
+                  "#17B8BE",
+                  "#F6D18A",
+                  "#B7885E",
+                  "#FFCB99",
+                  "#F89570",
+                  "#829AE3",
+                  "#E79FD5",
+                  "#1E96BE",
+                  "#89DAC1",
+                  "#B3AD9E"
+                ],
+                "name": "Uber Viz Qualitative",
+                "type": "qualitative",
+                "category": "Uber"
+              },
+              "radius": 10,
+              "sizeRange": [0, 10],
+              "radiusRange": [0, 50],
+              "heightRange": [0, 500],
+              "elevationScale": 5,
+              "stroked": true,
+              "filled": false,
+              "enable3d": false,
+              "wireframe": false,
+              "fixedHeight": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [255, 255, 255],
+                "size": 18,
+                "offset": [0, 0],
+                "anchor": "start",
+                "alignment": "center",
+                "outlineWidth": 0,
+                "outlineColor": [255, 0, 0, 255],
+                "background": false,
+                "backgroundColor": [0, 0, 200, 255]
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": null,
+            "colorScale": "quantile",
+            "strokeColorField": { "name": "surface", "type": "string" },
+            "strokeColorScale": "ordinal",
+            "sizeField": null,
+            "sizeScale": "linear",
+            "heightField": null,
+            "heightScale": "linear",
+            "radiusField": null,
+            "radiusScale": "linear"
+          }
+        }
+      ],
+      "effects": [],
+      "interactionConfig": {
+        "tooltip": {
+          "fieldsToShow": {
+            "road_network_muenster": [
+              { "name": "osmid", "format": null },
+              { "name": "surface", "format": null },
+              { "name": "name", "format": null }
+            ]
+          },
+          "compareMode": false,
+          "compareType": "absolute",
+          "enabled": true
+        },
+        "brush": { "size": 0.5, "enabled": false },
+        "geocoder": { "enabled": false },
+        "coordinate": { "enabled": false }
+      },
+      "layerBlending": "normal",
+      "overlayBlending": "darken",
+      "splitMaps": [],
+      "animationConfig": { "currentTime": null, "speed": 1 },
+      "editor": { "features": [], "visible": true }
+    },
+    "mapState": {
+      "bearing": 0,
+      "dragRotate": false,
+      "latitude": 51.93792968085132,
+      "longitude": 7.5944313175589455,
+      "pitch": 0,
+      "zoom": 11.207850887946456,
+      "isSplit": false,
+      "isViewportSynced": true,
+      "isZoomLocked": false,
+      "splitMapViewports": []
+    },
+    "mapStyle": {
+      "styleType": "positron",
+      "topLayerGroups": {},
+      "visibleLayerGroups": {
+        "label": true,
+        "road": true,
+        "border": false,
+        "building": true,
+        "water": true,
+        "land": true,
+        "3d building": false
+      },
+      "threeDBuildingColor": [
+        232.7874787737094, 232.7874787737094, 230.92517894351974
+      ],
+      "backgroundColor": [0, 0, 0],
+      "mapStyles": {}
+    },
+    "uiState": { "mapControls": { "mapLegend": { "active": false } } }
+  }
+}
