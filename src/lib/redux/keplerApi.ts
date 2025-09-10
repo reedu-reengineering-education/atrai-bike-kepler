@@ -1,6 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import configJson from "@/lib/kepler/config.json";
 import configDistances from "@/lib/kepler/config-distances.json";
+import configStandingMvt from "@/lib/kepler/config-standing-mvt.json";
+import datasetStandingMvt from "@/lib/kepler/dataset-standing-mvt.json";
+import { loadKeplerDataset, loadMvtDataset } from "./loadkeplerData";
 import configDangerZones from "@/lib/kepler/config-danger-zones.json";
 import configAirPollution from "@/lib/kepler/config-air-pollution.json";
 import configBumpyRoads from "@/lib/kepler/config-bumpy-roads.json";
@@ -8,7 +11,6 @@ import configSpeedMap from "@/lib/kepler/config-speed-map.json";
 import configTrafficFlow from "@/lib/kepler/config-traffic-flow.json";
 import configRoadNetwork from "@/lib/kepler/config-road-network.json";
 import configOsemBikeData from "@/lib/kepler/config-osem-bike-data.json";
-import { loadKeplerDataset } from "./loadkeplerData";
 
 export const keplerApi = createApi({
   reducerPath: "keplerApi",
@@ -16,13 +18,24 @@ export const keplerApi = createApi({
     baseUrl: "https://api.atrai.bike/collections/",
   }),
   endpoints: (builder) => ({
+    getMvtOsemBikeData: builder.query<any, void>({
+      async queryFn() {
+        await loadMvtDataset({
+          dataset: datasetStandingMvt,
+          config: configStandingMvt, // this config is intentionally invalid to render all mvt points
+        });
+
+        return { data: [] };
+      },
+    }),
+
     getRoadRoughness: builder.query<any, void>({
       // @ts-expect-error is not assignable to type
       async queryFn(_arg, _queryApi, _extraOptions, baseQuery) {
         const response = await baseQuery(
           "road_roughness/items?f=json&limit=1000000",
         );
-        return loadKeplerDataset({
+        loadKeplerDataset({
           response,
           datasetId: "road_roughness",
           label: "Road Roughness",
@@ -333,6 +346,8 @@ export const keplerApi = createApi({
 });
 
 export const {
+  useGetMvtOsemBikeDataQuery,
+  useLazyGetMvtOsemBikeDataQuery,
   useGetRoadRoughnessQuery,
   useLazyGetRoadRoughnessQuery,
   useGetDistanceFlowQuery,

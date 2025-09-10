@@ -1,0 +1,140 @@
+{
+  "visState": {
+    "filters": [],
+    "layers": [
+      {
+        "id": "keqcqfq",
+        "type": "vectorTile",
+        "config": {
+          "dataId": "osem_bike_data_mvt",
+          "label": "osem_bike_data",
+          "color": [231, 159, 213],
+          "highlightColor": [252, 242, 26, 255],
+          "columns": {},
+          "isVisible": true,
+          "visConfig": {
+            "strokeColor": null,
+            "strokeOpacity": 0.8,
+            "radius": 2,
+            "radiusUnits": true,
+            "enable3d": false,
+            "stroked": false,
+            "transition": false,
+            "heightRange": [0, 500],
+            "elevationScale": 5,
+            "opacity": 0.8,
+            "colorRange": {
+              "name": "color.customPalette.custom.Standing",
+              "type": "custom",
+              "category": "Custom",
+              "colors": ["#FFFFFF", "#D000A8"],
+              "colorMap": [
+                [0.8, "#FFFFFF"],
+                [null, "#D000A8"]
+              ]
+            },
+            "radiusByZoom": { "enabled": false, "stops": null },
+            "dynamicColor": false,
+            "strokeColorRange": {
+              "name": "Global Warming",
+              "type": "sequential",
+              "category": "Uber",
+              "colors": [
+                "#4C0035",
+                "#880030",
+                "#B72F15",
+                "#D6610A",
+                "#EF9100",
+                "#FFC300"
+              ]
+            },
+            "sizeRange": [0, 10],
+            "strokeWidth": 0.5,
+            "radiusRange": [0, 1]
+          },
+          "hidden": false,
+          "textLabel": [
+            {
+              "field": null,
+              "color": [255, 255, 255],
+              "size": 18,
+              "offset": [0, 0],
+              "anchor": "start",
+              "alignment": "center",
+              "outlineWidth": 0,
+              "outlineColor": [255, 0, 0, 255],
+              "background": false,
+              "backgroundColor": [0, 0, 200, 255]
+            }
+          ]
+        },
+        "visualChannels": {
+          "colorField": { "name": "Standing", "type": "real" },
+          "colorScale": "custom",
+          "heightField": null,
+          "heightScale": "linear",
+          "strokeColorField": null,
+          "strokeColorScale": "quantile",
+          "sizeField": null,
+          "sizeScale": "linear",
+          "radiusField": null,
+          "radiusScale": "linear"
+        }
+      }
+    ],
+    "effects": [],
+    "interactionConfig": {
+      "tooltip": {
+        "fieldsToShow": {
+          "osem_bike_data_mvt": [
+            { "name": "Standing", "format": null },
+            { "name": "Speed", "format": null },
+            { "name": "boxId", "format": null }
+          ]
+        },
+        "compareMode": false,
+        "compareType": "absolute",
+        "enabled": true
+      },
+      "brush": { "size": 0.5, "enabled": false },
+      "geocoder": { "enabled": false },
+      "coordinate": { "enabled": false }
+    },
+    "layerBlending": "normal",
+    "overlayBlending": "darken",
+    "splitMaps": [],
+    "animationConfig": { "currentTime": null, "speed": 1 },
+    "editor": { "features": [], "visible": true }
+  },
+  "mapState": {
+    "bearing": 0,
+    "dragRotate": false,
+    "latitude": 51.95553470381655,
+    "longitude": 7.605447158488258,
+    "pitch": 0,
+    "zoom": 12.384760231860062,
+    "isSplit": false,
+    "isViewportSynced": true,
+    "isZoomLocked": false,
+    "splitMapViewports": []
+  },
+  "mapStyle": {
+    "styleType": "positron",
+    "topLayerGroups": {},
+    "visibleLayerGroups": {
+      "label": true,
+      "road": true,
+      "border": false,
+      "building": true,
+      "water": true,
+      "land": true,
+      "3d building": false
+    },
+    "threeDBuildingColor": [
+      232.7874787737094, 232.7874787737094, 230.92517894351974
+    ],
+    "backgroundColor": [0, 0, 0],
+    "mapStyles": {}
+  },
+  "uiState": { "mapControls": { "mapLegend": { "active": false } } }
+}

@@ -44,6 +44,8 @@ const reducers = combineReducers({
 
 const store = configureStore({
   reducer: reducers,
+  // devTools: true,
+
   // @ts-expect-error: kepler.gl middleware typing is incompatible with Redux Toolkit
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({

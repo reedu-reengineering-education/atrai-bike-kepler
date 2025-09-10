@@ -1,7 +1,31 @@
 import { processGeojson } from "@reedu-kepler.gl/processors";
-import { addDataToMap, replaceDataInMap } from "@reedu-kepler.gl/actions";
+import {
+  addDataToMap,
+  replaceDataInMap,
+  updateVisData,
+} from "@reedu-kepler.gl/actions";
 import store from "@/lib/redux/store";
 
+export async function loadMvtDataset({
+  dataset,
+  config,
+}: {
+  dataset: any;
+  config: any;
+}) {
+  store.dispatch(
+    updateVisData(
+      dataset,
+      {
+        keepExistingConfig: true,
+        // autoCreateLayers: true,
+      },
+      config,
+    ),
+  );
+}
+
+// store.dispatch(addLayer(config));
 // Utility function to update config with dynamic dataId and label
 function updateConfigWithDynamicValues(
   config: any,

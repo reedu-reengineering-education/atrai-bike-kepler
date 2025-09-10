@@ -10,6 +10,7 @@ import {
   useLazyGetSpeedMapQuery,
   useLazyGetTrafficFlowQuery,
   useLazyGetRoadNetworkQuery,
+  useLazyGetMvtOsemBikeDataQuery,
 } from "@/lib/redux/keplerApi";
 import {
   DANGER_ZONES_INFO,
@@ -19,6 +20,7 @@ import {
   SPEED_MAP_INFO,
   TRAFFIC_FLOW_INFO,
   ROAD_NETWORK_INFO,
+  OSEM_BIKE_DATA,
 } from "./dataset-info";
 import React from "react";
 import {
@@ -29,6 +31,7 @@ import {
   ZapIcon,
   TrendingUpIcon,
   RailSymbolIcon,
+  BikeIcon,
 } from "lucide-react";
 
 /**
@@ -40,7 +43,7 @@ export interface DatasetConfig {
   /** Display label for the dataset */
   label: string;
   /** URL or imported image for the dataset preview */
-  imageUrl: string;
+  imageUrl?: string;
   /** Icon name from Lucide React for the dataset */
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   /** Icon color (CSS color value) */
@@ -97,6 +100,14 @@ export const ATRAI_DATASETS: DatasetRegistry = {
   //   queryHook: useLazyGetDistanceFlowQuery,
   //   datasetInfo: DISTANCES_FLOWMAP_INFO,
   // },
+  osem_bike_data: {
+    id: "osem_bike_data",
+    label: "openSenseMap Bike Data (Experimental)",
+    icon: BikeIcon,
+    iconColor: "#0ea5e9", // Blue color
+    queryHook: useLazyGetMvtOsemBikeDataQuery,
+    datasetInfo: OSEM_BIKE_DATA,
+  },
   danger_zones: {
     id: "danger_zones",
     label: "Danger Zones",
