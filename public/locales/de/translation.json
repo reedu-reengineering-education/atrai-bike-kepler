@@ -56,7 +56,8 @@
     "Custom Features": "Benutzerdefinierte Funktionen",
     "Atrai Data": "Atrai-Daten",
     "road roughness Dataset": "Datensatz zur Straßenbelag",
-    "overtaking distance Dataset": "Datensatz zum Überholabstand"
+    "overtaking distance Dataset": "Datensatz zum Überholabstand",
+    "Built-in Datasets": "Eingebaute Datensätze"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
@@ -86,7 +87,8 @@
     "introduction": "Einführung",
     "get-started": "Erste Schritte",
     "custom-features": "Benutzerdefinierte Funktionen",
-    "maps": "Karten"
+    "maps": "Karten",
+    "built-in-datasets": "Eingebaute Datensätze"
   },
   "forgotPassword": {
     "heading": "Passwort zurücksetzen",
