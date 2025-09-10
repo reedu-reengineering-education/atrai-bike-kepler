@@ -72,7 +72,8 @@
     "introduction": "introdução",
     "get-started": "primeiros-passos",
     "custom-features": "funcionalidades-personalizadas",
-    "maps": "Mapas"
+    "maps": "Mapas",
+    "built-in-datasets": "conjuntos-de-dados-integrados"
   },
   "forgotPassword": {
     "heading": "Redefinir Senha",

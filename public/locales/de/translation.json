@@ -72,7 +72,8 @@
     "introduction": "Einführung",
     "get-started": "Erste Schritte",
     "custom-features": "Benutzerdefinierte Funktionen",
-    "maps": "Karten"
+    "maps": "Karten",
+    "built-in-datasets": "Eingebaute Datensätze"
   },
   "forgotPassword": {
     "heading": "Passwort zurücksetzen",

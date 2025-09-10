@@ -1,0 +1,38 @@
+import { DatasetAccordion } from "@/components/datasets/DatasetAccordion";
+import { BumpyRoadsPT } from "@/components/datasets/pt/BumpyRoads";
+import { DangerZonesPT } from "@/components/datasets/pt/DangerZones";
+import { OvertakingDistancePT } from "@/components/datasets/pt/OvertakingDistance";
+import { AirPollutionPT } from "@/components/datasets/pt/AirPollution";
+import { SpeedTrafficFlowPT } from "@/components/datasets/pt/SpeedTrafficFlow";
+
+# Conjuntos de Dados Integrados
+
+<DatasetAccordion
+  items={[
+    {
+      value: "estradas-irregulares",
+      trigger: "🛣️ Conjunto de Estradas Irregulares",
+      content: <BumpyRoadsPT />,
+    },
+    {
+      value: "zonas-perigosas",
+      trigger: "🚨 Conjunto de Zonas Perigosas",
+      content: <DangerZonesPT />,
+    },
+    {
+      value: "distancias-ultrapassagem",
+      trigger: "📏 Conjunto de Distâncias de Ultrapassagem",
+      content: <OvertakingDistancePT />,
+    },
+    {
+      value: "poluicao-ar",
+      trigger: "🌫️ Conjunto de Poluição do Ar",
+      content: <AirPollutionPT />,
+    },
+    {
+      value: "velocidade-fluxo-trafego",
+      trigger: "🚴‍♂️ Conjunto de Velocidade & Fluxo de Tráfego",
+      content: <SpeedTrafficFlowPT />,
+    },
+  ]}
+/>

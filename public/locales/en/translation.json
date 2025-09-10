@@ -73,7 +73,8 @@
     "introduction": "Introduction",
     "get-started": "Get Started",
     "custom-features": "Custom-Features",
-    "maps": "Maps"
+    "maps": "Maps",
+    "built-in-datasets": "Built-in Datasets"
   },
   "forgotPassword": {
     "heading": "Reset Password",

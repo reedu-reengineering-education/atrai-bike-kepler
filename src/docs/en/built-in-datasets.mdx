@@ -1,0 +1,38 @@
+import { DatasetAccordion } from "@/components/datasets/DatasetAccordion";
+import { BumpyRoads } from "@/components/datasets/en/BumbyRoads";
+import { DangerZones } from "@/components/datasets/en/DangerZones";
+import { OvertakingDistance } from "@/components/datasets/en/OvertakingDistance";
+import { AirPollution } from "@/components/datasets/en/AirPollution";
+import { SpeedTrafficFlow } from "@/components/datasets/en/SpeedTrafficFlow";
+
+# Built-in Datasets
+
+<DatasetAccordion
+  items={[
+    {
+      value: "bumpy-roads",
+      trigger: "🛣️ Bumpy Roads Dataset",
+      content: <BumpyRoads />,
+    },
+    {
+      value: "danger-zones",
+      trigger: "🚨 Danger Zones Dataset",
+      content: <DangerZones />,
+    },
+    {
+      value: "distances",
+      trigger: "📏 Overtaking Distances Dataset",
+      content: <OvertakingDistance />,
+    },
+    {
+      value: "air-pollution",
+      trigger: "🌫️ Air Pollution Dataset",
+      content: <AirPollution />,
+    },
+    {
+      value: "speed-traffic-flow",
+      trigger: "🚴‍♂️ Speed & Traffic Flow Dataset",
+      content: <SpeedTrafficFlow />,
+    },
+  ]}
+/>
