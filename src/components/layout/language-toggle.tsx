@@ -1,11 +1,12 @@
 import i18n from "@/i18n";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { setLocale } from "@reedu-kepler.gl/actions";
 import { useDispatch, useSelector } from "react-redux";
 
+const I18NEXT_LNG_LOCAL_STORAGE_KEY = "i18nextLng";
+
 export function LanguageToggle() {
-  const [, setLanguage] = useState(i18n.language);
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -14,55 +15,41 @@ export function LanguageToggle() {
   );
 
   useEffect(() => {
-    if (keplerLocale && i18n.language !== keplerLocale) {
-      i18n.changeLanguage(keplerLocale);
-      setLanguage(keplerLocale);
+    const savedI18nLanguage = localStorage.getItem(
+      I18NEXT_LNG_LOCAL_STORAGE_KEY,
+    );
+    if (savedI18nLanguage && ["en", "de", "pt"].includes(savedI18nLanguage)) {
+      dispatch(setLocale(savedI18nLanguage));
+    } else {
+      dispatch(setLocale("en"));
+      changeLanguage("en");
     }
-  }, [keplerLocale, i18n]);
+  }, [dispatch, keplerLocale, t]);
 
   const changeLanguage = (lang: string) => {
     if (i18n.language !== lang) {
       i18n.changeLanguage(lang);
-      dispatch(setLocale(lang));
-      setLanguage(lang);
     }
   };
 
   return (
-    <div className="flex items-center justify-between w-full gap-2 flex-wrap">
-      <button
-        onClick={() => changeLanguage("de")}
-        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
-          i18n.language === "de"
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted"
-        }`}
-        title={t("language.german")}
-      >
-        DE
-      </button>
-      <button
-        onClick={() => changeLanguage("en")}
-        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
-          i18n.language === "en"
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted"
-        }`}
-        title={t("language.english")}
-      >
-        EN
-      </button>
-      <button
-        onClick={() => changeLanguage("pt")}
-        className={`flex-1 min-w-[40px] h-6  rounded-lg text-xs font-medium flex items-center justify-center transition ${
-          i18n.language === "pt"
-            ? "bg-primary text-primary-foreground"
-            : "bg-muted"
-        }`}
-        title={t("language.portuguese")}
-      >
-        PT
-      </button>
+    <div className="flex items-center justify-between w-full">
+      {["de", "en", "pt"].map((lng) => (
+        <button
+          key={lng}
+          onClick={() => changeLanguage(lng)}
+          className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+            i18n.language === lng
+              ? "bg-primary text-primary-foreground"
+              : "bg-muted"
+          }`}
+          title={t(
+            `language.${lng === "de" ? "german" : lng === "en" ? "english" : "portuguese"}`,
+          )}
+        >
+          {lng.toUpperCase()}
+        </button>
+      ))}
     </div>
   );
 }

@@ -2,15 +2,29 @@
   "version": "v1",
   "config": {
     "visState": {
-      "filters": [],
+      "filters": [
+        {
+          "dataId": ["overtaking_distance_muenster"],
+          "id": "jjxk651he",
+          "name": ["Number of Boxes"],
+          "type": "range",
+          "value": [1, 8],
+          "plotType": { "type": "histogram" },
+          "animationWindow": "free",
+          "yAxis": null,
+          "view": "side",
+          "speed": 1,
+          "enabled": true
+        }
+      ],
       "layers": [
         {
           "id": "sppwi6a",
           "type": "geojson",
           "config": {
-            "dataId": "distances_flowmap",
+            "dataId": "overtaking_distance_muenster",
             "columnMode": "geojson",
-            "label": "Overtaking Distance",
+            "label": "Overtaking Distance - muenster",
             "color": [231, 159, 213],
             "highlightColor": [252, 242, 26, 255],
             "columns": { "geojson": "_geojson" },
@@ -35,19 +49,19 @@
               },
               "strokeColorRange": {
                 "colors": [
-                  "#0198BD",
-                  "#42C1BC",
-                  "#9CE3B1",
-                  "#F5B272",
-                  "#EB7053",
-                  "#D50255"
+                  "#00939C",
+                  "#6BB5B9",
+                  "#AAD7D9",
+                  "#F4B198",
+                  "#DF744E",
+                  "#C22E00"
                 ],
-                "name": "Ice And Fire",
+                "name": "Uber Viz Diverging",
                 "type": "diverging",
                 "category": "Uber"
               },
               "radius": 10,
-              "sizeRange": [0, 10],
+              "sizeRange": [0.5, 3],
               "radiusRange": [0, 50],
               "heightRange": [0, 500],
               "elevationScale": 5,
@@ -80,8 +94,11 @@
               "name": "Average Normalized Overtaking Distance",
               "type": "real"
             },
-            "strokeColorScale": "quantize",
-            "sizeField": null,
+            "strokeColorScale": "quantile",
+            "sizeField": {
+              "name": "Average Overtaking Manoeuvre",
+              "type": "real"
+            },
             "sizeScale": "linear",
             "heightField": null,
             "heightScale": "linear",
@@ -94,10 +111,9 @@
       "interactionConfig": {
         "tooltip": {
           "fieldsToShow": {
-            "distances_flowmap": [
+            "overtaking_distance_muenster": [
               { "name": "name", "format": null },
               { "name": "Number of Points", "format": null },
-              { "name": "Average Overtaking Distance", "format": null },
               { "name": "Average Overtaking Manoeuvre", "format": null }
             ]
           },
@@ -118,10 +134,10 @@
     "mapState": {
       "bearing": 0,
       "dragRotate": false,
-      "latitude": 51.96141391581216,
-      "longitude": 7.620958479401018,
+      "latitude": 51.95422344864783,
+      "longitude": 7.624129559735412,
       "pitch": 0,
-      "zoom": 13.466704729789848,
+      "zoom": 13.071039102098068,
       "isSplit": false,
       "isViewportSynced": true,
       "isZoomLocked": false,

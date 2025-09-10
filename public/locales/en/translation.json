@@ -17,6 +17,21 @@
   "Regional Charts": "Regional Charts",
   "Sign out": "Sign out",
   "Platform": "Platform",
+  "Danger zones data for the selected campaign": "Danger zones data for the selected campaign",
+  "Overtaking distances flowmap data": "Overtaking distances flowmap data",
+  "Data showing road roughness in the city": "Data showing road roughness in the city",
+  "Bumpy roads data for the selected campaign": "Bumpy roads data for the selected campaign",
+  "Overtaking distance data for the selected campaign": "Overtaking distance data for the selected campaign",
+  "Speed map data for the selected campaign": "Speed map data for the selected campaign",
+  "Traffic flow data for the selected campaign": "Traffic flow data for the selected campaign",
+  "Fine dust (PM) pollution data for the selected campaign": "Fine dust (PM) pollution data for the selected campaign",
+  "Danger Zones": "Danger Zones",
+  "Air Pollution (PM)": "Air Pollution (PM)",
+  "Bumpy Roads": "Bumpy Roads",
+  "Overtaking Distance": "Overtaking Distance",
+  "Speed Map": "Speed Map",
+  "Traffic Flow": "Traffic Flow",
+
   "nav": {
     "playground": "Playground",
     "statistics": "Statistics",
@@ -41,7 +56,8 @@
     "Custom Features": "Custom Features",
     "Atrai Data": "Atrai Data",
     "road roughness Dataset": "Road Roughness Dataset",
-    "overtaking distance Dataset": "Overtaking Distance Dataset"
+    "overtaking distance Dataset": "Overtaking Distance Dataset",
+    "Built-in Datasets": "Built-in Datasets"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",
@@ -71,7 +87,9 @@
     "docs": "Documentation",
     "introduction": "Introduction",
     "get-started": "Get Started",
-    "custom-features": "Custom-Features"
+    "custom-features": "Custom-Features",
+    "maps": "Maps",
+    "built-in-datasets": "Built-in Datasets"
   },
   "forgotPassword": {
     "heading": "Reset Password",

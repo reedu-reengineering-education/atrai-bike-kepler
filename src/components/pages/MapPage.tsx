@@ -176,6 +176,7 @@ export default function MapPage() {
       breadcrumb={breadcrumb}
       breadcrumbRight={breadcrumbRight}
       urlPath={formatUrlPath(currentPath)}
+      // urlPath={["maps"]} it is a specific soluation for Map page
       className="p-0"
     >
       <App />

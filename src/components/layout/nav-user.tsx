@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  BadgeCheck,
-  Bell,
+  // BadgeCheck,
+  // Bell,
+  // CreditCard,
+  // Sparkles,
   ChevronsUpDown,
-  CreditCard,
-  Sparkles,
   User,
 } from "lucide-react";
 
@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
+  // DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -97,18 +97,18 @@ export function NavUser() {
                   </div>
                 </DropdownMenuLabel>
 
-                <DropdownMenuSeparator />
+                {/* <DropdownMenuSeparator /> */}
 
-                <DropdownMenuGroup>
+                {/* <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <Sparkles className="mr-2" />
                     {t("nav.Upgrade to Pro")}
                   </DropdownMenuItem>
-                </DropdownMenuGroup>
+                </DropdownMenuGroup> */}
 
-                <DropdownMenuSeparator />
+                {/* <DropdownMenuSeparator /> */}
 
-                <DropdownMenuGroup>
+                {/* <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <BadgeCheck className="mr-2" />
                     {t("nav.Account")}
@@ -121,7 +121,7 @@ export function NavUser() {
                     <Bell className="mr-2" />
                     {t("nav.Notifications")}
                   </DropdownMenuItem>
-                </DropdownMenuGroup>
+                </DropdownMenuGroup> */}
 
                 <DropdownMenuSeparator />
 

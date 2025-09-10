@@ -17,6 +17,21 @@
   "Regional Charts": "Regionale Diagramme",
   "Sign out": "Abmelden",
   "Platform": "Plattform",
+  "Danger zones data for the selected campaign": "Gefahrenzonen-Daten für die ausgewählte Kampagne",
+  "Overtaking distances flowmap data": "Daten zur Überholabstand-Flowmap",
+  "Data showing road roughness in the city": "Daten zur Straßenrauheit in der Stadt",
+  "Bumpy roads data for the selected campaign": "Daten zu holprigen Straßen für die ausgewählte Kampagne",
+  "Overtaking distance data for the selected campaign": "Daten zum Überholabstand für die ausgewählte Kampagne",
+  "Speed map data for the selected campaign": "Geschwindigkeitskartendaten für die ausgewählte Kampagne",
+  "Traffic flow data for the selected campaign": "Daten zum Verkehrsfluss für die ausgewählte Kampagne",
+  "Fine dust (PM) pollution data for the selected campaign": "Feinstaub (PM)-Verschmutzungsdaten für die ausgewählte Kampagne",
+  "Danger Zones": "Gefahrenzonen",
+  "Air Pollution (PM)": "Luftverschmutzung (PM)",
+  "Bumpy Roads": "Holprige Straßen",
+  "Overtaking Distance": "Überholabstand",
+  "Speed Map": "Geschwindigkeitskarte",
+  "Traffic Flow": "Verkehrsfluss",
+
   "nav": {
     "playground": "Spielplatz",
     "statistics": "Statistiken",
@@ -41,7 +56,8 @@
     "Custom Features": "Benutzerdefinierte Funktionen",
     "Atrai Data": "Atrai-Daten",
     "road roughness Dataset": "Datensatz zur Straßenbelag",
-    "overtaking distance Dataset": "Datensatz zum Überholabstand"
+    "overtaking distance Dataset": "Datensatz zum Überholabstand",
+    "Built-in Datasets": "Eingebaute Datensätze"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
@@ -70,7 +86,9 @@
     "docs": "Dokumentation",
     "introduction": "Einführung",
     "get-started": "Erste Schritte",
-    "custom-features": "Benutzerdefinierte Funktionen"
+    "custom-features": "Benutzerdefinierte Funktionen",
+    "maps": "Karten",
+    "built-in-datasets": "Eingebaute Datensätze"
   },
   "forgotPassword": {
     "heading": "Passwort zurücksetzen",
@@ -150,5 +168,8 @@
     "senseBoxBike": "senseBox:bike",
     "loginFirst": "Sie sollten sich zuerst anmelden.",
     "saveMapFailed": "Karte konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+  },
+  "datasets": {
+    "Danger zones data for the selected campaign": "Gefahrenzonen-Daten für die ausgewählte Kampagne"
   }
 }

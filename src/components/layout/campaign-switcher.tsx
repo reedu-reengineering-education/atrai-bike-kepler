@@ -18,7 +18,6 @@ import { getAllStatistics } from "@/lib/pygeiapi-client/statistics";
 import { setActiveCampaign } from "@/lib/redux/campaign-slice";
 import { useDispatch } from "react-redux";
 
-
 // Helper to render a simple SVG polygon icon from GeoJSON geometry
 function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
   // Use theme background (light) for SVG background
@@ -74,10 +73,11 @@ function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
 
 export function CampaignSwitcher() {
   const { isMobile } = useSidebar();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const [statistics, setStatistics] = React.useState<GeoJSON.Feature[]>([]);
-  const [activeStat, setActiveStat] = React.useState<GeoJSON.Feature | null>(null);
-  
+  const [activeStat, setActiveStat] = React.useState<GeoJSON.Feature | null>(
+    null,
+  );
 
   const getName = (feature: GeoJSON.Feature) =>
     feature.properties?.name || feature.id || "Unnamed";
@@ -90,7 +90,7 @@ export function CampaignSwitcher() {
 
   function handleSelect(stat: GeoJSON.Feature) {
     setActiveStat(stat);
-    dispatch(setActiveCampaign(getName(stat))); 
+    dispatch(setActiveCampaign(getName(stat)));
   }
 
   React.useEffect(() => {
@@ -99,7 +99,7 @@ export function CampaignSwitcher() {
       const first = data.features[0] || null;
       setActiveStat(first);
       if (first) {
-        dispatch(setActiveCampaign(getName(first))); 
+        dispatch(setActiveCampaign(getName(first)));
       }
     });
   }, [dispatch]);
@@ -139,7 +139,7 @@ export function CampaignSwitcher() {
             {statistics.map((stat, index) => (
               <DropdownMenuItem
                 key={stat.id || index}
-                onClick={() => handleSelect(stat)} 
+                onClick={() => handleSelect(stat)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">

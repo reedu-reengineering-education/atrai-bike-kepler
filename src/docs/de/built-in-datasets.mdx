@@ -1,0 +1,39 @@
+import { DatasetAccordion } from "@/components/datasets/DatasetAccordion";
+import { BumpyRoadsDE } from "@/components/datasets/de/BumbyRoads";
+import { DangerZonesDE } from "@/components/datasets/de/DangerZones";
+import { OvertakingDistanceDE } from "@/components/datasets/de/OvertakingDistance";
+import { AirPollutionDE } from "@/components/datasets/de/AirPollutionDE";
+
+import { SpeedTrafficFlowDE } from "@/components/datasets/de/SpeedTrafficFlow";
+
+# Eingebaute Datensätze
+
+<DatasetAccordion
+  items={[
+    {
+      value: "holprige-strassen",
+      trigger: "🛣️ Datensatz Holprige Straßen",
+      content: <BumpyRoadsDE />,
+    },
+    {
+      value: "gefahrenzonen",
+      trigger: "🚨 Datensatz Gefahrenzonen",
+      content: <DangerZonesDE />,
+    },
+    {
+      value: "ueberholabstaende",
+      trigger: "📏 Datensatz Überholabstände",
+      content: <OvertakingDistanceDE />,
+    },
+    {
+      value: "luftverschmutzung",
+      trigger: "🌫️ Datensatz Luftverschmutzung",
+      content: <AirPollutionDE />,
+    },
+    {
+      value: "geschwindigkeit-verkehrsfluss",
+      trigger: "🚴‍♂️ Datensatz Geschwindigkeit & Verkehrsfluss",
+      content: <SpeedTrafficFlowDE />,
+    },
+  ]}
+/>

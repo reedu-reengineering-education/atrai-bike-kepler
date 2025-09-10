@@ -1,0 +1,124 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "filters": [],
+      "layers": [
+        {
+          "id": "bbtbyq",
+          "type": "hexagon",
+          "config": {
+            "dataId": "danger_zones_muenster",
+            "label": "Danger Zones - muenster",
+            "color": [30, 150, 190],
+            "highlightColor": [252, 242, 26, 255],
+            "columns": { "lat": "lat", "lng": "lng" },
+            "isVisible": true,
+            "visConfig": {
+              "opacity": 0.8,
+              "worldUnitSize": 0.05,
+              "resolution": 8,
+              "colorRange": {
+                "colors": [
+                  "#EDD1CA",
+                  "#D1A5A8",
+                  "#AE7B90",
+                  "#83587A",
+                  "#563A5B",
+                  "#2C1E3D"
+                ],
+                "name": "Pink Wine",
+                "type": "sequential",
+                "category": "Uber",
+                "reversed": true
+              },
+              "coverage": 0.95,
+              "sizeRange": [0, 500],
+              "percentile": [0, 100],
+              "elevationPercentile": [0, 100],
+              "elevationScale": 5,
+              "enableElevationZoomFactor": true,
+              "fixedHeight": false,
+              "colorAggregation": "average",
+              "sizeAggregation": "count",
+              "enable3d": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [255, 255, 255],
+                "size": 18,
+                "offset": [0, 0],
+                "anchor": "start",
+                "alignment": "center",
+                "outlineWidth": 0,
+                "outlineColor": [255, 0, 0, 255],
+                "background": false,
+                "backgroundColor": [0, 0, 200, 255]
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": { "name": "Risk Index Overtaking", "type": "real" },
+            "colorScale": "quantile",
+            "sizeField": null,
+            "sizeScale": "linear"
+          }
+        }
+      ],
+      "effects": [],
+      "interactionConfig": {
+        "tooltip": {
+          "fieldsToShow": {
+            "danger_zones_muenster": [
+              { "name": "Risk Index Overtaking", "format": null }
+            ]
+          },
+          "compareMode": false,
+          "compareType": "absolute",
+          "enabled": true
+        },
+        "brush": { "size": 0.5, "enabled": false },
+        "geocoder": { "enabled": false },
+        "coordinate": { "enabled": false }
+      },
+      "layerBlending": "normal",
+      "overlayBlending": "darken",
+      "splitMaps": [],
+      "animationConfig": { "currentTime": null, "speed": 1 },
+      "editor": { "features": [], "visible": true }
+    },
+    "mapState": {
+      "bearing": 0,
+      "dragRotate": false,
+      "latitude": 51.957123753596704,
+      "longitude": 7.624443485440906,
+      "pitch": 0,
+      "zoom": 13.841843463794122,
+      "isSplit": false,
+      "isViewportSynced": true,
+      "isZoomLocked": false,
+      "splitMapViewports": []
+    },
+    "mapStyle": {
+      "styleType": "positron",
+      "topLayerGroups": {},
+      "visibleLayerGroups": {
+        "label": true,
+        "road": true,
+        "border": false,
+        "building": true,
+        "water": true,
+        "land": true,
+        "3d building": false
+      },
+      "threeDBuildingColor": [
+        9.665468314072013, 17.18305478057247, 31.1442867897876
+      ],
+      "backgroundColor": [0, 0, 0],
+      "mapStyles": {}
+    },
+    "uiState": { "mapControls": { "mapLegend": { "active": false } } }
+  }
+}
