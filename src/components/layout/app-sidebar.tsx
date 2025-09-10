@@ -52,6 +52,7 @@ const staticNavMain: NavItem[] = [
       },
 
       { translationKey: "Custom Features", url: "/docs/custom-features" },
+      { translationKey: "Built-in Datasets", url: "/docs/built-in-datasets" },
     ],
   },
 ];

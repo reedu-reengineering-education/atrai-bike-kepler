@@ -41,7 +41,8 @@
     "Custom Features": "Funcionalidades Personalizadas",
     "Atrai Data": "Dados Atrai",
     "road roughness Dataset": "Conjunto de Dados de Rugosidade da Estrada",
-    "overtaking distance Dataset": "Conjunto de Dados de Distância de Ultrapassagem"
+    "overtaking distance Dataset": "Conjunto de Dados de Distância de Ultrapassagem",
+    "Built-in Datasets": "Conjuntos de Dados Integrados"
   },
   "map": {
     "confirmDelete": "Tem certeza que quer deletar este map?",

@@ -15,6 +15,7 @@ import Forgetpassword from "@/components/pages/ForgetPassword";
 import ResetPassword from "@/components/pages/ResetPassword";
 import CustomFeatures from "./components/pages/Documentations/CustomFeatures";
 import GetStarted from "./components/pages/Documentations/GetStarted";
+import BuiltInDatasets from "./components/pages/Documentations/BuiltInDatasets";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -87,6 +88,11 @@ export const customFeatures = createRoute({
   path: "/docs/custom-features",
   component: CustomFeatures,
 });
+export const builtInDatasets = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/docs/built-in-datasets",
+  component: BuiltInDatasets,
+});
 
 export const getStarted = createRoute({
   getParentRoute: () => rootRoute,
@@ -108,4 +114,5 @@ export const routeTree = rootRoute.addChildren([
   ResetPasswordRoute,
   customFeatures,
   getStarted,
+  builtInDatasets,
 ]);
