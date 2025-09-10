@@ -4,13 +4,7 @@ import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
 import { useLazyGetOsemBikeDataQuery } from "@/lib/redux/keplerApi";
 import { OSEM_BIKE_DATA_INFO } from "@/lib/kepler/dataset-info";
 import { getErrorMessage } from "@/lib/kepler/data-loader";
-import {
-  Loader2,
-  AlertCircle,
-  Database,
-  CheckCircle,
-  Info,
-} from "lucide-react";
+import { Loader2, AlertCircle, Database, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
