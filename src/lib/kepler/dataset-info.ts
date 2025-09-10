@@ -1,6 +1,6 @@
 export const OSEM_BIKE_DATA = {
-  title: "openSenseMap Bike Data",
-  description: "Data from the openSenseMap platform related to bike usage",
+  title: "openSenseMap Bike Data (Experimental)",
+  description: "All openSenseMap data as Vector Tiles. Limited functionality",
   url: "https://api.atrai.bike/collections/osem_bike_data/items?f=json&limit=1000000",
   configUrl:
     "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-osem.json",

@@ -102,7 +102,7 @@ export const ATRAI_DATASETS: DatasetRegistry = {
   // },
   osem_bike_data: {
     id: "osem_bike_data",
-    label: "openSenseMap Bike Data",
+    label: "openSenseMap Bike Data (Experimental)",
     icon: BikeIcon,
     iconColor: "#0ea5e9", // Blue color
     queryHook: useLazyGetMvtOsemBikeDataQuery,
