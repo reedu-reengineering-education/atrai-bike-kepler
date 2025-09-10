@@ -6,7 +6,7 @@
         "id": "keqcqfq",
         "type": "vectorTile",
         "config": {
-          "dataId": "95k9n58b",
+          "dataId": "osem_bike_data_mvt",
           "label": "osem_bike_data",
           "color": [231, 159, 213],
           "highlightColor": [252, 242, 26, 255],
@@ -86,7 +86,11 @@
     "interactionConfig": {
       "tooltip": {
         "fieldsToShow": {
-          "95k9n58b": [{ "name": "Acceleration X", "format": null }]
+          "osem_bike_data_mvt": [
+            { "name": "Standing", "format": null },
+            { "name": "Speed", "format": null },
+            { "name": "boxId", "format": null }
+          ]
         },
         "compareMode": false,
         "compareType": "absolute",

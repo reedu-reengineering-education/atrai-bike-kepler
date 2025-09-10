@@ -3,7 +3,7 @@
     "label": "osem_bike_data",
     "type": "vector-tile",
     "format": "rows",
-    "id": "95k9n58b"
+    "id": "osem_bike_data_mvt"
   },
   "data": {
     "fields": [
@@ -617,7 +617,5 @@
     "remoteTileFormat": "mvt",
     "tilesetDataUrl": "https://martin.atrai.bike/osem_bike_data/{z}/{x}/{y}",
     "tilesetMetadataUrl": "https://martin.atrai.bike/osem_bike_data"
-  },
-  "supportedFilterTypes": ["real", "integer"],
-  "disableDataOperation": true
+  }
 }

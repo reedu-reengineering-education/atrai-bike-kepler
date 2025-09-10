@@ -17,7 +17,7 @@ export async function loadMvtDataset({
     updateVisData(
       dataset,
       {
-        // keepExistingConfig: true,
+        keepExistingConfig: true,
         // autoCreateLayers: true,
       },
       config,

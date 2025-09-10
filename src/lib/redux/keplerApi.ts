@@ -22,7 +22,7 @@ export const keplerApi = createApi({
       async queryFn() {
         await loadMvtDataset({
           dataset: datasetStandingMvt,
-          config: configStandingMvt,
+          config: configStandingMvt, // this config is intentionally invalid to render all mvt points
         });
 
         return { data: [] };
