@@ -2,15 +2,29 @@
   "version": "v1",
   "config": {
     "visState": {
-      "filters": [],
+      "filters": [
+        {
+          "dataId": ["road_network_muenster"],
+          "id": "x0qcqbb5v",
+          "name": ["surface"],
+          "type": "multiSelect",
+          "value": [],
+          "plotType": { "type": "histogram" },
+          "animationWindow": "free",
+          "yAxis": null,
+          "view": "side",
+          "speed": 1,
+          "enabled": true
+        }
+      ],
       "layers": [
         {
-          "id": "bmtb32s",
+          "id": "9da3bi4",
           "type": "geojson",
           "config": {
-            "dataId": "bumpy_roads_muenster",
+            "dataId": "road_network_muenster",
             "columnMode": "geojson",
-            "label": "Bumpy Roads - muenster",
+            "label": "Road Network - muenster",
             "color": [231, 159, 213],
             "highlightColor": [252, 242, 26, 255],
             "columns": { "geojson": "_geojson" },
@@ -35,19 +49,33 @@
               },
               "strokeColorRange": {
                 "colors": [
-                  "#F7FCFD",
-                  "#D5EFED",
-                  "#8FD3C1",
-                  "#49B17F",
-                  "#157F3C",
-                  "#00441B"
+                  "#12939A",
+                  "#DDB27C",
+                  "#88572C",
+                  "#FF991F",
+                  "#F15C17",
+                  "#223F9A",
+                  "#DA70BF",
+                  "#125C77",
+                  "#4DC19C",
+                  "#776E57",
+                  "#17B8BE",
+                  "#F6D18A",
+                  "#B7885E",
+                  "#FFCB99",
+                  "#F89570",
+                  "#829AE3",
+                  "#E79FD5",
+                  "#1E96BE",
+                  "#89DAC1",
+                  "#B3AD9E"
                 ],
-                "name": "BuGn",
-                "type": "sequential",
-                "category": "ColorBrewer"
+                "name": "Uber Viz Qualitative",
+                "type": "qualitative",
+                "category": "Uber"
               },
               "radius": 10,
-              "sizeRange": [0.5, 5],
+              "sizeRange": [0, 10],
               "radiusRange": [0, 50],
               "heightRange": [0, 500],
               "elevationScale": 5,
@@ -76,12 +104,9 @@
           "visualChannels": {
             "colorField": null,
             "colorScale": "quantile",
-            "strokeColorField": {
-              "name": "Average Roughness_Normalized",
-              "type": "real"
-            },
-            "strokeColorScale": "quantile",
-            "sizeField": { "name": "Number of Boxes", "type": "integer" },
+            "strokeColorField": { "name": "surface", "type": "string" },
+            "strokeColorScale": "ordinal",
+            "sizeField": null,
             "sizeScale": "linear",
             "heightField": null,
             "heightScale": "linear",
@@ -94,12 +119,10 @@
       "interactionConfig": {
         "tooltip": {
           "fieldsToShow": {
-            "bumpy_roads_muenster": [
-              { "name": "Average Distance to Road", "format": null },
-              { "name": "Number of Boxes", "format": null },
-              { "name": "name", "format": null },
-              { "name": "Average Roughness_Normalized", "format": null },
-              { "name": "Number of Points", "format": null }
+            "road_network_muenster": [
+              { "name": "osmid", "format": null },
+              { "name": "surface", "format": null },
+              { "name": "name", "format": null }
             ]
           },
           "compareMode": false,
@@ -119,10 +142,10 @@
     "mapState": {
       "bearing": 0,
       "dragRotate": false,
-      "latitude": 51.95994737150293,
-      "longitude": 7.616900772720458,
+      "latitude": 51.93792968085132,
+      "longitude": 7.5944313175589455,
       "pitch": 0,
-      "zoom": 12.944101896375882,
+      "zoom": 11.207850887946456,
       "isSplit": false,
       "isViewportSynced": true,
       "isZoomLocked": false,
@@ -141,7 +164,7 @@
         "3d building": false
       },
       "threeDBuildingColor": [
-        9.665468314072013, 17.18305478057247, 31.1442867897876
+        232.7874787737094, 232.7874787737094, 230.92517894351974
       ],
       "backgroundColor": [0, 0, 0],
       "mapStyles": {}

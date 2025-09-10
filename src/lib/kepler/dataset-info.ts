@@ -61,3 +61,21 @@ export const AIR_POLLUTION_INFO = {
   configUrl:
     "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-air-pollution.json",
 };
+
+export const ROAD_NETWORK_INFO = {
+  title: "Road Network",
+  description:
+    "The road network dataset provides detailed information about the road infrastructure, including road surface.",
+  url: "https://api.atrai.bike/collections/road_network_*/items?f=json&limit=1000000",
+  configUrl:
+    "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-road-network.json",
+};
+
+export const OSEM_BIKE_DATA_INFO = {
+  title: "OSEM Bike Data",
+  description:
+    "Environmental sensor data from OSEM bike sensors (requires box ID)",
+  url: "https://api.atrai.bike/collections/osem_bike_data/items?f=json&boxId=*",
+  configUrl:
+    "https://github.com/reedu-reengineering-education/atrai-bike-kepler/tree/main/src/lib/kepler/config-osem-bike-data.json",
+};

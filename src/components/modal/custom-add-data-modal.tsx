@@ -4,6 +4,7 @@
 import { useTranslation } from "react-i18next";
 import { LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { ATRAIDataPanel } from "./atrai-data-panel";
+import { OSEMDataPanel } from "./osem-data-panel";
 import { getDatasetsByCampaign } from "@/lib/kepler/dataset-registry";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
@@ -59,12 +60,42 @@ function CustomAddDataModalFactory(...args: any[]) {
       );
     };
 
+    // Component to handle OSEM bike data loading
+    const OSEMDataPanelWrapper = () => {
+      return (
+        <OSEMDataPanel
+          onClose={() => {
+            // Modal close will be handled by the parent modal system
+            if (props.onClose) {
+              props.onClose();
+            }
+          }}
+          onDataLoad={(datasetInfo) => {
+            // Data loading is handled within OSEMDataPanel
+            console.log("OSEM dataset loaded:", datasetInfo.title);
+            // Close modal after successful data load
+            if (props.onClose) {
+              props.onClose();
+            }
+          }}
+        />
+      );
+    };
+
     // Create the ATRAI Data loading method configuration
     const atraiDataMethod = {
       id: "atrai-data",
       label: t("nav.Atrai Data"),
       elementType: ATRAIDataPanelWrapper,
       tabElement: t("nav.Atrai Data"),
+    };
+
+    // Create the OSEM Data loading method configuration
+    const osemDataMethod = {
+      id: "osem-data",
+      label: "OSEM Data",
+      elementType: OSEMDataPanelWrapper,
+      tabElement: "OSEM Data",
     };
 
     // Get the default loading methods from the base component
@@ -75,8 +106,12 @@ function CustomAddDataModalFactory(...args: any[]) {
       (method) => method.id !== "storage",
     );
 
-    // Add ATRAI Data as the first option, followed by existing options
-    const customLoadingMethods = [atraiDataMethod, ...filteredDefaultMethods];
+    // Add ATRAI Data and OSEM Data as the first options, followed by existing options
+    const customLoadingMethods = [
+      atraiDataMethod,
+      osemDataMethod,
+      ...filteredDefaultMethods,
+    ];
 
     return <LoadDataModal {...props} loadingMethods={customLoadingMethods} />;
   };

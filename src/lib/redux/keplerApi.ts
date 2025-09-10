@@ -6,6 +6,8 @@ import configAirPollution from "@/lib/kepler/config-air-pollution.json";
 import configBumpyRoads from "@/lib/kepler/config-bumpy-roads.json";
 import configSpeedMap from "@/lib/kepler/config-speed-map.json";
 import configTrafficFlow from "@/lib/kepler/config-traffic-flow.json";
+import configRoadNetwork from "@/lib/kepler/config-road-network.json";
+import configOsemBikeData from "@/lib/kepler/config-osem-bike-data.json";
 import { loadKeplerDataset } from "./loadkeplerData";
 
 export const keplerApi = createApi({
@@ -242,6 +244,91 @@ export const keplerApi = createApi({
         });
       },
     }),
+
+    getRoadNetwork: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `road_network_${campaign.toLowerCase()}`;
+        console.log(
+          `🌐 API: Requesting road network data for collection: ${collectionName}`,
+        );
+
+        const response = await baseQuery(
+          `${collectionName}/items?f=json&limit=1000000`,
+        );
+
+        console.log("🌐 API: Road network response:", {
+          hasError: !!response.error,
+          errorStatus: response.error?.status,
+          errorData: response.error?.data,
+          hasData: !!response.data,
+        });
+
+        // Check if the API request failed
+        if (response.error) {
+          const errorResult = {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No road network data available for campaign: ${campaign}`,
+            },
+          };
+          console.log("🌐 API: Returning error result:", errorResult);
+          return errorResult;
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `road_network_${campaign.toLowerCase()}`,
+          label: `Road Network - ${campaign}`,
+          config: configRoadNetwork,
+        });
+      },
+    }),
+
+    getOsemBikeData: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(boxId, _queryApi, _extraOptions, baseQuery) {
+        if (!boxId) {
+          return { error: { status: 400, statusText: "Box ID is required" } };
+        }
+
+        console.log(`🌐 API: Requesting osem bike data for boxId: ${boxId}`);
+
+        const response = await baseQuery(
+          `osem_bike_data/items?f=json&boxId=${boxId}&limit=10000000000`,
+        );
+
+        console.log("🌐 API: OSEM bike data response:", {
+          hasError: !!response.error,
+          errorStatus: response.error?.status,
+          errorData: response.error?.data,
+          hasData: !!response.data,
+        });
+
+        // Check if the API request failed
+        if (response.error) {
+          const errorResult = {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No OSEM bike data available for box ID: ${boxId}`,
+            },
+          };
+          console.log("🌐 API: Returning error result:", errorResult);
+          return errorResult;
+        }
+
+        return loadKeplerDataset({
+          response,
+          datasetId: `osem_bike_data_${boxId}`,
+          label: `OSEM Bike Data - ${boxId}`,
+          config: configOsemBikeData,
+        });
+      },
+    }),
   }),
 });
 
@@ -262,4 +349,6 @@ export const {
   useLazyGetSpeedMapQuery,
   useGetTrafficFlowQuery,
   useLazyGetTrafficFlowQuery,
+  useLazyGetRoadNetworkQuery,
+  useLazyGetOsemBikeDataQuery,
 } = keplerApi;

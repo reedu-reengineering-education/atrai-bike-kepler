@@ -2,21 +2,7 @@
   "version": "v1",
   "config": {
     "visState": {
-      "filters": [
-        {
-          "dataId": ["danger_zones_muenster"],
-          "id": "9cs52aq5f",
-          "name": ["Risk Index"],
-          "type": "range",
-          "value": [0.017, 0.8388],
-          "plotType": { "type": "histogram" },
-          "animationWindow": "free",
-          "yAxis": null,
-          "view": "side",
-          "speed": 1,
-          "enabled": true
-        }
-      ],
+      "filters": [],
       "layers": [
         {
           "id": "bbtbyq",
@@ -53,7 +39,7 @@
               "elevationScale": 5,
               "enableElevationZoomFactor": true,
               "fixedHeight": false,
-              "colorAggregation": "count",
+              "colorAggregation": "average",
               "sizeAggregation": "count",
               "enable3d": false
             },
@@ -74,7 +60,7 @@
             ]
           },
           "visualChannels": {
-            "colorField": { "name": "Risk Index", "type": "real" },
+            "colorField": { "name": "Risk Index Overtaking", "type": "real" },
             "colorScale": "quantile",
             "sizeField": null,
             "sizeScale": "linear"
@@ -85,7 +71,9 @@
       "interactionConfig": {
         "tooltip": {
           "fieldsToShow": {
-            "danger_zones_muenster": [{ "name": "Risk Index", "format": null }]
+            "danger_zones_muenster": [
+              { "name": "Risk Index Overtaking", "format": null }
+            ]
           },
           "compareMode": false,
           "compareType": "absolute",
@@ -104,10 +92,10 @@
     "mapState": {
       "bearing": 0,
       "dragRotate": false,
-      "latitude": 51.94903023471115,
-      "longitude": 7.6446073915181705,
+      "latitude": 51.957123753596704,
+      "longitude": 7.624443485440906,
       "pitch": 0,
-      "zoom": 12.65949995110699,
+      "zoom": 13.841843463794122,
       "isSplit": false,
       "isViewportSynced": true,
       "isZoomLocked": false,

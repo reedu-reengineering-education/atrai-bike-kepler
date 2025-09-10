@@ -9,6 +9,7 @@ import {
   useLazyGetOvertakingDistanceQuery,
   useLazyGetSpeedMapQuery,
   useLazyGetTrafficFlowQuery,
+  useLazyGetRoadNetworkQuery,
 } from "@/lib/redux/keplerApi";
 import {
   DANGER_ZONES_INFO,
@@ -17,6 +18,7 @@ import {
   OVERTAKING_DISTANCE_INFO,
   SPEED_MAP_INFO,
   TRAFFIC_FLOW_INFO,
+  ROAD_NETWORK_INFO,
 } from "./dataset-info";
 import React from "react";
 import {
@@ -26,6 +28,7 @@ import {
   CloudIcon,
   ZapIcon,
   TrendingUpIcon,
+  RailSymbolIcon,
 } from "lucide-react";
 
 /**
@@ -152,6 +155,16 @@ export const ATRAI_DATASETS: DatasetRegistry = {
     iconColor: "#3b82f6", // Blue color
     queryHook: useLazyGetTrafficFlowQuery,
     datasetInfo: TRAFFIC_FLOW_INFO,
+    requiresCampaign: true,
+  },
+  road_network: {
+    id: "road_network",
+    label: "Road Network",
+    imageUrl: DistancesImageUrl, // Reusing distances image
+    icon: RailSymbolIcon,
+    iconColor: "#3b82f6", // Blue color
+    queryHook: useLazyGetRoadNetworkQuery,
+    datasetInfo: ROAD_NETWORK_INFO,
     requiresCampaign: true,
   },
 };

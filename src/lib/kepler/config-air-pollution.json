@@ -5,62 +5,124 @@
       "filters": [],
       "layers": [
         {
-          "id": "air_pollution",
-          "type": "point",
+          "id": "un0an4b",
+          "type": "grid",
           "config": {
-            "dataId": "air_pollution",
-            "label": "Air Pollution (PM)",
-            "color": [139, 69, 19],
-            "columns": {
-              "lat": "latitude",
-              "lng": "longitude"
-            },
+            "dataId": "air_pollution_muenster",
+            "label": "Air Pollution (PM) - muenster",
+            "color": [255, 203, 153],
+            "highlightColor": [252, 242, 26, 255],
+            "columns": { "lat": "lat", "lng": "lng" },
             "isVisible": true,
             "visConfig": {
-              "radius": 10,
-              "fixedRadius": false,
-              "opacity": 0.7,
-              "outline": true,
-              "thickness": 2,
-              "strokeColor": [101, 67, 33],
+              "opacity": 0.8,
+              "worldUnitSize": 0.05,
               "colorRange": {
-                "name": "ColorBrewer OrRd",
-                "type": "sequential",
-                "category": "ColorBrewer",
+                "name": "color.customPalette",
+                "type": "custom",
+                "category": "Custom",
                 "colors": [
-                  "#FFF7EC",
-                  "#FEE8C8",
-                  "#FDD49E",
-                  "#FDBB84",
-                  "#FC8D59",
-                  "#EF6548",
-                  "#D7301F",
-                  "#B30000",
-                  "#7F0000"
+                  "#FFFFFF",
+                  "#E2E2E2",
+                  "#B4B4B4",
+                  "#7A7A7A",
+                  "#404040",
+                  "#000000"
+                ],
+                "colorMap": [
+                  [0.2527162084095671, "#FFFFFF"],
+                  [0.3347558442582768, "#E2E2E2"],
+                  [0.40933733139346745, "#B4B4B4"],
+                  [0.4839188185286581, "#7A7A7A"],
+                  [0.5473130825935703, "#404040"],
+                  [null, "#000000"]
                 ]
               },
-              "strokeColorRange": {
-                "name": "ColorBrewer OrRd",
-                "type": "sequential",
-                "category": "ColorBrewer",
-                "colors": [
-                  "#FFF7EC",
-                  "#FEE8C8",
-                  "#FDD49E",
-                  "#FDBB84",
-                  "#FC8D59",
-                  "#EF6548",
-                  "#D7301F",
-                  "#B30000",
-                  "#7F0000"
-                ]
-              },
-              "radiusRange": [0, 50],
-              "filled": true
-            }
+              "coverage": 1,
+              "sizeRange": [0, 500],
+              "percentile": [0, 100],
+              "elevationPercentile": [0, 100],
+              "elevationScale": 5,
+              "enableElevationZoomFactor": true,
+              "fixedHeight": false,
+              "colorAggregation": "average",
+              "sizeAggregation": "count",
+              "enable3d": false
+            },
+            "hidden": false,
+            "textLabel": [
+              {
+                "field": null,
+                "color": [255, 255, 255],
+                "size": 18,
+                "offset": [0, 0],
+                "anchor": "start",
+                "alignment": "center",
+                "outlineWidth": 0,
+                "outlineColor": [255, 0, 0, 255],
+                "background": false,
+                "backgroundColor": [0, 0, 200, 255]
+              }
+            ]
+          },
+          "visualChannels": {
+            "colorField": { "name": "Risk Index", "type": "real" },
+            "colorScale": "custom",
+            "sizeField": null,
+            "sizeScale": "linear"
           }
         }
-      ]
-    }
+      ],
+      "effects": [],
+      "interactionConfig": {
+        "tooltip": {
+          "fieldsToShow": {
+            "air_pollution_muenster": [{ "name": "Risk Index", "format": null }]
+          },
+          "compareMode": false,
+          "compareType": "absolute",
+          "enabled": true
+        },
+        "brush": { "size": 0.5, "enabled": false },
+        "geocoder": { "enabled": false },
+        "coordinate": { "enabled": false }
+      },
+      "layerBlending": "normal",
+      "overlayBlending": "darken",
+      "splitMaps": [],
+      "animationConfig": { "currentTime": null, "speed": 1 },
+      "editor": { "features": [], "visible": true }
+    },
+    "mapState": {
+      "bearing": 0,
+      "dragRotate": false,
+      "latitude": 51.958763393994616,
+      "longitude": 7.64754621277015,
+      "pitch": 0,
+      "zoom": 11.916453930181826,
+      "isSplit": false,
+      "isViewportSynced": true,
+      "isZoomLocked": false,
+      "splitMapViewports": []
+    },
+    "mapStyle": {
+      "styleType": "positron",
+      "topLayerGroups": {},
+      "visibleLayerGroups": {
+        "label": true,
+        "road": true,
+        "border": false,
+        "building": true,
+        "water": true,
+        "land": true,
+        "3d building": false
+      },
+      "threeDBuildingColor": [
+        9.665468314072013, 17.18305478057247, 31.1442867897876
+      ],
+      "backgroundColor": [0, 0, 0],
+      "mapStyles": {}
+    },
+    "uiState": { "mapControls": { "mapLegend": { "active": false } } }
   }
 }
