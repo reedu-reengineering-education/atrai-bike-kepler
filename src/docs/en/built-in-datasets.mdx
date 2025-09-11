@@ -4,8 +4,9 @@ import { DangerZones } from "@/components/datasets/en/DangerZones";
 import { OvertakingDistance } from "@/components/datasets/en/OvertakingDistance";
 import { AirPollution } from "@/components/datasets/en/AirPollution";
 import { SpeedTrafficFlow } from "@/components/datasets/en/SpeedTrafficFlow";
+import { RoadNetwork } from "@/components/datasets/en/RoadNetwork"; // ✅ new import
 
-# Built-in Datasets
+// Built-in Datasets
 
 <DatasetAccordion
   items={[
@@ -33,6 +34,11 @@ import { SpeedTrafficFlow } from "@/components/datasets/en/SpeedTrafficFlow";
       value: "speed-traffic-flow",
       trigger: "🚴‍♂️ Speed & Traffic Flow Dataset",
       content: <SpeedTrafficFlow />,
+    },
+    {
+      value: "road-network",
+      trigger: "🗺️ Road Network Dataset",
+      content: <RoadNetwork />,
     },
   ]}
 />
