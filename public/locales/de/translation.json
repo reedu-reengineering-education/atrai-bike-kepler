@@ -25,12 +25,14 @@
   "Speed map data for the selected campaign": "Geschwindigkeitskartendaten für die ausgewählte Kampagne",
   "Traffic flow data for the selected campaign": "Daten zum Verkehrsfluss für die ausgewählte Kampagne",
   "Fine dust (PM) pollution data for the selected campaign": "Feinstaub (PM)-Verschmutzungsdaten für die ausgewählte Kampagne",
+  "The road network dataset provides detailed information about the road infrastructure, including road surface.": "Der Straßennetz-Datensatz bietet detaillierte Informationen über die Straßeninfrastruktur, einschließlich der Straßenoberfläche.",
   "Danger Zones": "Gefahrenzonen",
   "Air Pollution (PM)": "Luftverschmutzung (PM)",
   "Bumpy Roads": "Holprige Straßen",
   "Overtaking Distance": "Überholabstand",
   "Speed Map": "Geschwindigkeitskarte",
   "Traffic Flow": "Verkehrsfluss",
+  "Road Network": "Straßennetz",
 
   "nav": {
     "playground": "Spielplatz",

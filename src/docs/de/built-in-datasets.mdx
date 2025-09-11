@@ -3,10 +3,10 @@ import { BumpyRoadsDE } from "@/components/datasets/de/BumbyRoads";
 import { DangerZonesDE } from "@/components/datasets/de/DangerZones";
 import { OvertakingDistanceDE } from "@/components/datasets/de/OvertakingDistance";
 import { AirPollutionDE } from "@/components/datasets/de/AirPollutionDE";
-
 import { SpeedTrafficFlowDE } from "@/components/datasets/de/SpeedTrafficFlow";
+import { RoadNetworkDE } from "@/components/datasets/de/RoadNetwork";
 
-# Eingebaute Datensätze
+// Eingebaute Datensätze
 
 <DatasetAccordion
   items={[
@@ -34,6 +34,11 @@ import { SpeedTrafficFlowDE } from "@/components/datasets/de/SpeedTrafficFlow";
       value: "geschwindigkeit-verkehrsfluss",
       trigger: "🚴‍♂️ Datensatz Geschwindigkeit & Verkehrsfluss",
       content: <SpeedTrafficFlowDE />,
+    },
+    {
+      value: "strassennetz",
+      trigger: "🗺️ Datensatz Straßennetz",
+      content: <RoadNetworkDE />,
     },
   ]}
 />

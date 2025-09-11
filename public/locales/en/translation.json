@@ -25,12 +25,14 @@
   "Speed map data for the selected campaign": "Speed map data for the selected campaign",
   "Traffic flow data for the selected campaign": "Traffic flow data for the selected campaign",
   "Fine dust (PM) pollution data for the selected campaign": "Fine dust (PM) pollution data for the selected campaign",
+  "The road network dataset provides detailed information about the road infrastructure, including road surface.": "The road network dataset provides detailed information about the road infrastructure, including road surface.",
   "Danger Zones": "Danger Zones",
   "Air Pollution (PM)": "Air Pollution (PM)",
   "Bumpy Roads": "Bumpy Roads",
   "Overtaking Distance": "Overtaking Distance",
   "Speed Map": "Speed Map",
   "Traffic Flow": "Traffic Flow",
+  "Road Network": "Road Network",
 
   "nav": {
     "playground": "Playground",
