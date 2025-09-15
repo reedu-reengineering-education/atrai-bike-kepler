@@ -167,5 +167,15 @@
     "senseBoxBike": "senseBox:bike",
     "loginFirst": "Você deve fazer login primeiro.",
     "saveMapFailed": "Falha ao salvar o mapa. Tente novamente."
+  },
+  "campaignModal": {
+    "title": "Selecionar uma Campanha",
+    "description": "Escolha uma campanha para começar a explorar os dados. Você pode alterar esta seleção mais tarde na barra lateral.",
+    "loadingCampaigns": "Carregando campanhas...",
+    "continueWith": "Continuar com"
+  },
+  "campaignSwitcher": {
+    "changeCampaign": "Alterar campanha",
+    "noCampaignSelected": "Nenhuma campanha selecionada"
   }
 }

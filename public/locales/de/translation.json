@@ -171,5 +171,15 @@
   },
   "datasets": {
     "Danger zones data for the selected campaign": "Gefahrenzonen-Daten für die ausgewählte Kampagne"
+  },
+  "campaignModal": {
+    "title": "Kampagne auswählen",
+    "description": "Wählen Sie eine Kampagne aus, um mit der Erkundung der Daten zu beginnen. Sie können diese Auswahl später in der Seitenleiste ändern.",
+    "loadingCampaigns": "Kampagnen werden geladen...",
+    "continueWith": "Weiter mit"
+  },
+  "campaignSwitcher": {
+    "changeCampaign": "Kampagne wechseln",
+    "noCampaignSelected": "Keine Kampagne ausgewählt"
   }
 }
