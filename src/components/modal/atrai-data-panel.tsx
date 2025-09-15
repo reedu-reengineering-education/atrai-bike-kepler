@@ -451,7 +451,7 @@ export function ATRAIDataPanel({
             new Promise((_, reject) =>
               setTimeout(
                 () => reject(new Error("Dataset loading timeout")),
-                30000,
+                60000,
               ),
             ),
           ]);
