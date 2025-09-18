@@ -16,7 +16,9 @@ import {
 } from "@/components/ui/sidebar";
 import { getAllStatistics } from "@/lib/pygeiapi-client/statistics";
 import { setActiveCampaign } from "@/lib/redux/campaign-slice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { RootState } from "@/lib/redux/store";
 
 // Helper to render a simple SVG polygon icon from GeoJSON geometry
 function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
@@ -72,8 +74,12 @@ function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
 }
 
 export function CampaignSwitcher() {
+  const { t } = useTranslation();
   const { isMobile } = useSidebar();
   const dispatch = useDispatch();
+  const activeCampaign = useSelector(
+    (state: RootState) => state.campaign.activeCampaign,
+  );
   const [statistics, setStatistics] = React.useState<GeoJSON.Feature[]>([]);
   const [activeStat, setActiveStat] = React.useState<GeoJSON.Feature | null>(
     null,
@@ -89,20 +95,44 @@ export function CampaignSwitcher() {
   };
 
   function handleSelect(stat: GeoJSON.Feature) {
-    setActiveStat(stat);
     dispatch(setActiveCampaign(getName(stat)));
   }
 
   React.useEffect(() => {
     getAllStatistics().then((data) => {
       setStatistics(data.features);
-      const first = data.features[0] || null;
-      setActiveStat(first);
-      if (first) {
-        dispatch(setActiveCampaign(getName(first)));
-      }
     });
-  }, [dispatch]);
+  }, []);
+
+  // Update activeStat when activeCampaign changes
+  React.useEffect(() => {
+    if (activeCampaign && statistics.length > 0) {
+      const matchingStat = statistics.find(
+        (stat) => getName(stat) === activeCampaign,
+      );
+      setActiveStat(matchingStat || null);
+    }
+  }, [activeCampaign, statistics]);
+
+  // Show placeholder when no campaign is selected
+  if (!activeCampaign) {
+    return (
+      <SidebarMenu>
+        <SidebarMenuItem>
+          <SidebarMenuButton size="lg" disabled>
+            <div className="bg-sidebar-accent text-sidebar-primary-foreground border-2 border-accent-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+              <div className="text-xs">?</div>
+            </div>
+            <div className="grid flex-1 text-left text-sm leading-tight">
+              <span className="truncate font-medium text-muted-foreground">
+                {t("campaignSwitcher.noCampaignSelected")}
+              </span>
+            </div>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      </SidebarMenu>
+    );
+  }
 
   if (!activeStat) return null;
 
@@ -152,12 +182,15 @@ export function CampaignSwitcher() {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2 opacity-50 cursor-not-allowed">
+            <DropdownMenuItem
+              className="gap-2 p-2"
+              onClick={() => dispatch(setActiveCampaign(null))}
+            >
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">
-                +
+                ↻
               </div>
-              <div className="text-muted-foreground font-medium">
-                Add campaign
+              <div className="font-medium">
+                {t("campaignSwitcher.changeCampaign")}
               </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
