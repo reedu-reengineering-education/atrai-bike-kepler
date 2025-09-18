@@ -17,6 +17,7 @@ import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { MapsNav } from "./maps-nav";
+import { useCampaignBbox } from "@/hooks/useCampaignBbox";
 
 interface NavItem {
   translationKey?: string;
@@ -65,6 +66,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [maps, setMaps] = React.useState<any[]>([]);
 
   const { state } = useSidebar();
+
+  // Initialize bbox fetching for campaign changes
+  useCampaignBbox();
 
   React.useEffect(() => {
     const fetchMaps = async () => {

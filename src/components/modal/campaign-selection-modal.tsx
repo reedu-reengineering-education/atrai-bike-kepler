@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { getAllStatistics } from "@/lib/pygeiapi-client/statistics";
 import { setActiveCampaign } from "@/lib/redux/campaign-slice";
 import { RootState } from "@/lib/redux/store";
+import { useCampaignBbox } from "@/hooks/useCampaignBbox";
 
 // Helper to render a simple SVG polygon icon from GeoJSON geometry
 function PolygonIcon({ geometry }: { geometry: GeoJSON.Geometry }) {
@@ -76,6 +77,9 @@ export function CampaignSelectionModal() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [selectedCampaign, setSelectedCampaign] =
     React.useState<GeoJSON.Feature | null>(null);
+
+  // Initialize bbox fetching for campaign changes
+  useCampaignBbox();
 
   const getName = (feature: GeoJSON.Feature) =>
     feature.properties?.name || feature.id || "Unnamed";
