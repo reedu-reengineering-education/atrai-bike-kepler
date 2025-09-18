@@ -4,6 +4,7 @@ import { DangerZonesPT } from "@/components/datasets/pt/DangerZones";
 import { OvertakingDistancePT } from "@/components/datasets/pt/OvertakingDistance";
 import { AirPollutionPT } from "@/components/datasets/pt/AirPollution";
 import { SpeedTrafficFlowPT } from "@/components/datasets/pt/SpeedTrafficFlow";
+import { RoadNetworkPT } from "@/components/datasets/pt/RoadNetwork";
 
 # Conjuntos de Dados Integrados
 
@@ -33,6 +34,11 @@ import { SpeedTrafficFlowPT } from "@/components/datasets/pt/SpeedTrafficFlow";
       value: "velocidade-fluxo-trafego",
       trigger: "🚴‍♂️ Conjunto de Velocidade & Fluxo de Tráfego",
       content: <SpeedTrafficFlowPT />,
+    },
+    {
+      value: "rede-rodoviaria",
+      trigger: "🗺️ Conjunto de Rede Rodoviária",
+      content: <RoadNetworkPT />,
     },
   ]}
 />
