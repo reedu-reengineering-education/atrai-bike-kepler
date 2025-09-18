@@ -1,9 +1,7 @@
 import { useNavigate, useMatch } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { addDataToMap } from "@reedu-kepler.gl/actions";
-import KeplerGlSchema from "@reedu-kepler.gl/schemas";
+import { useMapState } from "@/hooks/useMapState";
 import { SaveIcon, Save, EditIcon, LoaderCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,7 +23,6 @@ export default function MapPage() {
   const { session, authLoading } = UserAuth();
   const { triggerRefresh } = useRefresh();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   // const { mapId } = useMatch(mapDetailRoute);
   const match = useMatch({ from: mapDetailRoute.id });
   const { mapId } = match.params;
@@ -66,19 +63,8 @@ export default function MapPage() {
     fetchMapDetails();
   }, [mapId, session]);
 
-  useEffect(() => {
-    if (!mapDetails) return;
-
-    try {
-      const keplerMap = KeplerGlSchema.load(
-        mapDetails.dataset,
-        mapDetails.config,
-      );
-      dispatch(addDataToMap(keplerMap as any));
-    } catch (e) {
-      console.error("Failed to load map into @reedu-kepler.gl", e);
-    }
-  }, [mapDetails, dispatch]);
+  // Use the custom hook to manage map state persistence
+  useMapState(mapId, mapDetails);
 
   const handleUpdate = async () => {
     if (!mapDetails) return;

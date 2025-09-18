@@ -342,6 +342,77 @@ export const keplerApi = createApi({
         });
       },
     }),
+
+    getCampaignBbox: builder.query<any, string>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(campaign, _queryApi, _extraOptions, baseQuery) {
+        if (!campaign) {
+          return { error: { status: 400, statusText: "Campaign is required" } };
+        }
+
+        const collectionName = `bumpy_roads_${campaign.toLowerCase()}`;
+        console.log(
+          `🌐 API: Requesting bbox for collection: ${collectionName}`,
+        );
+
+        try {
+          const response = await baseQuery(
+            `${collectionName}/items?f=json&limit=1`,
+          );
+
+          if (response.error) {
+            return {
+              error: {
+                status: response.error.status || 404,
+                statusText: `No bumpy roads data available for campaign: ${campaign}`,
+              },
+            };
+          }
+
+          // Get the collection extent/bbox
+          const extentResponse = await baseQuery(`${collectionName}?f=json`);
+
+          if (extentResponse.error) {
+            return {
+              error: {
+                status: extentResponse.error.status || 404,
+                statusText: `Could not fetch extent for campaign: ${campaign}`,
+              },
+            };
+          }
+
+          const collectionData = extentResponse.data as any;
+          const extent = collectionData?.extent?.spatial?.bbox?.[0];
+
+          if (!extent || extent.length < 4) {
+            return {
+              error: {
+                status: 404,
+                statusText: `No valid bbox found for campaign: ${campaign}`,
+              },
+            };
+          }
+
+          const bbox = {
+            minLng: extent[0],
+            minLat: extent[1],
+            maxLng: extent[2],
+            maxLat: extent[3],
+          };
+
+          console.log(`🌐 API: Retrieved bbox for ${campaign}:`, bbox);
+
+          return { data: bbox };
+        } catch (error) {
+          return {
+            error: {
+              status: 500,
+              statusText: `Failed to fetch bbox for campaign: ${campaign}`,
+            },
+          };
+        }
+      },
+    }),
   }),
 });
 
@@ -366,4 +437,5 @@ export const {
   useLazyGetTrafficFlowQuery,
   useLazyGetRoadNetworkQuery,
   useLazyGetOsemBikeDataQuery,
+  useLazyGetCampaignBboxQuery,
 } = keplerApi;
