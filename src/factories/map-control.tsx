@@ -7,6 +7,7 @@ import {
   BannerMapPanel,
   SampleMapPanel,
 } from "../components/map-control/map-control";
+import { ZoomControls } from "../components/map-control/zoom-controls";
 
 interface StyledMapControlOverlayProps {
   top?: number;
@@ -102,6 +103,7 @@ export function MapControlComponent(
               theme={props.theme}
             />
           ) : null}
+          <ZoomControls />
           <MapControl {...props} top={0} actionComponents={actionComponents} />
         </StyledMapControlPanel>
         <StyledMapControlContextPanel>
