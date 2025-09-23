@@ -77,7 +77,7 @@
           "visualChannels": {
             "colorField": null,
             "colorScale": "quantile",
-            "strokeColorField": { "name": "avg_speed", "type": "real" },
+            "strokeColorField": { "name": "avg_speed[km/h]", "type": "real" },
             "strokeColorScale": "quantile",
             "sizeField": null,
             "sizeScale": "linear",

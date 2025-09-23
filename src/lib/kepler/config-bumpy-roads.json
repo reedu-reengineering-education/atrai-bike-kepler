@@ -77,7 +77,7 @@
             "colorField": null,
             "colorScale": "quantile",
             "strokeColorField": {
-              "name": "Average Roughness_Normalized",
+              "name": "Normalized Roughness",
               "type": "real"
             },
             "strokeColorScale": "quantile",
@@ -98,7 +98,7 @@
               { "name": "Average Distance to Road", "format": null },
               { "name": "Number of Boxes", "format": null },
               { "name": "name", "format": null },
-              { "name": "Average Roughness_Normalized", "format": null },
+              { "name": "Normalized Roughness", "format": null },
               { "name": "Number of Points", "format": null }
             ]
           },

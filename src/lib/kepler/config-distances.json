@@ -91,12 +91,12 @@
             "colorField": null,
             "colorScale": "quantile",
             "strokeColorField": {
-              "name": "Average Normalized Overtaking Distance",
+              "name": "Average Overtaking Distance[cm]",
               "type": "real"
             },
             "strokeColorScale": "quantile",
             "sizeField": {
-              "name": "Average Overtaking Manoeuvre",
+              "name": "Average Overtaking Manoeuvre[%]",
               "type": "real"
             },
             "sizeScale": "linear",

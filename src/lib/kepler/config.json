@@ -75,12 +75,12 @@
           },
           "visualChannels": {
             "colorField": {
-              "name": "Average Roughness_Normalized",
+              "name": "Normalized Roughness",
               "type": "real"
             },
             "colorScale": "quantize",
             "strokeColorField": {
-              "name": "Average Roughness_Normalized",
+              "name": "Normalized Roughness",
               "type": "real"
             },
             "strokeColorScale": "quantize",
@@ -99,7 +99,7 @@
           "fieldsToShow": {
             "road_roughness": [
               { "name": "name", "format": null },
-              { "name": "Average Roughness_Normalized", "format": null },
+              { "name": "Normalized Roughness", "format": null },
               { "name": "Number of Points", "format": null }
             ]
           },
