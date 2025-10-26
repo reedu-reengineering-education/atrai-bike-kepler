@@ -137,6 +137,7 @@
         9.665468314072013, 17.18305478057247, 31.1442867897876
       ],
       "mapStyles": {}
-    }
+    },
+    "uiState": { "mapControls": { "mapLegend": { "active": true } } }
   }
 }
