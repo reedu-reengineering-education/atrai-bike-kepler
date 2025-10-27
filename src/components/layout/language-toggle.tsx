@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { setLocale } from "@reedu-kepler.gl/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useSidebar } from "@/components/ui/sidebar";
 
 const I18NEXT_LNG_LOCAL_STORAGE_KEY = "i18nextLng";
 
 export function LanguageToggle() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
 
   const keplerLocale = useSelector(
     (state: any) => state?.keplerGl?.map?.uiState?.locale,
@@ -33,12 +36,12 @@ export function LanguageToggle() {
   };
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className={`flex items-center gap-1 ${isCollapsed ? 'flex-col' : 'flex-row justify-between w-full'}`}>
       {["de", "en", "pt"].map((lng) => (
         <button
           key={lng}
           onClick={() => changeLanguage(lng)}
-          className={`w-[50%] h-6 ml-2 rounded-lg text-xs font-medium flex items-center justify-center transition ${
+          className={`${isCollapsed ? 'w-8' : 'w-[30%]'} h-6 rounded-lg text-xs font-medium flex items-center justify-center transition ${
             i18n.language === lng
               ? "bg-primary text-primary-foreground"
               : "bg-muted"
