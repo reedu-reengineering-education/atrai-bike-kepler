@@ -180,5 +180,16 @@
   "campaignSwitcher": {
     "changeCampaign": "Alterar campanha",
     "noCampaignSelected": "Nenhuma campanha selecionada"
+  },
+  
+  "tour": {
+    "welcome": "Este aplicativo permite explorar dados geoespaciais através de mapas interativos com Kepler.gl. Carregue dados, personalize camadas e descubra insights em apenas alguns cliques.",
+    "campaignSwitcher": "Aqui você pode escolher a campanha ativa.",
+    "languageToggle": "Altere o idioma do aplicativo aqui. Escolha entre Inglês, Alemão e Português.",
+    "userMenu": "Este é o menu do seu perfil de usuário. Clique aqui para gerenciar sua conta ou sair.",
+    "legend": "Abra a legenda para entender o que as cores, símbolos e camadas do mapa representam.",
+    "addData": "Adicione dados ao mapa. Escolha entre conjuntos de dados integrados, faça upload de seus próprios arquivos (CSV, JSON, GeoJSON) ou conecte tilesets como Vector Tiles, Raster ou WMS."
   }
 }
+
+

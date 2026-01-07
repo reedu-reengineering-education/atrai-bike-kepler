@@ -184,5 +184,16 @@
   "campaignSwitcher": {
     "changeCampaign": "Kampagne wechseln",
     "noCampaignSelected": "Keine Kampagne ausgewählt"
+  },
+  
+  "tour": {
+    "welcome": "Diese Anwendung ermöglicht es Ihnen, Geodaten über interaktive Karten mit Kepler.gl zu erkunden. Laden Sie Daten hoch, passen Sie Layer an und entdecken Sie Erkenntnisse mit nur wenigen Klicks.",
+    "campaignSwitcher": "Hier können Sie die aktive Kampagne auswählen.",
+    "languageToggle": "Ändern Sie hier die Sprache der Anwendung. Wählen Sie zwischen Englisch, Deutsch und Portugiesisch.",
+    "userMenu": "Dies ist Ihr Benutzerprofil-Menü. Klicken Sie hier, um Ihr Konto zu verwalten oder sich abzumelden.",
+    "legend": "Öffnen Sie die Legende, um zu verstehen, was die Kartenfarben, Symbole und Layer darstellen.",
+    "addData": "Fügen Sie Daten zur Karte hinzu. Wählen Sie aus integrierten Datensätzen, laden Sie eigene Dateien hoch (CSV, JSON, GeoJSON) oder verbinden Sie Tilesets wie Vector Tiles, Raster oder WMS."
   }
 }
+
+

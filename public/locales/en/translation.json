@@ -182,5 +182,16 @@
   "campaignSwitcher": {
     "changeCampaign": "Change campaign",
     "noCampaignSelected": "No campaign selected"
+  },
+  
+  "tour": {
+    "welcome": "This application lets you explore geospatial data through interactive maps powered by Kepler.gl. Upload data, customize layers, and discover insights in just a few clicks.",
+    "campaignSwitcher": "From here, you can choose the active campaign.",
+    "languageToggle": "Change the language of the application here. Choose between English, German, and Portuguese.",
+    "userMenu": "This is your user profile menu. Click here to manage your account or sign out.",
+    "legend": "Open the legend to understand what the map colors, symbols, and layers represent.",
+    "addData": "Add data to the map. Choose from built-in datasets, upload your own files (CSV, JSON, GeoJSON), or connect tilesets such as Vector Tiles, Raster, or WMS."
   }
 }
+
+
