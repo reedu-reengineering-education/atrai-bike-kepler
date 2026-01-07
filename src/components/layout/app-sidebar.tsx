@@ -18,6 +18,7 @@ import { useRefresh } from "@/context/RefreshContext";
 import { LanguageToggle } from "@/components/layout/language-toggle";
 import { MapsNav } from "./maps-nav";
 import { useCampaignBbox } from "@/hooks/useCampaignBbox";
+import { StartTourButton } from "./start-tour-button";
 
 interface NavItem {
   translationKey?: string;
@@ -123,6 +124,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           title={t("sidebar.platform")}
           items={translateNavItems(staticNavMain) as any}
         />
+         <div className="px-2 mt-2">
+    <StartTourButton />
+  </div>
         {session && <MapsNav title={t("sidebar.userMaps")} items={maps} />}
       </SidebarContent>
       <SidebarFooter className="flex items-center justify-between px-2">

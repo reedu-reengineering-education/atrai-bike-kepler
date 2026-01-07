@@ -58,7 +58,8 @@
     "Atrai Data": "Dados Atrai",
     "road roughness Dataset": "Conjunto de Dados de Rugosidade da Estrada",
     "overtaking distance Dataset": "Conjunto de Dados de Distância de Ultrapassagem",
-    "Built-in Datasets": "Conjuntos de Dados Integrados"
+    "Built-in Datasets": "Conjuntos de Dados Integrados",
+    "startTour": "Iniciar tour guiado"
   },
   "map": {
     "confirmDelete": "Tem certeza que quer deletar este map?",

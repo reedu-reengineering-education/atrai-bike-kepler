@@ -59,7 +59,8 @@
     "Atrai Data": "Atrai Data",
     "road roughness Dataset": "Road Roughness Dataset",
     "overtaking distance Dataset": "Overtaking Distance Dataset",
-    "Built-in Datasets": "Built-in Datasets"
+    "Built-in Datasets": "Built-in Datasets",
+    "startTour": "Start guided tour"
   },
   "map": {
     "confirmDelete": "Are you sure you want to delete this map?",

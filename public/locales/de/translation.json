@@ -59,7 +59,8 @@
     "Atrai Data": "Atrai-Daten",
     "road roughness Dataset": "Datensatz zur Straßenbelag",
     "overtaking distance Dataset": "Datensatz zum Überholabstand",
-    "Built-in Datasets": "Eingebaute Datensätze"
+    "Built-in Datasets": "Eingebaute Datensätze",
+    "startTour": "Geführte Tour starten"
   },
   "map": {
     "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen möchten?",
