@@ -33,7 +33,9 @@ export function LanguageToggle() {
   };
 
   return (
-    <div className="flex items-center justify-between w-full">
+    <div className="flex items-center justify-between w-full"
+    data-tour="language-toggle"
+    >
       {["de", "en", "pt"].map((lng) => (
         <button
           key={lng}

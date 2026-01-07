@@ -45,6 +45,7 @@ export function NavUser() {
             <SidebarMenuButton
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              data-tour="nav-user"
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 <AvatarImage
@@ -97,31 +98,7 @@ export function NavUser() {
                   </div>
                 </DropdownMenuLabel>
 
-                {/* <DropdownMenuSeparator /> */}
-
-                {/* <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <Sparkles className="mr-2" />
-                    {t("nav.Upgrade to Pro")}
-                  </DropdownMenuItem>
-                </DropdownMenuGroup> */}
-
-                {/* <DropdownMenuSeparator /> */}
-
-                {/* <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <BadgeCheck className="mr-2" />
-                    {t("nav.Account")}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <CreditCard className="mr-2" />
-                    {t("nav.billing")}
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Bell className="mr-2" />
-                    {t("nav.Notifications")}
-                  </DropdownMenuItem>
-                </DropdownMenuGroup> */}
+           
 
                 <DropdownMenuSeparator />
 
