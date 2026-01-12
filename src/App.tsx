@@ -1,29 +1,30 @@
 import { connect } from "react-redux";
 import AutoSizer from "react-virtualized/dist/commonjs/AutoSizer";
-
-import {
-  injectComponents,
-  // SidePanelFactory,
-  LoadDataModalFactory,
-} from "@reedu-kepler.gl/components";
+import { injectComponents, LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { KeplerGlState } from "@reedu-kepler.gl/reducers";
 import { Action, Dispatch } from "redux";
-// import CustomSidePanelFactory from "./components/kepler/side-panel";
-import { replaceMapControl } from "./factories/map-control-factory";
 import CustomAddDataModalFactory from "./components/modal/custom-add-data-modal";
+import { replaceMapControl } from "./factories/map-control-factory";
+import TourManager from "./components/tour/TourManager";
+import { RootState } from "@/lib/redux/store";
 
 // Inject custom components
-
 const KeplerGl = injectComponents([
-  // [SidePanelFactory, CustomSidePanelFactory] as never,
   [LoadDataModalFactory, CustomAddDataModalFactory] as never,
   replaceMapControl() as never,
 ]);
+
 const ApiAccessToken = import.meta.env.VITE_BASE_MAP_TOKEN;
 
-const App = () => {
+interface AppProps {
+  activeCampaign?: string | null;
+  keplerLocale?: string;
+}
+
+const App = ({ activeCampaign }: AppProps) => {
   return (
-    <div className="w-full h-full overflow-clip">
+    <div id="map-tour-wrapper" className="w-full h-full overflow-clip relative">
+      <TourManager campaignName={activeCampaign || undefined} />
       <AutoSizer>
         {({ height, width }) => (
           <KeplerGl
@@ -39,7 +40,11 @@ const App = () => {
   );
 };
 
-const mapStateToProps = (state: KeplerGlState) => state;
+const mapStateToProps = (state: KeplerGlState & RootState) => ({
+  ...state,
+  activeCampaign: state.campaign?.activeCampaign,
+});
+
 const dispatchToProps = (dispatch: Dispatch<Action<string>>) => ({ dispatch });
 
 export default connect(mapStateToProps, dispatchToProps)(App);

@@ -119,7 +119,9 @@ export function CampaignSwitcher() {
     return (
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton size="lg" disabled>
+          <SidebarMenuButton data-tour="campaign-switcher"
+  size="lg"
+  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
             <div className="bg-sidebar-accent text-sidebar-primary-foreground border-2 border-accent-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
               <div className="text-xs">?</div>
             </div>
@@ -143,6 +145,7 @@ export function CampaignSwitcher() {
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
+              data-tour="campaign-switcher"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-sidebar-accent text-sidebar-primary-foreground border-2 border-accent-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
