@@ -1,13 +1,13 @@
 import { TooltipRenderProps } from "react-joyride";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 const ShadcnTourTooltip = ({
   continuous,
   index,
+  isLastStep, // <--- use this!
   step,
   backProps,
-  closeProps,
   primaryProps,
   skipProps,
   tooltipProps,
@@ -15,10 +15,6 @@ const ShadcnTourTooltip = ({
   return (
     <div {...tooltipProps} className="z-[20000]">
       <Card className="w-80 shadow-xl">
-        {/* <CardHeader className="text-base font-semibold">
-          Step {index + 1}
-        </CardHeader> */}
-
         <CardContent className="text-sm text-muted-foreground">
           {step.content}
         </CardContent>
@@ -33,15 +29,21 @@ const ShadcnTourTooltip = ({
           </div>
 
           <div className="flex gap-2">
-            {continuous && (
+            {continuous && !isLastStep && (
               <Button size="sm" {...primaryProps}>
-                {/* {primaryProps.title} */}
                 Next
               </Button>
             )}
-            <Button variant="ghost" size="sm" {...skipProps}>
-              Skip
-            </Button>
+            {isLastStep && (
+              <Button size="sm" {...primaryProps}>
+                Finish
+              </Button>
+            )}
+            {!isLastStep && (
+              <Button variant="ghost" size="sm" {...skipProps}>
+                Skip
+              </Button>
+            )}
           </div>
         </CardFooter>
       </Card>
@@ -50,3 +52,4 @@ const ShadcnTourTooltip = ({
 };
 
 export default ShadcnTourTooltip;
+
