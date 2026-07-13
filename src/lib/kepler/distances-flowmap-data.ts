@@ -6,7 +6,7 @@ import { DISTANCES_FLOWMAP_INFO } from "./dataset-info";
 
 export async function addDistancesFlowmapData() {
   const dataReq = await fetch(
-    "https://api.atrai.bike/collections/distances_flowmap/items?f=json&limit=1000000",
+    `${import.meta.env.VITE_API_URL}/collections/distances_flowmap/items?f=json&limit=1000000`,
   );
   const data = await dataReq.json();
   const geojson = processGeojson(data);

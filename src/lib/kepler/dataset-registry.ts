@@ -1,38 +1,170 @@
-import RoadRoughnessImageUrl from "@/assets/road-roughness.png";
-import DistancesImageUrl from "@/assets/distances.png";
 // Using existing images as placeholders for danger zones
-import DangerZonesImageUrl from "@/assets/road-roughness.png";
 import {
-  useLazyGetDangerZonesQuery,
-  useLazyGetAirPollutionQuery,
-  useLazyGetBumpyRoadsQuery,
-  useLazyGetOvertakingDistanceQuery,
-  useLazyGetSpeedMapQuery,
-  useLazyGetTrafficFlowQuery,
-  useLazyGetRoadNetworkQuery,
-  useLazyGetMvtOsemBikeDataQuery,
-} from "@/lib/redux/keplerApi";
-import {
-  DANGER_ZONES_INFO,
-  AIR_POLLUTION_INFO,
-  BUMPY_ROADS_INFO,
-  OVERTAKING_DISTANCE_INFO,
-  SPEED_MAP_INFO,
-  TRAFFIC_FLOW_INFO,
-  ROAD_NETWORK_INFO,
   OSEM_BIKE_DATA,
 } from "./dataset-info";
 import React from "react";
 import {
-  SpaceIcon,
-  WavesIcon,
-  AlertTriangleIcon,
-  CloudIcon,
-  ZapIcon,
-  TrendingUpIcon,
-  RailSymbolIcon,
   BikeIcon,
+  LayersIcon,
+  MapIcon,
+  BarChart3,
+  AlertTriangleIcon,
+  ZapIcon,
+  MoreHorizontal,
+  Grid3X3,
+  TrendingUp,
 } from "lucide-react";
+import { useLazyGetOsemBikePublicQuery } from "../redux/keplerApi";
+
+/**
+ * Helper function to create a generic collection loader hook
+ * Returns a function that loads a collection via direct fetch
+ * Compatible with RTK Query's lazy hook interface
+ */
+function createCollectionLoader(collectionName: string) {
+  return () => {
+    const trigger = (options = {}) => {
+      // Return immediately with an object that has unwrap method
+      // unwrap() returns the actual Promise
+      return {
+        unwrap: async () => {
+          try {
+            const url = `${import.meta.env.VITE_API_URL}/collections/${collectionName}/items?f=json&limit=100000`;
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}: Failed to load collection ${collectionName}`);
+            }
+            
+            return await response.json();
+          } catch (err) {
+            console.error(`Error loading collection ${collectionName}:`, err);
+            throw err;
+          }
+        }
+      };
+    };
+    
+    // Return in the format expected by the data panel
+    // This mimics RTK Query's useLazy hook format: [trigger, { data, isLoading, error }]
+    return [
+      trigger,
+      {
+        data: null,
+        isLoading: false,
+        error: null,
+        status: 'uninitialized'
+      }
+    ];
+  };
+}
+
+/**
+ * Mapping of collection names to their configurations
+ */
+const COLLECTION_CONFIGS: Record<string, {
+  label: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  iconColor: string;
+  description: string;
+}> = {
+  "bike_road_network_heilbronn": {
+    label: "Bike Road Network (Heilbronn)",
+    icon: MapIcon,
+    iconColor: "#14b8a6",
+    description: "Bike-friendly road network in Heilbronn"
+  },
+  "bumpy_roads_heilbronn": {
+    label: "Bumpy Roads (Heilbronn)",
+    icon: AlertTriangleIcon,
+    iconColor: "#f97316",
+    description: "Roads with poor surface conditions"
+  },
+  "danger_zones_heilbronn": {
+    label: "Danger Zones (Heilbronn)",
+    icon: ZapIcon,
+    iconColor: "#ef4444",
+    description: "Areas marked as dangerous for cyclists"
+  },
+  "overtaking_distance_heilbronn": {
+    label: "Overtaking Distances (Heilbronn)",
+    icon: BarChart3,
+    iconColor: "#8b5cf6",
+    description: "Data on overtaking distance measurements"
+  },
+  "road_network_heilbronn": {
+    label: "Road Network (Heilbronn)",
+    icon: MapIcon,
+    iconColor: "#6366f1",
+    description: "Complete road network layer"
+  },
+  "speed_map_heilbronn": {
+    label: "Speed Map (Heilbronn)",
+    icon: MoreHorizontal,
+    iconColor: "#3b82f6",
+    description: "Measured speed data across the city"
+  },
+  "traffic_flow_heilbronn": {
+    label: "Traffic Flow (Heilbronn)",
+    icon: TrendingUp,
+    iconColor: "#06b6d4",
+    description: "Traffic flow visualization"
+  },
+  "track_points": {
+    label: "Track Points",
+    icon: Grid3X3,
+    iconColor: "#ec4899",
+    description: "Individual GPS track points"
+  },
+  "tracks": {
+    label: "Tracks",
+    icon: BikeIcon,
+    iconColor: "#0ea5e9",
+    description: "Complete bike tracks and routes"
+  },
+  "osem_bike_data": {
+    label: "OSEM Bike Data",
+    icon: BikeIcon,
+    iconColor: "#10b981",
+    description: "Environmental sensor data from bike sensors"
+  },
+};
+
+/**
+ * Create a dataset configuration for a collection
+ */
+function createCollectionDataset(collectionName: string): DatasetConfig {
+  const config = COLLECTION_CONFIGS[collectionName];
+  if (!config) {
+    return {
+      id: collectionName,
+      label: collectionName,
+      icon: LayersIcon,
+      iconColor: "#6b7280",
+      queryHook: createCollectionLoader(collectionName),
+      datasetInfo: {
+        title: collectionName,
+        description: "Collection from ATRAI API",
+        url: `${import.meta.env.VITE_API_URL}/collections/${collectionName}/items?f=json&limit=100000`,
+        configUrl: "",
+      },
+    };
+  }
+
+  return {
+    id: collectionName,
+    label: config.label,
+    icon: config.icon,
+    iconColor: config.iconColor,
+    queryHook: createCollectionLoader(collectionName),
+    datasetInfo: {
+      title: config.label,
+      description: config.description,
+      url: `${import.meta.env.VITE_API_URL}/collections/${collectionName}/items?f=json&limit=100000`,
+      configUrl: "",
+    },
+  };
+}
 
 /**
  * Configuration interface for ATRAI datasets
@@ -82,101 +214,21 @@ export interface DatasetRegistry {
  * 4. Add the preview image to the assets folder
  */
 export const ATRAI_DATASETS: DatasetRegistry = {
-  // road_roughness: {
-  //   id: "road_roughness",
-  //   label: "Road Roughness",
-  //   imageUrl: RoadRoughnessImageUrl,
-  //   icon: WavesIcon,
-  //   iconColor: "#0ea5e9", // Blue color
-  //   queryHook: useLazyGetRoadRoughnessQuery,
-  //   datasetInfo: ROAD_ROUGHNESS_INFO,
-  // },
-  // distances_flowmap: {
-  //   id: "distances_flowmap",
-  //   label: "Overtaking Distances",
-  //   imageUrl: DistancesImageUrl,
-  //   icon: SpaceIcon,
-  //   iconColor: "#0ea5e9", // Blue color
-  //   queryHook: useLazyGetDistanceFlowQuery,
-  //   datasetInfo: DISTANCES_FLOWMAP_INFO,
-  // },
-  osem_bike_data: {
-    id: "osem_bike_data",
-    label: "openSenseMap Bike Data (Experimental)",
+  // ATRAI Data Collections
+  ...Object.keys(COLLECTION_CONFIGS).reduce((acc, collectionName) => {
+    acc[collectionName] = createCollectionDataset(collectionName);
+    return acc;
+  }, {} as DatasetRegistry),
+
+  osem_bike_campaign_geojson: {
+    id: "osem_bike_campaign_geojson",
+    label: "OSEM Bike Data (Campaign GeoJSON)",
     icon: BikeIcon,
     iconColor: "#0ea5e9", // Blue color
-    queryHook: useLazyGetMvtOsemBikeDataQuery,
+    // Use the campaign-aware geojson loader
+    queryHook: useLazyGetOsemBikePublicQuery,
+    requiresCampaign: true,
     datasetInfo: OSEM_BIKE_DATA,
-  },
-  danger_zones: {
-    id: "danger_zones",
-    label: "Danger Zones",
-    imageUrl: DangerZonesImageUrl,
-    icon: AlertTriangleIcon,
-    iconColor: "#dc2626", // Red color
-    queryHook: useLazyGetDangerZonesQuery,
-    datasetInfo: DANGER_ZONES_INFO,
-    requiresCampaign: true,
-  },
-  air_pollution: {
-    id: "air_pollution",
-    label: "Air Pollution (PM)",
-    imageUrl: DangerZonesImageUrl, // Reusing danger zones image
-    icon: CloudIcon,
-    iconColor: "#8b4513", // Brown color for pollution
-    queryHook: useLazyGetAirPollutionQuery,
-    datasetInfo: AIR_POLLUTION_INFO,
-    requiresCampaign: true,
-  },
-  bumpy_roads: {
-    id: "bumpy_roads",
-    label: "Bumpy Roads",
-    imageUrl: RoadRoughnessImageUrl, // Reusing road roughness image
-    icon: WavesIcon,
-    iconColor: "#f59e0b", // Orange color
-    queryHook: useLazyGetBumpyRoadsQuery,
-    datasetInfo: BUMPY_ROADS_INFO,
-    requiresCampaign: true,
-  },
-  overtaking_distance: {
-    id: "overtaking_distance",
-    label: "Overtaking Distance",
-    imageUrl: DistancesImageUrl, // Reusing distances image
-    icon: SpaceIcon,
-    iconColor: "#8b5cf6", // Purple color
-    queryHook: useLazyGetOvertakingDistanceQuery,
-    datasetInfo: OVERTAKING_DISTANCE_INFO,
-    requiresCampaign: true,
-  },
-  speed_map: {
-    id: "speed_map",
-    label: "Speed Map",
-    imageUrl: RoadRoughnessImageUrl, // Reusing road roughness image
-    icon: ZapIcon,
-    iconColor: "#10b981", // Green color
-    queryHook: useLazyGetSpeedMapQuery,
-    datasetInfo: SPEED_MAP_INFO,
-    requiresCampaign: true,
-  },
-  traffic_flow: {
-    id: "traffic_flow",
-    label: "Traffic Flow",
-    imageUrl: DistancesImageUrl, // Reusing distances image
-    icon: TrendingUpIcon,
-    iconColor: "#3b82f6", // Blue color
-    queryHook: useLazyGetTrafficFlowQuery,
-    datasetInfo: TRAFFIC_FLOW_INFO,
-    requiresCampaign: true,
-  },
-  road_network: {
-    id: "road_network",
-    label: "Road Network",
-    imageUrl: DistancesImageUrl, // Reusing distances image
-    icon: RailSymbolIcon,
-    iconColor: "#3b82f6", // Blue color
-    queryHook: useLazyGetRoadNetworkQuery,
-    datasetInfo: ROAD_NETWORK_INFO,
-    requiresCampaign: true,
   },
 };
 

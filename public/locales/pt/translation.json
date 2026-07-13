@@ -141,6 +141,22 @@
     "avgDuration": "Duração Média (s)",
     "weekOf": "Semana de"
   },
+  "stats": {
+    "totalTracks": "Total de Trajetos",
+    "totalDistance": "Distância Total",
+    "totalDuration": "Duração Total",
+    "avgSpeed": "Velocidade Média",
+    "numRiders": "Número de Ciclistas",
+    "maxDistance": "Distância Máxima de Trajeto",
+    "avgDistance": "Distância Média de Trajeto",
+    "avgDuration": "Duração Média de Trajeto",
+    "dateRange": "Intervalo de Datas"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "noData": "Nenhum dado disponível"
+  },
   "logo": {
     "alt": "Logo Atraibike",
     "title": "PLATAFORMA ATRAIBIKE"

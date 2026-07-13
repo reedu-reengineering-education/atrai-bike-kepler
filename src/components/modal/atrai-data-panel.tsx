@@ -17,6 +17,8 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { toast } from "sonner";
+import { getCampaigns } from "@/lib/campaigns";
+import { loadKeplerDataset } from "@/lib/redux/loadkeplerData";
 
 /**
  * Props interface for the ATRAI Data Panel component
@@ -241,6 +243,13 @@ export function ATRAIDataPanel({
     (state: RootState) => state.campaign.activeCampaign,
   );
 
+  // Lookup bbox for the active campaign
+  const campaignConfig = useMemo(() => {
+    if (!activeCampaign) return undefined;
+    return getCampaigns().find((c) => c.value === activeCampaign);
+  }, [activeCampaign]);
+  const campaignBbox = campaignConfig?.bbox;
+
   // Enhanced state management for loading and errors
   const [loadingStates, setLoadingStates] = useState<Record<string, boolean>>(
     {},
@@ -421,23 +430,30 @@ export function ATRAIDataPanel({
 
         // Get the trigger function for this dataset with validation
         const triggerQuery = queryHooks[datasetId];
-
         if (!triggerQuery || typeof triggerQuery !== "function") {
           throw new Error(
             `Query trigger not found or invalid for dataset ${dataset.label}`,
           );
         }
-
         // Execute the query and wait for the result with timeout handling
         let result;
         try {
-          // Check if this dataset requires campaign parameter
           let queryPromise;
           if (dataset.requiresCampaign && activeCampaign) {
-            console.log(
-              `Executing campaign-specific query for ${dataset.label} with campaign: ${activeCampaign}`,
-            );
-            queryPromise = triggerQuery(activeCampaign).unwrap();
+            // If this is the OSEM Bike Data dataset, pass both value and bbox
+            if (dataset.id === "osem_bike_campaign_geojson") {
+              if (!campaignBbox) {
+                throw new Error(
+                  `No bbox configured for campaign: ${activeCampaign}`
+                );
+              }
+              queryPromise = triggerQuery({
+                collectionValue: activeCampaign,
+                bbox: campaignBbox.join(","),
+              }).unwrap();
+            } else {
+              queryPromise = triggerQuery(activeCampaign).unwrap();
+            }
           } else if (dataset.requiresCampaign && !activeCampaign) {
             throw new Error(
               `Dataset ${dataset.label} requires a campaign to be selected`,
@@ -445,7 +461,6 @@ export function ATRAIDataPanel({
           } else {
             queryPromise = triggerQuery().unwrap();
           }
-
           result = await Promise.race([
             queryPromise,
             new Promise((_, reject) =>
@@ -485,6 +500,20 @@ export function ATRAIDataPanel({
         // Validate result structure
         if (typeof result !== "object") {
           throw new Error("Invalid response format received from server");
+        }
+
+        // Load the dataset into kepler.gl with the actual data
+        const loadResult = await loadKeplerDataset({
+          response: { data: result },
+          datasetId: dataset.id,
+          label: dataset.label,
+          config: {}, // Empty config - let kepler.gl auto-create layers
+        });
+
+        if (loadResult.error) {
+          throw new Error(
+            loadResult.error.statusText || "Failed to load dataset into map"
+          );
         }
 
         // Update Redux state with the dataset info
@@ -615,6 +644,7 @@ export function ATRAIDataPanel({
       activeRequests,
       queryHooks,
       activeCampaign,
+      campaignBbox,
       dispatch,
       onDataLoad,
       onClose,

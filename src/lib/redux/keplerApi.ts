@@ -15,7 +15,7 @@ import configOsemBikeData from "@/lib/kepler/config-osem-bike-data.json";
 export const keplerApi = createApi({
   reducerPath: "keplerApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://api.atrai.bike/collections/",
+    baseUrl: `${import.meta.env.VITE_API_URL}/collections/`,
   }),
   endpoints: (builder) => ({
     getMvtOsemBikeData: builder.query<any, void>({
@@ -342,6 +342,33 @@ export const keplerApi = createApi({
         });
       },
     }),
+    getOsemBikePublic: builder.query<any, { collectionValue: string; bbox: string }>({
+      // @ts-expect-error is not assignable to type
+      async queryFn(arg, _queryApi, _extraOptions, baseQuery) {
+        const { collectionValue, bbox } = arg || {};
+        if (!collectionValue || !bbox) {
+          return { error: { status: 400, statusText: "collectionValue and bbox are required" } };
+        }
+        console.log(`🌐 API: Requesting public OSEM data for value: ${collectionValue} bbox: ${bbox}`);
+        const filterParam = encodeURIComponent(`groupTags like '%${collectionValue}%'`);
+        const url = `public.osem_bike_data/items?bbox=${bbox}&filter=${filterParam}`;
+        const response = await baseQuery(url);
+        if (response.error) {
+          return {
+            error: {
+              status: response.error.status || 404,
+              statusText: `No public OSEM data available for value: ${collectionValue}`,
+            },
+          };
+        }
+        return loadKeplerDataset({
+          response,
+          datasetId: `osem_bike_data_${collectionValue}`,
+          label: `OSEM Bike Data - ${collectionValue}`,
+          config: configOsemBikeData,
+        });
+      },
+    }),
 
     getCampaignBbox: builder.query<any, string>({
       // @ts-expect-error is not assignable to type
@@ -408,6 +435,7 @@ export const keplerApi = createApi({
             error: {
               status: 500,
               statusText: `Failed to fetch bbox for campaign: ${campaign}`,
+              error: error
             },
           };
         }
@@ -438,4 +466,5 @@ export const {
   useLazyGetRoadNetworkQuery,
   useLazyGetOsemBikeDataQuery,
   useLazyGetCampaignBboxQuery,
+  useLazyGetOsemBikePublicQuery,
 } = keplerApi;

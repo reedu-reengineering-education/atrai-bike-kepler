@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BookOpen, ChartLine, MapIcon } from "lucide-react";
+import { BookOpen, ChartLine, MapIcon, BarChart3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";
@@ -39,8 +39,9 @@ const staticNavMain: NavItem[] = [
   {
     translationKey: "statistics",
     url: "/statistics",
-    icon: ChartLine,
+    icon: BarChart3,
   },
+  // ...existing code...
   {
     translationKey: "documentation",
     url: "docs",

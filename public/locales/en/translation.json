@@ -143,6 +143,22 @@
     "avgDuration": "Avg Duration (s)",
     "weekOf": "Week of"
   },
+  "stats": {
+    "totalTracks": "Total Tracks",
+    "totalDistance": "Total Distance",
+    "totalDuration": "Total Duration",
+    "avgSpeed": "Average Speed",
+    "numRiders": "Number of Riders",
+    "maxDistance": "Max Track Distance",
+    "avgDistance": "Average Track Distance",
+    "avgDuration": "Average Track Duration",
+    "dateRange": "Date Range"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "noData": "No data available"
+  },
   "logo": {
     "alt": "Atraibike Logo",
     "title": "ATRAIBIKE PLATFORM"

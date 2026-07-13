@@ -5,7 +5,7 @@ import Home from "./components/pages/Home";
 import Genesis from "./components/models/genesis/Genesis";
 import Explorer from "./components/models/explorer/Explorer";
 import Quantum from "./components/models/quantum/Quantum";
-import StatisticsPage from "./components/pages/Statistics";
+// ...existing code...
 import Signin from "./components/pages/Signin";
 import SignUpPage from "./components/pages/SignUp";
 import MapPage from "@/components/pages/MapPage";
@@ -16,6 +16,7 @@ import ResetPassword from "@/components/pages/ResetPassword";
 import CustomFeatures from "./components/pages/Documentations/CustomFeatures";
 import GetStarted from "./components/pages/Documentations/GetStarted";
 import BuiltInDatasets from "./components/pages/Documentations/BuiltInDatasets";
+import StatisticsPage from "./components/pages/Statistics";
 
 const rootRoute = createRootRoute({
   component: Layout,
@@ -28,11 +29,7 @@ const indexRoute = createRoute({
   component: Home,
 });
 
-const statisticsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/statistics",
-  component: StatisticsPage,
-});
+// ...existing code...
 
 const genesisRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -100,15 +97,21 @@ export const getStarted = createRoute({
   component: GetStarted,
 });
 
+export const statisticsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/statistics",
+  component: StatisticsPage,
+});
+
 export const routeTree = rootRoute.addChildren([
   indexRoute,
-  statisticsRoute,
   genesisRoute,
   explorerRoute,
   quantumRoute,
   signinRoute,
   signupRoute,
   mapDetailRoute,
+  statisticsRoute,
   introductionRoute,
   ForgetPasswordRoute,
   ResetPasswordRoute,

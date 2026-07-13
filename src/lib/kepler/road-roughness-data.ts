@@ -5,7 +5,7 @@ import configJson from "./config.json";
 
 export async function addRoadRoughnessData() {
   const dataReq = await fetch(
-    "https://api.atrai.bike/collections/road_roughness/items?f=json&limit=1000000",
+    `${import.meta.env.VITE_API_URL}/collections/road_roughness/items?f=json&limit=1000000`,
   );
   const data = await dataReq.json();
   const geojson = processGeojson(data);

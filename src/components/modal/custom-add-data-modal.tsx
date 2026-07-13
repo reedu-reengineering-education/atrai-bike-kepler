@@ -4,8 +4,8 @@
 import { useTranslation } from "react-i18next";
 import { LoadDataModalFactory } from "@reedu-kepler.gl/components";
 import { ATRAIDataPanel } from "./atrai-data-panel";
-import { OSEMDataPanel } from "./osem-data-panel";
-import { getDatasetsByCampaign } from "@/lib/kepler/dataset-registry";
+// import { OSEMDataPanel } from "./osem-data-panel";
+import { getDatasetsByCampaign, ATRAI_DATASETS } from "@/lib/kepler/dataset-registry";
 import { useSelector } from "react-redux";
 import { RootState } from "@/lib/redux/store";
 
@@ -41,7 +41,7 @@ function CustomAddDataModalFactory(...args: any[]) {
 
       return (
         <ATRAIDataPanel
-          datasets={getDatasetsByCampaign(activeCampaign)}
+          datasets={Object.values(ATRAI_DATASETS)}
           onClose={() => {
             // Modal close will be handled by the parent modal system
             if (props.onClose) {
@@ -60,58 +60,15 @@ function CustomAddDataModalFactory(...args: any[]) {
       );
     };
 
-    // Component to handle OSEM bike data loading
-    const OSEMDataPanelWrapper = () => {
-      return (
-        <OSEMDataPanel
-          onClose={() => {
-            // Modal close will be handled by the parent modal system
-            if (props.onClose) {
-              props.onClose();
-            }
-          }}
-          onDataLoad={(datasetInfo) => {
-            // Data loading is handled within OSEMDataPanel
-            console.log("OSEM dataset loaded:", datasetInfo.title);
-            // Close modal after successful data load
-            if (props.onClose) {
-              props.onClose();
-            }
-          }}
-        />
-      );
-    };
-
-    // Create the ATRAI Data loading method configuration
+    // Only expose ATRAI Data panel
     const atraiDataMethod = {
       id: "atrai-data",
-      label: t("nav.Atrai Data"),
+      label: "ATRAI Data",
       elementType: ATRAIDataPanelWrapper,
-      tabElement: t("nav.Atrai Data"),
+      tabElement: "ATRAI Data",
     };
 
-    // Create the OSEM Data loading method configuration
-    const osemDataMethod = {
-      id: "osem-data",
-      label: "OSEM Data",
-      elementType: OSEMDataPanelWrapper,
-      tabElement: "OSEM Data",
-    };
-
-    // Get the default loading methods from the base component
-    const defaultMethods = LoadDataModal.defaultLoadingMethods || [];
-
-    // remove id storage from defaultMethods
-    const filteredDefaultMethods = defaultMethods.filter(
-      (method) => method.id !== "storage",
-    );
-
-    // Add ATRAI Data and OSEM Data as the first options, followed by existing options
-    const customLoadingMethods = [
-      atraiDataMethod,
-      osemDataMethod,
-      ...filteredDefaultMethods,
-    ];
+    const customLoadingMethods = [atraiDataMethod];
 
     return <LoadDataModal {...props} loadingMethods={customLoadingMethods} />;
   };
