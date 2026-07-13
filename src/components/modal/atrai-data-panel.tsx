@@ -510,9 +510,9 @@ export function ATRAIDataPanel({
           config: {}, // Empty config - let kepler.gl auto-create layers
         });
 
-        if (loadResult.error) {
+        if (loadResult?.error) {
           throw new Error(
-            loadResult.error.statusText || "Failed to load dataset into map"
+            loadResult?.error?.statusText || "Failed to load dataset into map"
           );
         }
 

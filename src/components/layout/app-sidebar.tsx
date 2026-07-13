@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BookOpen, ChartLine, MapIcon, BarChart3 } from "lucide-react";
+import { BookOpen, MapIcon, BarChart3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NavMain } from "@/components/layout/nav-main";
 import { NavUser } from "@/components/layout/nav-user";

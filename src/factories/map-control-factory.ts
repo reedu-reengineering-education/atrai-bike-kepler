@@ -19,7 +19,6 @@ function CustomMapControlFactory(
     ...(MapControl.defaultActionComponents ?? []),
     EffectControl,
   ];
-  // @ts-expect-error: MapControlComponent requires internal typing that's not exposed
   return MapControlComponent(MapControl, EffectManager, actionComponents);
 }
 
