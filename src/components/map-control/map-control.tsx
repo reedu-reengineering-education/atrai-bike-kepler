@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Copyright contributors to the kepler.gl project
 
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import classnames from "classnames";
 import styled from "styled-components";
 import Markdown from "markdown-to-jsx";
@@ -207,7 +207,7 @@ export function BannerMapPanel() {
           className={classnames("map-control-button", "info-panel", {
             isActive,
           })}
-          onClick={(e) => {
+          onClick={(e: MouseEvent) => {
             e.preventDefault();
             setActive(true);
           }}
@@ -273,7 +273,7 @@ export function SampleMapPanel({ currentSample }: MapPanelProps) {
           className={classnames("map-control-button", "info-panel", {
             isActive,
           })}
-          onClick={(e) => {
+          onClick={(e: MouseEvent) => {
             e.preventDefault();
             setActive(true);
           }}

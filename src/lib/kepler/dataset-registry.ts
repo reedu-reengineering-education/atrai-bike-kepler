@@ -23,7 +23,7 @@ import { useLazyGetOsemBikePublicQuery } from "../redux/keplerApi";
  */
 function createCollectionLoader(collectionName: string) {
   return () => {
-    const trigger = (options = {}) => {
+    const trigger = (_options = {}) => {
       // Return immediately with an object that has unwrap method
       // unwrap() returns the actual Promise
       return {
