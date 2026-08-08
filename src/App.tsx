@@ -32,6 +32,8 @@ const App = () => {
             height={height}
             theme="light"
             mapboxApiAccessToken={ApiAccessToken}
+            mint={false} // to save the state during navigate to different pages
+            
           />
         )}
       </AutoSizer>

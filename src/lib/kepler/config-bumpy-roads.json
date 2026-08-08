@@ -146,6 +146,6 @@
       "backgroundColor": [0, 0, 0],
       "mapStyles": {}
     },
-    "uiState": { "mapControls": { "mapLegend": { "active": false } } }
+    "uiState": { "mapControls": { "mapLegend": { "active": true } } }
   }
 }

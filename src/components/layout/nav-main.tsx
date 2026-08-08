@@ -17,7 +17,14 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function NavMain({
   title,
@@ -37,8 +44,61 @@ export function NavMain({
     }[];
   }[];
 }) {
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
   const renderNavItem = (item: any, level = 0) => {
     const hasNestedItems = item.items && item.items.length > 0;
+
+    if (isCollapsed) {
+    
+      if (!hasNestedItems) {
+        return (
+          <SidebarMenuItem key={item.title + level}>
+            <Link to={item.url}>
+              <SidebarMenuButton tooltip={item.title}>
+                {item.icon && <item.icon />}
+              </SidebarMenuButton>
+            </Link>
+          </SidebarMenuItem>
+        );
+      }
+      
+     
+      return (
+        <SidebarMenuItem key={item.title + level}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <SidebarMenuButton tooltip={item.title}>
+                {item.icon && <item.icon />}
+                {!isCollapsed && <span>{item.title}</span>}
+                {!isCollapsed && (
+                  <ChevronRight className="ml-auto transition-transform duration-200" />
+                )}
+              </SidebarMenuButton>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              side="right"
+              sideOffset={8}
+              className="min-w-48"
+              align="start"
+            >
+              {item.items?.map((subItem: any) => (
+                <DropdownMenuItem key={subItem.title} asChild>
+                  <Link
+                    to={subItem.url}
+                    className="flex w-full items-center justify-between"
+                  >
+                    <span>{subItem.title}</span>
+                    {subItem.endicon}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </SidebarMenuItem>
+      );
+    }
 
     return (
       <Collapsible
@@ -102,3 +162,4 @@ export function NavMain({
     </SidebarGroup>
   );
 }
+
