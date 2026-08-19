@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { DatasetConfig } from "@/lib/kepler/dataset-registry";
+import { DatasetConfig, DatasetCategory } from "@/lib/kepler/dataset-registry";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
 import { RootState } from "@/lib/redux/store";
@@ -664,7 +664,7 @@ export function ATRAIDataPanel({
   );
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       {/* Show status detection error warning if needed */}
       {statusDetectionFailed && (
         <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -680,27 +680,118 @@ export function ATRAIDataPanel({
         </div>
       )}
 
-      {datasets.map((dataset) => {
-        const status = memoizedDatasetStatuses[dataset.id] || {
-          isLoaded: false,
-          isLoading: false,
-          error: undefined,
-          statusDetectionError: statusDetectionFailed,
-        };
+      {/* General Data Section */}
+      {datasets
+        .filter((d) => d.category === DatasetCategory.GENERAL_DATA)
+        .length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-gray-700 mb-2 px-1">
+            General Data
+          </h3>
+          <div className="space-y-2">
+            {datasets
+              .filter((d) => d.category === DatasetCategory.GENERAL_DATA)
+              .map((dataset) => {
+                const status = memoizedDatasetStatuses[dataset.id] || {
+                  isLoaded: false,
+                  isLoading: false,
+                  error: undefined,
+                  statusDetectionError: statusDetectionFailed,
+                };
 
-        return (
-          <DatasetItem
-            key={dataset.id}
-            dataset={dataset}
-            isLoading={status.isLoading}
-            isLoaded={status.isLoaded}
-            error={status.error}
-            statusDetectionError={status.statusDetectionError}
-            onClick={() => handleDatasetLoad(dataset)}
-            onRetry={() => handleRetry(dataset)}
-          />
-        );
-      })}
+                return (
+                  <DatasetItem
+                    key={dataset.id}
+                    dataset={dataset}
+                    isLoading={status.isLoading}
+                    isLoaded={status.isLoaded}
+                    error={status.error}
+                    statusDetectionError={status.statusDetectionError}
+                    onClick={() => handleDatasetLoad(dataset)}
+                    onRetry={() => handleRetry(dataset)}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      )}
+
+      {/* Analyzed Data Section */}
+      {datasets
+        .filter((d) => d.category === DatasetCategory.ANALYZED_DATA)
+        .length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-gray-700 mb-2 px-1">
+            Analyzed Data
+          </h3>
+          <div className="space-y-2">
+            {datasets
+              .filter((d) => d.category === DatasetCategory.ANALYZED_DATA)
+              .map((dataset) => {
+                const status = memoizedDatasetStatuses[dataset.id] || {
+                  isLoaded: false,
+                  isLoading: false,
+                  error: undefined,
+                  statusDetectionError: statusDetectionFailed,
+                };
+
+                return (
+                  <DatasetItem
+                    key={dataset.id}
+                    dataset={dataset}
+                    isLoading={status.isLoading}
+                    isLoaded={status.isLoaded}
+                    error={status.error}
+                    statusDetectionError={status.statusDetectionError}
+                    onClick={() => handleDatasetLoad(dataset)}
+                    onRetry={() => handleRetry(dataset)}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      )}
+
+      {/* Uncategorized Section (if any) */}
+      {datasets
+        .filter(
+          (d) =>
+            d.category !== DatasetCategory.GENERAL_DATA &&
+            d.category !== DatasetCategory.ANALYZED_DATA
+        )
+        .length > 0 && (
+        <div>
+          <div className="space-y-2">
+            {datasets
+              .filter(
+                (d) =>
+                  d.category !== DatasetCategory.GENERAL_DATA &&
+                  d.category !== DatasetCategory.ANALYZED_DATA
+              )
+              .map((dataset) => {
+                const status = memoizedDatasetStatuses[dataset.id] || {
+                  isLoaded: false,
+                  isLoading: false,
+                  error: undefined,
+                  statusDetectionError: statusDetectionFailed,
+                };
+
+                return (
+                  <DatasetItem
+                    key={dataset.id}
+                    dataset={dataset}
+                    isLoading={status.isLoading}
+                    isLoaded={status.isLoaded}
+                    error={status.error}
+                    statusDetectionError={status.statusDetectionError}
+                    onClick={() => handleDatasetLoad(dataset)}
+                    onRetry={() => handleRetry(dataset)}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

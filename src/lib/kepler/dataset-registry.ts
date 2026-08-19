@@ -77,13 +77,6 @@ const COLLECTION_CONFIGS: Record<string, {
   description: string;
   category: DatasetCategory;
 }> = {
-  "bike_road_network_heilbronn": {
-    label: "Bike Road Network (Heilbronn)",
-    icon: MapIcon,
-    iconColor: "#14b8a6",
-    description: "Bike-friendly road network in Heilbronn",
-    category: DatasetCategory.GENERAL_DATA,
-  },
   "bumpy_roads_heilbronn": {
     label: "Bumpy Roads (Heilbronn)",
     icon: AlertTriangleIcon,
