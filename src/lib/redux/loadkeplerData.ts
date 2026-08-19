@@ -3,10 +3,10 @@ import {
   addDataToMap,
   replaceDataInMap,
   updateVisData,
+  updateMap,
 } from "@reedu-kepler.gl/actions";
 import store from "@/lib/redux/store";
 import { bboxToViewport } from "@/lib/utils/bbox-utils";
-import { updateMap } from "@reedu-kepler.gl/actions";
 
 export async function loadMvtDataset({
   dataset,
@@ -129,8 +129,7 @@ export async function loadKeplerDataset({
   const isReloading = keplerState?.visState?.datasets?.[datasetId];
 
   if (isReloading) {
-    console.log(`Reloading existing dataset ${datasetId}`);
-    // Remove the existing dataset first to prevent conflicts
+    console.log(`🔄 Reloading existing dataset ${datasetId}`);
     try {
       store.dispatch(
         replaceDataInMap({
@@ -146,16 +145,16 @@ export async function loadKeplerDataset({
           },
         }),
       );
-      console.log(`Successfully replaced existing dataset ${datasetId}`);
+      console.log(`✅ Successfully replaced existing dataset ${datasetId}`);
 
       // Apply bbox viewport if available for campaign data
       applyBboxViewportIfAvailable();
     } catch (removeError) {
       console.warn(
-        `Error removing existing dataset ${datasetId}:`,
+        `Error replacing dataset ${datasetId}:`,
         removeError,
       );
-      // Continue with loading even if removal fails
+      // Continue with loading even if replacement fails
     }
   } else {
     console.log(`Loading new dataset ${datasetId}`);
@@ -163,6 +162,10 @@ export async function loadKeplerDataset({
 
   if (!isReloading) {
     try {
+      console.log(`📊 Loading new dataset ${datasetId} with styling config`);
+      
+      // Add data with config that includes layer styling
+      // Set keepExistingConfig to false to apply the new config styling
       store.dispatch(
         addDataToMap({
           datasets: {
@@ -171,16 +174,24 @@ export async function loadKeplerDataset({
           },
           options: {
             readOnly: false,
-            keepExistingConfig: true,
-            autoCreateLayers: true,
+            // Use the provided config instead of keeping existing one
+            keepExistingConfig: false,
+            // Use layers defined in config instead of auto-creating with defaults
+            autoCreateLayers: false,
           },
           config: updatedConfig,
         }),
       );
 
       console.log(
-        `Successfully loaded dataset ${datasetId} with ${geojson.rows?.length || 0} rows`,
+        `✅ Successfully loaded dataset ${datasetId} with ${geojson.rows?.length || 0} rows`,
       );
+      console.log(`🎨 Layers configured:`, updatedConfig.config.visState.layers.map((l: any) => ({
+        id: l.id,
+        type: l.type,
+        label: l.config?.label,
+        isVisible: l.config?.isVisible,
+      })));
 
       // Apply bbox viewport if available for campaign data
       applyBboxViewportIfAvailable();

@@ -185,7 +185,15 @@
     "overtakingDistances": "Überholabstände",
     "senseBoxBike": "senseBox:bike",
     "loginFirst": "Sie sollten sich zuerst anmelden.",
-    "saveMapFailed": "Karte konnte nicht gespeichert werden. Bitte versuchen Sie es erneut."
+    "saveMapFailed": "Karte konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "sources": "Quellen"
+  },
+  "sources": {
+    "noDataLoaded": "Keine Datenquellen geladen",
+    "activeSources": "Aktive Quellen",
+    "rows": "Zeilen",
+    "remove": "Entfernen",
+    "info": "Klicken Sie auf das Papierkorbsymbol, um eine Datenquelle zu entfernen"
   },
   "datasets": {
     "Danger zones data for the selected campaign": "Gefahrenzonen-Daten für die ausgewählte Kampagne"

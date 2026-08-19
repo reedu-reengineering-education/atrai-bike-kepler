@@ -186,7 +186,15 @@
     "overtakingDistances": "Overtaking Distances",
     "senseBoxBike": "senseBox:bike",
     "loginFirst": "You should log in first.",
-    "saveMapFailed": "Failed to save map. Please try again."
+    "saveMapFailed": "Failed to save map. Please try again.",
+    "sources": "Sources"
+  },
+  "sources": {
+    "noDataLoaded": "No data sources loaded",
+    "activeSources": "Active Sources",
+    "rows": "rows",
+    "remove": "Remove",
+    "info": "Click the trash icon to remove a data source"
   },
   "campaignModal": {
     "title": "Select a Campaign",

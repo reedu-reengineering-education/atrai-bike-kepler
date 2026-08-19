@@ -184,7 +184,15 @@
     "overtakingDistances": "Distâncias de Ultrapassagem",
     "senseBoxBike": "senseBox:bike",
     "loginFirst": "Você deve fazer login primeiro.",
-    "saveMapFailed": "Falha ao salvar o mapa. Tente novamente."
+    "saveMapFailed": "Falha ao salvar o mapa. Tente novamente.",
+    "sources": "Fontes"
+  },
+  "sources": {
+    "noDataLoaded": "Nenhuma fonte de dados carregada",
+    "activeSources": "Fontes Ativas",
+    "rows": "linhas",
+    "remove": "Remover",
+    "info": "Clique no ícone da lixeira para remover uma fonte de dados"
   },
   "campaignModal": {
     "title": "Selecionar uma Campanha",

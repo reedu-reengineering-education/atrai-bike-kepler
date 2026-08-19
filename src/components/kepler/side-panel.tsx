@@ -11,7 +11,7 @@ import {
 } from "@/lib/redux/keplerApi";
 import { useState } from "react";
 
-import { BikeIcon, SaveIcon } from "lucide-react";
+import { BikeIcon, SaveIcon, Database } from "lucide-react";
 import { saveMapToSupabase } from "@/supabase/saveMapeSupabase";
 import { UserAuth } from "@/context/AuthContext";
 import { useRefresh } from "@/context/RefreshContext";
@@ -22,6 +22,7 @@ import {
 } from "@/lib/kepler/dataset-info";
 import { useDispatch } from "react-redux";
 import { setActiveDataset } from "@/lib/redux/active-dataset-slice";
+import { SourcesPanelComponent } from "./sources-panel";
 
 function CustomSidePanelFactory(...args) {
   const CustomSidePanel = SidePanelFactory(...args);
@@ -143,6 +144,12 @@ function CustomSidePanelFactory(...args) {
               ),
             },
 
+            {
+              id: "sources",
+              label: t("sidebar.sources") || "Sources",
+              iconComponent: Database,
+              component: () => <SourcesPanelComponent />,
+            },
             {
               id: "save",
               label: t("Save"),
