@@ -60,6 +60,14 @@ function createCollectionLoader(collectionName: string) {
 }
 
 /**
+ * Dataset categories for organizing datasets in UI
+ */
+export enum DatasetCategory {
+  GENERAL_DATA = 'general_data',
+  ANALYZED_DATA = 'analyzed_data',
+}
+
+/**
  * Mapping of collection names to their configurations
  */
 const COLLECTION_CONFIGS: Record<string, {
@@ -67,66 +75,77 @@ const COLLECTION_CONFIGS: Record<string, {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   iconColor: string;
   description: string;
+  category: DatasetCategory;
 }> = {
   "bike_road_network_heilbronn": {
     label: "Bike Road Network (Heilbronn)",
     icon: MapIcon,
     iconColor: "#14b8a6",
-    description: "Bike-friendly road network in Heilbronn"
+    description: "Bike-friendly road network in Heilbronn",
+    category: DatasetCategory.GENERAL_DATA,
   },
   "bumpy_roads_heilbronn": {
     label: "Bumpy Roads (Heilbronn)",
     icon: AlertTriangleIcon,
     iconColor: "#f97316",
-    description: "Roads with poor surface conditions"
+    description: "Roads with poor surface conditions",
+    category: DatasetCategory.ANALYZED_DATA,
   },
   "danger_zones_heilbronn": {
     label: "Danger Zones (Heilbronn)",
     icon: ZapIcon,
     iconColor: "#ef4444",
-    description: "Areas marked as dangerous for cyclists"
+    description: "Areas marked as dangerous for cyclists",
+    category: DatasetCategory.ANALYZED_DATA,
   },
   "overtaking_distance_heilbronn": {
     label: "Overtaking Distances (Heilbronn)",
     icon: BarChart3,
     iconColor: "#8b5cf6",
-    description: "Data on overtaking distance measurements"
+    description: "Data on overtaking distance measurements",
+    category: DatasetCategory.ANALYZED_DATA,
   },
   "road_network_heilbronn": {
     label: "Road Network (Heilbronn)",
     icon: MapIcon,
     iconColor: "#6366f1",
-    description: "Complete road network layer"
+    description: "Complete road network layer",
+    category: DatasetCategory.GENERAL_DATA,
   },
   "speed_map_heilbronn": {
     label: "Speed Map (Heilbronn)",
     icon: MoreHorizontal,
     iconColor: "#3b82f6",
-    description: "Measured speed data across the city"
+    description: "Measured speed data across the city",
+    category: DatasetCategory.ANALYZED_DATA,
   },
   "traffic_flow_heilbronn": {
     label: "Traffic Flow (Heilbronn)",
     icon: TrendingUp,
     iconColor: "#06b6d4",
-    description: "Traffic flow visualization"
+    description: "Traffic flow visualization",
+    category: DatasetCategory.ANALYZED_DATA,
   },
   "track_points": {
     label: "Track Points",
     icon: Grid3X3,
     iconColor: "#ec4899",
-    description: "Individual GPS track points"
+    description: "Individual GPS track points",
+    category: DatasetCategory.GENERAL_DATA,
   },
   "tracks": {
     label: "Tracks",
     icon: BikeIcon,
     iconColor: "#0ea5e9",
-    description: "Complete bike tracks and routes"
+    description: "Complete bike tracks and routes",
+    category: DatasetCategory.GENERAL_DATA,
   },
   "osem_bike_data": {
     label: "OSEM Bike Data",
     icon: BikeIcon,
     iconColor: "#10b981",
-    description: "Environmental sensor data from bike sensors"
+    description: "Environmental sensor data from bike sensors",
+    category: DatasetCategory.GENERAL_DATA,
   },
 };
 
@@ -156,6 +175,7 @@ function createCollectionDataset(collectionName: string): DatasetConfig {
     label: config.label,
     icon: config.icon,
     iconColor: config.iconColor,
+    category: config.category,
     queryHook: createCollectionLoader(collectionName),
     datasetInfo: {
       title: config.label,
@@ -180,6 +200,8 @@ export interface DatasetConfig {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   /** Icon color (CSS color value) */
   iconColor: string;
+  /** Category of the dataset (general data or analyzed data) */
+  category?: DatasetCategory;
   /** React Query lazy hook for data fetching - returns a trigger function */
   queryHook: () => any;
   /** Dataset information object containing metadata */
@@ -225,6 +247,7 @@ export const ATRAI_DATASETS: DatasetRegistry = {
     label: "OSEM Bike Data (Campaign GeoJSON)",
     icon: BikeIcon,
     iconColor: "#0ea5e9", // Blue color
+    category: DatasetCategory.GENERAL_DATA,
     // Use the campaign-aware geojson loader
     queryHook: useLazyGetOsemBikePublicQuery,
     requiresCampaign: true,
@@ -289,4 +312,29 @@ export function getDatasetsByCampaign(
     `✅ Filtered ${filteredDatasets.length} datasets for campaign "${campaignName}"`,
   );
   return filteredDatasets;
+}
+
+/**
+ * Helper function to get datasets filtered by category
+ */
+export function getDatasetsByCategory(
+  category: DatasetCategory,
+): DatasetConfig[] {
+  return Object.values(ATRAI_DATASETS).filter(
+    (dataset) => dataset.category === category
+  );
+}
+
+/**
+ * Helper function to get general data datasets
+ */
+export function getGeneralDataDatasets(): DatasetConfig[] {
+  return getDatasetsByCategory(DatasetCategory.GENERAL_DATA);
+}
+
+/**
+ * Helper function to get analyzed data datasets
+ */
+export function getAnalyzedDataDatasets(): DatasetConfig[] {
+  return getDatasetsByCategory(DatasetCategory.ANALYZED_DATA);
 }
