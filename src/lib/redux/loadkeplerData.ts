@@ -165,7 +165,6 @@ export async function loadKeplerDataset({
       console.log(`📊 Loading new dataset ${datasetId} with styling config`);
       
       // Add data with config that includes layer styling
-      // Set keepExistingConfig to false to apply the new config styling
       store.dispatch(
         addDataToMap({
           datasets: {
@@ -174,9 +173,9 @@ export async function loadKeplerDataset({
           },
           options: {
             readOnly: false,
-            // Use the provided config instead of keeping existing one
+            // Don't keep existing config - use provided config with styling
             keepExistingConfig: false,
-            // Use layers defined in config instead of auto-creating with defaults
+            // Don't auto-create layers - use layers from the config
             autoCreateLayers: false,
           },
           config: updatedConfig,

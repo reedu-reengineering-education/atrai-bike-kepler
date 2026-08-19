@@ -60,7 +60,7 @@ function CustomAddDataModalFactory(...args: any[]) {
       );
     };
 
-    // Only expose ATRAI Data panel
+    // ATRAI Data as the first tab
     const atraiDataMethod = {
       id: "atrai-data",
       label: "ATRAI Data",
@@ -68,9 +68,15 @@ function CustomAddDataModalFactory(...args: any[]) {
       tabElement: "ATRAI Data",
     };
 
-    const customLoadingMethods = [atraiDataMethod];
+    console.log(LoadDataModal.defaultLoadingMethods);
 
-    return <LoadDataModal {...props} loadingMethods={customLoadingMethods} />;
+    // Combine ATRAI Data with default loading methods, excluding "Load from Storage"
+    const defaultMethods = (LoadDataModal.defaultLoadingMethods || []).filter(
+      (method) => method.id !== "storage"
+    );
+    const combinedLoadingMethods = [atraiDataMethod, ...defaultMethods];
+
+    return <LoadDataModal {...props} loadingMethods={combinedLoadingMethods} />;
   };
 
   return CustomAddDataModalWrapper;

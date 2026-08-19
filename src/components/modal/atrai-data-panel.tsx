@@ -19,6 +19,7 @@ import {
 import { toast } from "sonner";
 import { getCampaigns } from "@/lib/campaigns";
 import { loadKeplerDataset } from "@/lib/redux/loadkeplerData";
+import { getDatasetStyling } from "@/lib/kepler/dataset-styling";
 
 /**
  * Props interface for the ATRAI Data Panel component
@@ -507,7 +508,7 @@ export function ATRAIDataPanel({
           response: { data: result },
           datasetId: dataset.id,
           label: dataset.label,
-          config: {}, // Empty config - let kepler.gl auto-create layers
+          config: getDatasetStyling(dataset.id, dataset.label, result),
         });
 
         if (loadResult?.error) {
